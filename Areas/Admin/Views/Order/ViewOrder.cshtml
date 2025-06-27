@@ -1,0 +1,106 @@
+﻿@model IEnumerable<OrderDetails>
+@{
+    var orderCode = Model.FirstOrDefault()?.OrderCode ?? "";
+    ViewData["title"] = "Order Details";
+    decimal total = 0; //store total amount
+    decimal subtotal = 0;
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width-devide-width" />
+    <title>Index</title>
+</head>
+
+
+<body>
+<h3>List Order</h3>
+
+<table class="table" id="detail_order">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Order Code</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Subtotal</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                subtotal = item.Quantity * item.Price;
+                total += subtotal;
+                <tr>
+                    <input type="hidden" asp-for="@item.OrderCode" />
+                    <th>@item.Id</th>
+                    <th>@item.OrderCode</th>
+                    <td>@item.UserName</td>
+                    <th>@item.Product.Name</th>
+                    <th>$@item.Price</th>
+                    <th>@item.Quantity</th>
+                    <th>@subtotal.ToString("C")</th>
+    
+            </tr>
+        }
+        <tr>
+            <td>Total:</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>@total.ToString("#,##0 VNĐ")</td>
+            <td> <select class="form-control select-update-order" data-ordercode="@orderCode">
+                <option value="1">Đơn hàng mới </option>
+                <option value="0">Đã xử lý </option>
+            </select></td>
+        </tr>
+
+
+    </tbody>
+</table>
+</body>
+</html>
+@section Scripts{
+
+    <script>
+        new DataTable('#detail_order', {
+            layout: {
+                topStart: {
+                    buttons: ['pdf','print']
+                }
+            }
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+    $('.select-update-order').change(function () {
+        var status = $(this).val();
+        var ordercode = $(this).data("ordercode");
+
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Order/UpdateOrder", // đúng route vì bạn có [Route("Admin/[controller]/[action]")]
+            data: { status: status, ordercode: ordercode },
+
+            success: function (result) {
+                if (result.success) {
+                    Swal.fire("Cập nhật đơn hàng thành công");
+                } else {
+                    Swal.fire("Cập nhật đơn hàng thất bại: " + result.message);
+                }
+            },
+            error: function (req, status, error) {
+                Swal.fire("Lỗi kết nối: " + error);
+            }
+        });
+    });
+});
+
+    </script>
+}

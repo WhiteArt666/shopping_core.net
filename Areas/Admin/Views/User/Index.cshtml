@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["title"] = "User Listed";
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width"/>
+        <title>Index</title>
+    </head>
+
+    <body>
+    <h3>List User</h3>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="User"> Add User</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">PasswordHash</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usersWithRoles  in Model)
+            {
+                <tr>
+                    <th>@usersWithRoles.Id</th>
+                    <th>@usersWithRoles.UserName</th>
+                    <td>@usersWithRoles.Email</td>
+                    <td>@usersWithRoles.PasswordHash</td>
+                    <td>@usersWithRoles.PhoneNumber</td>
+                    <td>@usersWithRoles.RoleName</td>
+                    
+
+                    <td>
+                        @if(usersWithRoles.User.Id != ViewBag.loggedInUserId)
+                        {
+                            @if(usersWithRoles.RoleName != "Admin")
+                            {
+                                <a asp-action="Edit" class="btn btn-warning btn-sm" asp-controller="User" asp-route-Id="@usersWithRoles.User.Id">Edit</a>
+                                <a asp-action="Delete" class="btn btn-danger btn-sm confirmDeletion" asp-controller="User" asp-route-Id="@usersWithRoles.User.Id">Delete</a>
+                            }
+                        }
+                        
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+    </body>
+
+</html>

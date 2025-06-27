@@ -1,0 +1,298 @@
+/Users/thienphuong/Documents/web/shopping_tutorial/shopping_tutorial/obj/Debug/net6.0/shopping_tutorial.csproj.AssemblyReference.cache
+/Users/thienphuong/Documents/web/shopping_tutorial/shopping_tutorial/obj/Debug/net6.0/shopping_tutorial.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thienphuong/Documents/web/shopping_tutorial/shopping_tutorial/obj/Debug/net6.0/shopping_tutorial.AssemblyInfoInputs.cache
+/Users/thienphuong/Documents/web/shopping_tutorial/shopping_tutorial/obj/Debug/net6.0/shopping_tutorial.AssemblyInfo.cs
+/Users/thienphuong/Documents/web/shopping_tutorial/shopping_tutorial/obj/Debug/net6.0/shopping_tutorial.csproj.CoreCompileInputs.cache
+/Users/thienphuong/Documents/web/shopping_tutorial/shopping_tutorial/obj/Debug/net6.0/shopping_tutorial.MvcApplicationPartsAssemblyInfo.cache
+/Users/thienphuong/Documents/web/shopping_tutorial/shopping_tutorial/obj/Debug/net6.0/shopping_tutorial.RazorAssemblyInfo.cache
+/Users/thienphuong/Documents/web/shopping_tutorial/shopping_tutorial/obj/Debug/net6.0/shopping_tutorial.RazorAssemblyInfo.cs
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.AssemblyReference.cache
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.GeneratedMSBuildEditorConfig.editorconfig
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.AssemblyInfoInputs.cache
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.AssemblyInfo.cs
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.CoreCompileInputs.cache
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.MvcApplicationPartsAssemblyInfo.cache
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.RazorAssemblyInfo.cache
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.RazorAssemblyInfo.cs
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\appsettings.Development.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\appsettings.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.staticwebassets.runtime.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.staticwebassets.endpoints.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.exe
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.deps.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.runtimeconfig.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.pdb
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Humanizer.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\scopedcss\bundle\shopping_tutorial.styles.css
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\scopedcss\projectbundle\shopping_tutorial.bundle.scp.css
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.json.cache
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\staticwebassets.development.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.endpoints.json
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping.712771B9.Up2Date
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\refint\shopping_tutorial.dll
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.pdb
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.genruntimeconfig.cache
+C:\Mac\Home\Documents\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\ref\shopping_tutorial.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\appsettings.json
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.staticwebassets.runtime.json
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.exe
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.deps.json
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.runtimeconfig.json
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.pdb
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Humanizer.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.AssemblyReference.cache
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.AssemblyInfoInputs.cache
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.AssemblyInfo.cs
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.CoreCompileInputs.cache
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.RazorAssemblyInfo.cache
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.RazorAssemblyInfo.cs
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\scopedcss\bundle\shopping_tutorial.styles.css
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\scopedcss\projectbundle\shopping_tutorial.bundle.scp.css
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.CopyComplete
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\refint\shopping_tutorial.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.pdb
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.genruntimeconfig.cache
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\ref\shopping_tutorial.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\NgocHieu\Downloads\New folder (2)\web\shopping_tutorial\shopping_tutorial\obj\Debug\net6.0\scopedcss\Areas\Admin\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\appsettings.Development.json
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\appsettings.json
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.staticwebassets.runtime.json
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.exe
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.deps.json
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.runtimeconfig.json
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.pdb
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Humanizer.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.AssemblyReference.cache
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.GeneratedMSBuildEditorConfig.editorconfig
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.AssemblyInfoInputs.cache
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.AssemblyInfo.cs
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.CoreCompileInputs.cache
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.MvcApplicationPartsAssemblyInfo.cache
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.RazorAssemblyInfo.cache
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.RazorAssemblyInfo.cs
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.development.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\scopedcss\Areas\Admin\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\scopedcss\bundle\shopping_tutorial.styles.css
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\scopedcss\projectbundle\shopping_tutorial.bundle.scp.css
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.dll
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\refint\shopping_tutorial.dll
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.pdb
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.genruntimeconfig.cache
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\ref\shopping_tutorial.dll
+D:\projectweb\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.staticwebassets.endpoints.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\rpswa.dswa.cache.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.sourcelink.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\rjimswa.dswa.cache.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\rjsmrazor.dswa.cache.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\rjsmcshtml.dswa.cache.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.json.cache
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.endpoints.json
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
+D:\projectweb\store_program\shopping_tutorial\obj\Debug\net6.0\shopping.712771B9.Up2Date
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\appsettings.Development.json
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\appsettings.json
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.staticwebassets.runtime.json
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.staticwebassets.endpoints.json
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.exe
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.deps.json
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.runtimeconfig.json
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\shopping_tutorial.pdb
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Humanizer.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.AssemblyReference.cache
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.GeneratedMSBuildEditorConfig.editorconfig
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.AssemblyInfoInputs.cache
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.AssemblyInfo.cs
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.csproj.CoreCompileInputs.cache
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.MvcApplicationPartsAssemblyInfo.cache
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.RazorAssemblyInfo.cache
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.RazorAssemblyInfo.cs
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.sourcelink.json
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\scopedcss\Areas\Admin\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\scopedcss\bundle\shopping_tutorial.styles.css
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\scopedcss\projectbundle\shopping_tutorial.bundle.scp.css
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.json
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.development.json
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.build.endpoints.json
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets\msbuild.shopping_tutorial.Microsoft.AspNetCore.StaticWebAssets.props
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets\msbuild.shopping_tutorial.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets\msbuild.build.shopping_tutorial.props
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.shopping_tutorial.props
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.shopping_tutorial.props
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\staticwebassets.pack.json
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping.712771B9.Up2Date
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.dll
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\refint\shopping_tutorial.dll
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.pdb
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.genruntimeconfig.cache
+D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\ref\shopping_tutorial.dll
