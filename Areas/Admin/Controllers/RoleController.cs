@@ -22,17 +22,23 @@ namespace shopping_tutorial.Areas.Admin.Controllers
 
         }
         [Route("Index")]
-        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _dataContext.Roles.OrderByDescending(p => p.Id).ToListAsync());
         }
+        [HttpGet]
+        [Route("Create")]
+        public IActionResult Create()
+        {
+            return View();
+        }
         [Route("Create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Create(IdentityRole model)
         {
-            //avoid duplicate role: nếu role chưa tồn tại tạo role mới 
+            //avoid duplicate role
             if (!_roleManager.RoleExistsAsync(model.Name).GetAwaiter().GetResult())
             {
                 _roleManager.CreateAsync(new IdentityRole(model.Name)).GetAwaiter().GetResult();
