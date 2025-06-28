@@ -26,6 +26,12 @@ public class HomeController : Controller
         
         return View(products);
     }
+    public async Task<IActionResult> ContactAsync()
+    {
+        var contact = await _dataContext.Contact.FirstAsync();
+        return View(contact);
+    }
+    
 
     public IActionResult Privacy()
     {

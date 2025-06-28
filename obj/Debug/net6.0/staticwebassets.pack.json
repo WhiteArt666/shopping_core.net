@@ -321,6 +321,14 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\logo\\25ce5ce1-235a-48bf-b893-89dff225d276_Memoji 09.png",
+      "PackagePath": "staticwebassets\\media\\logo\\25ce5ce1-235a-48bf-b893-89dff225d276_Memoji 09.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\logo\\c68f4906-4bb9-46af-bd1b-e669d9c30b46_Memoji 09.png",
+      "PackagePath": "staticwebassets\\media\\logo\\c68f4906-4bb9-46af-bd1b-e669d9c30b46_Memoji 09.png"
+    },
+    {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\products\\03cbfb7d-0dff-4163-a697-6063493f1188_hoa.jpg",
       "PackagePath": "staticwebassets\\media\\products\\03cbfb7d-0dff-4163-a697-6063493f1188_hoa.jpg"
     },
@@ -361,12 +369,20 @@
       "PackagePath": "staticwebassets\\media\\products\\a6cb3b59-08fe-4995-8331-3a785e4738a8_20250212_pND5gfu5iP.webp"
     },
     {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\products\\f7a22e7e-9c51-4243-9905-077b67f54d2d_20240715_RQfbGqpVuf.jpeg",
+      "PackagePath": "staticwebassets\\media\\products\\f7a22e7e-9c51-4243-9905-077b67f54d2d_20240715_RQfbGqpVuf.jpeg"
+    },
+    {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\products\\fa13278e-3c45-422b-849b-77b535ef47ab_20250514_0Ioy4SIp1o.jpeg",
       "PackagePath": "staticwebassets\\media\\products\\fa13278e-3c45-422b-849b-77b535ef47ab_20250514_0Ioy4SIp1o.jpeg"
     },
     {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\0d835b95-9f35-4d79-b2a8-763edb218356_20250522_bqLYZFPc.png",
       "PackagePath": "staticwebassets\\media\\sliders\\0d835b95-9f35-4d79-b2a8-763edb218356_20250522_bqLYZFPc.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\16743325-7689-49cc-a4b6-a18483c2031d_20250522_bqLYZFPc.png",
+      "PackagePath": "staticwebassets\\media\\sliders\\16743325-7689-49cc-a4b6-a18483c2031d_20250522_bqLYZFPc.png"
     },
     {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\475a1b0e-7454-4782-8daa-ccc3de1b5f57_20250217_VdqHBV28.png",
