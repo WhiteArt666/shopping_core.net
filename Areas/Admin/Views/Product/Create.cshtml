@@ -12,10 +12,20 @@
         <span asp-validation-for="Name" class="text-danger"/>
     </div>
         <div class="form-group">
-            <label>Price</label>
-            <input asp-for="Price" class="form-control" />
-            <span asp-validation-for="Price" class="text-danger" />
-        </div>
+                    <label>Price</label>
+                 <input asp-for="Price" pattern="[0-9.,]+" class="form-control typing-price" />
+
+                 <span id="price-convert"></span>
+
+                <span asp-validation-for="Price" class="text-danger"></span>
+                </div><div class="form-group">
+                    <label>Price</label>
+                 <input asp-for="Price" pattern="[0-9.,]+" class="form-control typing-price" />
+
+                 <span id="price-convert"></span>
+
+                <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
         <div class="form-group">
             <label>Decription</label>
             <textarea asp-for="Description" class="form-control" ></textarea>
@@ -36,11 +46,11 @@
             <span asp-validation-for="BrandId" class="text-danger" />
         </div>
         <div class="form-group">
-            <label>Image</label>
-            <input asp-for="ImageUpload" class="form-control" />
-            <span asp-validation-for="ImageUpload" class="text-danger" />
-            <img id="imgpreview" class="pt-2" />
-        </div>
+                <label>Image</label>
+                <input asp-for="ImageUpload" class="form-control" />
+                <span asp-validation-for="ImageUpload" class="text-danger"></span>
+                <img id="imgpreview" class="pt-2" />
+            </div>
         <div class="form-group">
             <button class="btn btn-primary">Create</button>
         </div>
@@ -52,12 +62,29 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
     <script>
-        $("#ImageUpload").change(funtion(){
+        $("#ImageUpload").change(function () {
             readURL(this);
-        })
+        });
     </script>
+    
     <script>
         CKEDITOR.replace('Description');
     </script>
+
+     <script>
+            $(".typing-price").on("keyup", function () {
+
+                var currency_input = $(this).val(); //29980000
+
+                $("#price-convert").html(
+
+                    new Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(
+                    currency_input,
+
+                    )
+                );
+            });
+        </script>
 }
