@@ -1638,6 +1638,60 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\a6cb3b59-08fe-4995-8331-3a785e4738a8_20250212_pND5gfu5iP.webp'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\d05c05f4-bf01-48ee-b609-cf77d321fd79_20250212_F4vXpxq2xu.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>shopping_tutorial</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/shopping_tutorial</BasePath>
+      <RelativePath>media/products/d05c05f4-bf01-48ee-b609-cf77d321fd79_20250212_F4vXpxq2xu.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ci1knabpny</Fingerprint>
+      <Integrity>XOzQo0bcIWr0Tyc3YcWzy/YwOnJvMbfjwlCkNwqb89I=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\d05c05f4-bf01-48ee-b609-cf77d321fd79_20250212_F4vXpxq2xu.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\e1cb44aa-0a63-47a4-bd7c-3e3f45610f6b_20250425_Ch8rxq0fvh.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>shopping_tutorial</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/shopping_tutorial</BasePath>
+      <RelativePath>media/products/e1cb44aa-0a63-47a4-bd7c-3e3f45610f6b_20250425_Ch8rxq0fvh.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>wwe4w2drce</Fingerprint>
+      <Integrity>gOOKs0tb41iR+tRB3Ca/ZMN2jDZ6cFcnPH65YVHJ9Ps=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\e1cb44aa-0a63-47a4-bd7c-3e3f45610f6b_20250425_Ch8rxq0fvh.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\f6118c33-720c-4334-a3f0-03597dfd8298_20240715_RQfbGqpVuf.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>shopping_tutorial</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/shopping_tutorial</BasePath>
+      <RelativePath>media/products/f6118c33-720c-4334-a3f0-03597dfd8298_20240715_RQfbGqpVuf.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ej5v7onzt3</Fingerprint>
+      <Integrity>yiRPX8U8gHYRaKKYReJhl1F6e/oz2rlPfAJGpxitbFw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\f6118c33-720c-4334-a3f0-03597dfd8298_20240715_RQfbGqpVuf.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\f7a22e7e-9c51-4243-9905-077b67f54d2d_20240715_RQfbGqpVuf.jpeg'))">
       <SourceType>Package</SourceType>
       <SourceId>shopping_tutorial</SourceId>

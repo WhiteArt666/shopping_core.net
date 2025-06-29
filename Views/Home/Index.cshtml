@@ -28,8 +28,16 @@
                                 <p>Thương hiệu :@item.Brand.Name</p>
                             </a>
                             @* <a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a> *@
-                            <button class="btn btn-default add-to-cart" data-product_id="@item.Id"><i
-                                    class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
+                            @* <button class="btn btn-default add-to-cart" data-product_id="@item.Id"><i
+                                    class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button> *@
+                            @if (@item.Quantity==0)
+							{
+								<button type="button" class="btn btn-default"><i class="fa fa-shopping-cart"></i>Hết hàng</button>
+							}
+							else
+							{
+								<button class="btn btn-default add-to-cart" data-product_id="@item.Id"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
+							}
                         </div>
                     </div>
                     <div class="choose">

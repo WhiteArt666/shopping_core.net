@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using shopping_tutorial.Repository;
 
@@ -11,9 +12,10 @@ using shopping_tutorial.Repository;
 namespace shopping_tutorial.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250629103826_ProductQuantityModel")]
+    partial class ProductQuantityModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -413,14 +415,8 @@ namespace shopping_tutorial.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.Property<string>("Slug")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sold")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

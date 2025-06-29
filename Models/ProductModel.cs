@@ -19,7 +19,12 @@ namespace shopping_tutorial.Models
 		[Range(0.01,double .MaxValue)]
 		 public decimal Price { get; set; }
 
+		 public int Quantity { get; set; }
+
+		 public int Sold { get; set; }
+
 		 public int BrandId { get; set; }
+
 		 public int CategoryId { get; set; }
 
 		 public CategoryModel Category { get; set; }
