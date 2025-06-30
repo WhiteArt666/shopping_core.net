@@ -1,41 +1,44 @@
 ﻿@model IEnumerable<ProductModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <div class="col-sm-3">
-    @Html.Partial("_SidebPartial")
+    <partial name="_SidebPartial" />
 </div>
-<style>
-    .product-image-wrapper {
-        height: 450px
-    }
-</style>
 
 <div class="col-sm-9 padding-right">
     <div class="features_items">
+        @if (ViewBag.count > 0)
+        {
+            <partial name="_FilterProductsPartial" />
+        }
+
         <!--features_items-->
-        <h2 class="title text-center">Features Items</h2>
+        <h2 class="title text-center">@ViewBag.Slug</h2>
+
         @foreach (var item in Model)
         {
+
             <div class="col-sm-4">
                 <div class="product-image-wrapper">
-                    <div class="single-products">
-                        <div class="productinfo text-center">
-                            <img src="~/media/products/@item.Image" alt="@item.Name" width="100%" />
-                            <h2>@item.Price.ToString("#,##0 VNĐ")</h2>
-                            <p>@item.Name</p>
-                            <p>Danh mục :@item.Category.Name</p>
-                            <p>Thương hiệu :@item.Brand.Name</p>
-                            @if (@item.Quantity==0)
-							{
-								<button type="button" class="btn btn-default"><i class="fa fa-shopping-cart"></i>Hết hàng</button>
-							}
-							else
-							{
-								<button class="btn btn-default add-to-cart" data-product_id="@item.Id"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
-							}
+
+                    <a>
+                        <div class="single-products">
+                            <div class="productinfo text-center">
+                                <img src="~/media/products/@item.Image" alt="@item.Name" width="100px" height="200px" />
+                                <h2>@item.Price.ToString("#,##0 VNĐ")</h2>
+                                <p>@item.Name</p>
+                                <p>Danh mục: @item.Category.Name</p>
+                                <p>Thương hiệu: @item.Brand.Name</p>
+
+                                <a asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id"
+                                    class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            </div>
                         </div>
+                    </a>
 
-
-                    </div>
                     <div class="choose">
                         <ul class="nav nav-pills nav-justified">
                             <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
@@ -46,37 +49,77 @@
             </div>
         }
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </div><!--features_items-->
 
-    <script>
-        $('.add-to-cart').click(function () {
-            var Id = $(this).data("product_id");
 
-            //alert(product_id);
 
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("Add", "Cart")",
-                data: { Id: Id }, // Send data to the server
+</div>
+@if (ViewBag.count > 0)
+{
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+        <script>
+            $(document).ready(function () {
 
-                success: function (result) {
-                    // Handle successful update
-                    if (result) {
+                $("#slider-range").slider({
 
-                        Swal.fire("Thêm giỏ hàng thành công.");
+                    range: true,
+                    min: @ViewBag.minprice,
+                    max: @ViewBag.maxprice,
+                    step: 100000,
+                    values: [@ViewBag.minprice, @ViewBag.maxprice],
+                    slide: function (event, ui) {
+                        const formatter = new Intl.NumberFormat('vi-VN', {
+                            style: 'currency',
+                            currency: 'VND'
+                        });
+
+                        const formattedValue = `${formatter.format(ui.values[0])} - ${formatter.format(ui.values[1])}`;
+
+                        $("#amount").val(formattedValue);
                     }
-                }
+
+                });
+                const min = $("#slider-range").slider("values", 0);
+                const max = $("#slider-range").slider("values", 1);
+
+                const formatter = new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                });
+
+                $("#amount").val(`${formatter.format(min)} - ${formatter.format(max)}`);
+
+
+                //btn lọc giá
+                $('.btn-locgia').on('click', function () {
+
+                    var url = $(this).data("current_url");
+                    // alert(url);
+                    if (url) {
+                        window.location = url + "?startprice=" + $("#slider-range").slider("values", 0)
+                            + "&endprice=" + $("#slider-range").slider("values", 1);
+                    }
+                    return false;
+                });
 
             });
-        });
-    </script>
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $('#sort_by').on('change', function () {
+
+                    var url = $(this).val();
+                    // alert(url);
+                    if (url) {
+                        window.location = url;
+                    }
+                    return false;
+                });
+
+            });
+        </script>
+    }
 }
-
-
-
-
-
