@@ -6645,6 +6645,88 @@
       ]
     },
     {
+      "Route": "media/logo/ff9bb281-0e1a-42d8-a3ea-a9558fc118cf_20240715_RQfbGqpVuf.ej5v7onzt3.jpeg",
+      "AssetFile": "media/logo/ff9bb281-0e1a-42d8-a3ea-a9558fc118cf_20240715_RQfbGqpVuf.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "418638"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yiRPX8U8gHYRaKKYReJhl1F6e/oz2rlPfAJGpxitbFw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 30 Jun 2025 10:05:02 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ej5v7onzt3"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yiRPX8U8gHYRaKKYReJhl1F6e/oz2rlPfAJGpxitbFw="
+        },
+        {
+          "Name": "label",
+          "Value": "media/logo/ff9bb281-0e1a-42d8-a3ea-a9558fc118cf_20240715_RQfbGqpVuf.jpeg"
+        }
+      ]
+    },
+    {
+      "Route": "media/logo/ff9bb281-0e1a-42d8-a3ea-a9558fc118cf_20240715_RQfbGqpVuf.jpeg",
+      "AssetFile": "media/logo/ff9bb281-0e1a-42d8-a3ea-a9558fc118cf_20240715_RQfbGqpVuf.jpeg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "418638"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yiRPX8U8gHYRaKKYReJhl1F6e/oz2rlPfAJGpxitbFw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 30 Jun 2025 10:05:02 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yiRPX8U8gHYRaKKYReJhl1F6e/oz2rlPfAJGpxitbFw="
+        }
+      ]
+    },
+    {
       "Route": "media/products/03cbfb7d-0dff-4163-a697-6063493f1188_hoa.084dnq5cof.jpg",
       "AssetFile": "media/products/03cbfb7d-0dff-4163-a697-6063493f1188_hoa.jpg",
       "Selectors": [],

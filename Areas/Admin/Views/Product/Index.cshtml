@@ -21,7 +21,7 @@
 <body>
 <h3>List Product</h3>
 <a class="btn btn-primary" asp-action="Create" asp-controller="Product"> Add Product</a>
-<table class="table" id="mytable">
+<table class="table" id="myTable">
     <thead>
         <tr>
              <th>Id</th>
@@ -75,9 +75,9 @@
 </table>
     <partial name="_paging" model="@pager" />
 </body>
-@* @section Scripts {
+@section Scripts {
     <script>
-        let table = new DataTable('#mytable')
+        let table = new DataTable('#myTable')
     </script>
-} *@
+}
 </html>

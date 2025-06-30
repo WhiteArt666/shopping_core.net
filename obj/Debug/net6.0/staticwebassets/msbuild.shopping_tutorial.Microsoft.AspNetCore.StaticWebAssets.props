@@ -1458,6 +1458,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\logo\c68f4906-4bb9-46af-bd1b-e669d9c30b46_Memoji 09.png'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\logo\ff9bb281-0e1a-42d8-a3ea-a9558fc118cf_20240715_RQfbGqpVuf.jpeg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>shopping_tutorial</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/shopping_tutorial</BasePath>
+      <RelativePath>media/logo/ff9bb281-0e1a-42d8-a3ea-a9558fc118cf_20240715_RQfbGqpVuf.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ej5v7onzt3</Fingerprint>
+      <Integrity>yiRPX8U8gHYRaKKYReJhl1F6e/oz2rlPfAJGpxitbFw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\logo\ff9bb281-0e1a-42d8-a3ea-a9558fc118cf_20240715_RQfbGqpVuf.jpeg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\media\products\03cbfb7d-0dff-4163-a697-6063493f1188_hoa.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>shopping_tutorial</SourceId>

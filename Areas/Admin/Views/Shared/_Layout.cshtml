@@ -80,6 +80,7 @@
                                 <li><a asp-action="Index" asp-controller="Order">Orders</a></li>
                                 <li><a asp-action="Index" asp-controller="Role">Roles</a></li>
                                 <li><a asp-action="Index" asp-controller="Contact">Manager Contact</a></li>
+                                <li><a asp-action="Index" asp-controller="Shipping">Manager Shipping</a></li>
                                 <li><a asp-action="Index" asp-controller="User">Users</a></li>
                                
                             </ul>
@@ -148,7 +149,7 @@
 
 
     <script>
-		let table = new DataTable('#mytable', {
+		let table = new DataTable('#myTable', {
 			layout: {
 				topStart: {
 					buttons: ['copy', 'csv', 'excel', 'pdf', 'print']

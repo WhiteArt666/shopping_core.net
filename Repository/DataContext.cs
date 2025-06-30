@@ -23,6 +23,8 @@ namespace shopping_tutorial.Repository
 
         public DbSet<ProductQuantityModel> ProductQuantities { get; set; }
 
+         public DbSet<ShippingModel> Shippings { get; set; }
+
         public DbSet<SliderModel> Sliders { get; set; }
         public DbSet<CategoryModel> Categories { get; set; }
 		public DbSet<OrderModel> Orders { get; set; }
