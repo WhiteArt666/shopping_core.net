@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using shopping_tutorial.Areas.Admin.Repository;
 using shopping_tutorial.Models;
 using shopping_tutorial.Repository;
@@ -45,6 +46,11 @@ namespace shopping_tutorial.Controllers
 					orderdetails.ProductId = cart.ProductId;
 					orderdetails.Price = cart.Price;
 					orderdetails.Quantity = cart.Quantity;
+					//update product quantity
+					var product = await _dataContext.Products.Where(p => p.Id == cart.ProductId).FirstAsync();
+					product.Quantity -= cart.Quantity;
+					product.Sold += cart.Quantity;
+					_dataContext.Update(product);
 					_dataContext.Add(orderdetails);// thêm dữ liệu tạo đơn hàng mới 
 					_dataContext.SaveChanges();
 				}
