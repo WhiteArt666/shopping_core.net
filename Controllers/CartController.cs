@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using shopping_tutorial.Models;
 using shopping_tutorial.Models.ViewModels;
 using shopping_tutorial.Repository;
@@ -17,10 +18,23 @@ namespace shopping_tutorial.Controllers
         public IActionResult Index()
         {
             List<CartItemModel> cartitems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+            // Nhận shipping giá từ cookie
+            var shippingPriceCookie = Request.Cookies["ShippingPrice"];
+            decimal shippingPrice = 0;
+
+            if (shippingPriceCookie != null)
+            {
+                var shippingPriceJson = shippingPriceCookie;
+                shippingPrice = JsonConvert.DeserializeObject<decimal>(shippingPriceJson);
+            }
+
+
+
             CartItemViewModel cartVM = new()
             {
                 CartItems = cartitems,
-                GrandTotal = cartitems.Sum(x => x.Quantity * x.Price)
+                GrandTotal = cartitems.Sum(x => x.Quantity * x.Price),
+                ShippingCost = shippingPrice
             };
             return View(cartVM);
         }
@@ -28,7 +42,7 @@ namespace shopping_tutorial.Controllers
         {
             return View("~/Views/Checkout/Index.cshtml");
         }
-        public async Task<IActionResult> Add(int  Id)
+        public async Task<IActionResult> Add(int Id)
         {
             ProductModel product = await _dataContext.Products.FindAsync(Id);
             List<CartItemModel> cart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
@@ -66,8 +80,8 @@ namespace shopping_tutorial.Controllers
             {
                 HttpContext.Session.SetJson("Cart", cart);
             }
-			TempData["success"] = "Decrease quantity  Item to cart Successfully";
-			return RedirectToAction("Index");
+            TempData["success"] = "Decrease quantity  Item to cart Successfully";
+            return RedirectToAction("Index");
         }
         public async Task<IActionResult> Increase(int Id)
         {
@@ -111,17 +125,63 @@ namespace shopping_tutorial.Controllers
             {
                 HttpContext.Session.SetJson("Cart", cart);
             }
-			TempData["success"] = "Remove  Item quantity of cart Successfully";
-			return RedirectToAction("Index");
+            TempData["success"] = "Remove  Item quantity of cart Successfully";
+            return RedirectToAction("Index");
         }
         public async Task<IActionResult> Clear()
         {
 
             HttpContext.Session.Remove("Cart");
-			TempData["success"] = "Clear All Item quantity  of cart Successfully";
-			return RedirectToAction("Index");
+            TempData["success"] = "Clear All Item quantity  of cart Successfully";
+            return RedirectToAction("Index");
 
 
+        }
+        [HttpPost]
+        [Route("Cart/GetShipping")]
+        public async Task<IActionResult> GetShipping(ShippingModel shippingModel, string quan, string tinh, string phuong)
+        {
+
+            var existingShipping = await _dataContext.Shippings
+                .FirstOrDefaultAsync(x => x.City == tinh && x.District == quan && x.Ward == phuong);
+
+            decimal shippingPrice = 0; // Set mặc định giá tiền
+
+            if (existingShipping != null)
+            {
+                shippingPrice = existingShipping.Price;
+            }
+            else
+            {
+                //Set mặc định giá tiền nếu ko tìm thấy
+                shippingPrice = 50000;
+            }
+            var shippingPriceJson = JsonConvert.SerializeObject(shippingPrice);
+            try
+            {
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Expires = DateTimeOffset.UtcNow.AddMinutes(30),
+                    Secure = true // using HTTPS
+                };
+
+                Response.Cookies.Append("ShippingPrice", shippingPriceJson, cookieOptions);
+            }
+            catch (Exception ex)
+            {
+                //
+                Console.WriteLine($"Error adding shipping price cookie: {ex.Message}");
+            }
+            return Json(new { shippingPrice });
+        }
+
+        [HttpGet]
+        [Route("Cart/RemoveShippingCookie")]
+        public IActionResult RemoveShippingCookie()
+        {
+            Response.Cookies.Delete("ShippingPrice");
+            return RedirectToAction("Index", "Cart");
         }
     }
 }
