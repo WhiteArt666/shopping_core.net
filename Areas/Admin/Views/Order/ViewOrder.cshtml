@@ -53,7 +53,10 @@
             <td></td>
             <td></td>
             <td></td>
-            <td>@total.ToString("#,##0 VNĐ")</td>
+            <td>Tổng : @total.ToString("#,##0 đ")</td>
+                    <td>Shipping : @ViewBag.ShippingCost.ToString("#,##0 đ")</td>
+                    
+                <td>
             <td> <select class="form-control select-update-order" data-ordercode="@orderCode">
                 <option value="1">Đơn hàng mới </option>
                 <option value="0">Đã xử lý </option>
@@ -85,7 +88,7 @@
 
         $.ajax({
             type: "POST",
-            url: "/Admin/Order/UpdateOrder", // đúng route vì bạn có [Route("Admin/[controller]/[action]")]
+            url: "@Url.Action("UpdateOrder")",
             data: { status: status, ordercode: ordercode },
 
             success: function (result) {

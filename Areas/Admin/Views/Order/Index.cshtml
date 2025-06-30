@@ -26,6 +26,7 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Order Code</th>
+            <th scope="col">Shipping Cost</th>
             <th scope="col">UserName</th>
             <th scope="col">Order Date</th>
             <th scope="col">Order Status</th>
@@ -39,6 +40,7 @@
             <tr>
                 <th>@item.Id</th>
                 <th scope="row">@item.OrderCode</th>
+                 <td>@item.ShippingCost.ToString("#,##0 đ")</td>
                 <td>@item.UserName</td> 
                 <td>@Html.Raw(item.CreatedDate)</td>
 

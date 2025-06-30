@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using shopping_tutorial.Areas.Admin.Repository;
 using shopping_tutorial.Models;
 using shopping_tutorial.Repository;
@@ -35,6 +36,17 @@ namespace shopping_tutorial.Controllers
 				orderItem.UserName = userEmail;
 				orderItem.Status = 1; // 1 là đơn hàng mới 
 				orderItem.CreatedDate = DateTime.Now;
+				// Retrieve shipping price from cookie
+				var shippingPriceCookie = Request.Cookies["ShippingPrice"];
+				decimal shippingPrice = 0;
+
+				if (shippingPriceCookie != null)
+				{
+					var shippingPriceJson = shippingPriceCookie;
+					shippingPrice = JsonConvert.DeserializeObject<decimal>(shippingPriceJson);
+				}
+				orderItem.ShippingCost = shippingPrice;
+				
 				_dataContext.Add(orderItem);// thêm dữ liệu tạo đơn hàng mới 
 				_dataContext.SaveChanges();
 				List<CartItemModel> cartitems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
