@@ -41,7 +41,7 @@
                     <th>@item.OrderCode</th>
                     <td>@item.UserName</td>
                     <th>@item.Product.Name</th>
-                    <th>$@item.Price</th>
+                    <th>@item.Price</th>
                     <th>@item.Quantity</th>
                     <th>@subtotal.ToString("C")</th>
     
@@ -56,11 +56,20 @@
             <td>Tổng : @total.ToString("#,##0 đ")</td>
                     <td>Shipping : @ViewBag.ShippingCost.ToString("#,##0 đ")</td>
                     
-                <td>
-            <td> <select class="form-control select-update-order" data-ordercode="@orderCode">
+            <td>
+         @if(@ViewBag.Status != 3)
+         {
+         <td> 
+            <select class="form-control select-update-order" data-ordercode="@orderCode">
                 <option value="1">Đơn hàng mới </option>
                 <option value="0">Đã xử lý </option>
-            </select></td>
+                <option value="2">Đã Đóng Gói</option>
+                <option value="4">Đã Vận Chuyển</option>
+                <option value="5">Đã Hoàn Thành</option>
+            </select>
+         </td>
+         }
+
         </tr>
 
 
