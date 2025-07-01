@@ -46,6 +46,9 @@ namespace shopping_tutorial.Controllers
 					shippingPrice = JsonConvert.DeserializeObject<decimal>(shippingPriceJson);
 				}
 				orderItem.ShippingCost = shippingPrice;
+				//Nhận coupon code
+				var CouponCode = Request.Cookies["CouponTitle"];
+				orderItem.CouponCode = CouponCode;
 				
 				_dataContext.Add(orderItem);// thêm dữ liệu tạo đơn hàng mới 
 				_dataContext.SaveChanges();

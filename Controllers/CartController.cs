@@ -28,13 +28,17 @@ namespace shopping_tutorial.Controllers
                 shippingPrice = JsonConvert.DeserializeObject<decimal>(shippingPriceJson);
             }
 
+            //Nhận Coupon code từ cookie
+            var coupon_code = Request.Cookies["CouponTitle"];
+
 
 
             CartItemViewModel cartVM = new()
             {
                 CartItems = cartitems,
                 GrandTotal = cartitems.Sum(x => x.Quantity * x.Price),
-                ShippingCost = shippingPrice
+                ShippingCost = shippingPrice,
+                CouponCode = coupon_code,
             };
             return View(cartVM);
         }
@@ -183,6 +187,53 @@ namespace shopping_tutorial.Controllers
             Response.Cookies.Delete("ShippingPrice");
             return RedirectToAction("Index", "Cart");
         }
+
+        [HttpPost]
+        [Route("Cart/GetCoupon")]
+        public async Task<IActionResult> GetCoupon(CouponModel couponModel, string coupon_value)
+        {
+            var validCoupon = await _dataContext.Coupons
+                .FirstOrDefaultAsync(x => x.Name == coupon_value && x.Quantity >= 1);
+
+            // ✅ Kiểm tra null trước khi dùng
+            if (validCoupon == null)
+            {
+                return Ok(new { success = false, message = "Coupon không tồn tại hoặc đã hết số lượng" });
+            }
+
+            string couponTitle = validCoupon.Name + " | " + validCoupon.Description;
+
+            TimeSpan remainingTime = validCoupon.DateExpired - DateTime.Now;
+            int daysRemaining = remainingTime.Days;
+
+            if (daysRemaining >= 0)
+            {
+                try
+                {
+                    var cookieOptions = new CookieOptions
+                    {
+                        HttpOnly = true,
+                        Expires = DateTimeOffset.UtcNow.AddMinutes(30),
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict
+                    };
+
+                    Response.Cookies.Append("CouponTitle", couponTitle, cookieOptions);
+                    return Ok(new { success = true, message = "Áp dụng mã giảm giá thành công" });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Lỗi khi lưu coupon vào cookie: {ex.Message}");
+                    return Ok(new { success = false, message = "Không thể áp dụng mã giảm giá" });
+                }
+            }
+            else
+            {
+                return Ok(new { success = false, message = "Mã giảm giá đã hết hạn" });
+            }
+        }
+
+
     }
 }
 
