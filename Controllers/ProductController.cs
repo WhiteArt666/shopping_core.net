@@ -31,8 +31,15 @@ namespace shopping_tutorial.Controllers
 
 		public async Task<IActionResult> Details(int Id)
 		{
-			if (Id == null) return RedirectToAction("Index");
+			if (Id <= 0) return RedirectToAction("Index");
 			var productById = _dataContext.Products.Include(p => p.Ratings).Where(p => p.Id == Id).FirstOrDefault();
+			
+			if (productById == null) return RedirectToAction("Index");
+			
+			//get ratings for this product
+			var productRatings = await _dataContext.Ratings.Where(r => r.ProductId == Id).ToListAsync();
+			ViewBag.ProductRatings = productRatings;
+			
 			//relatred product
 			var relatedProducts = await _dataContext.Products
 			.Where(p => p.CategoryId == productById.CategoryId && p.Id != productById.Id)
@@ -92,8 +99,7 @@ namespace shopping_tutorial.Controllers
 			}
 
 			return Redirect(Request.Headers["Referer"]);
-		}
-      
+		}      
 	}
 }
 

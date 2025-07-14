@@ -1,137 +1,596 @@
 ﻿@model IEnumerable<ProductModel>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<style>
+    /* Custom Swiper Navigation */
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px !important;
+        height: 30px !important;
+        margin-top: 0 !important;
+        background: #007bff;
+        border-radius: 50%;
+        color: white !important;
+        font-size: 12px !important;
+        font-weight: bold;
+        top: auto !important;
+        bottom: 20px !important;
+        z-index: 10;
+    }
+    
+    .swiper-button-next {
+        right: 10px !important;
+    }
+    
+    .swiper-button-prev {
+        right: 50px !important;
+        left: auto !important;
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 12px !important;
+    }
+    
+    /* Category Grid */
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .products-section {
+        position: relative;
+    }
+</style>
+
 @{
     ViewData["Title"] = "Web bán hàng ASP.NET8";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <partial name="_SliderPartial" />
-<div class="col-sm-3">
-    <partial name="_SidebPartial" />
-</div>
 
-<div class="col-sm-9 padding-right">
-    <div class="features_items">
-        <!--features_items-->
-        <h2 class="title text-center">Features Items</h2>
-        @foreach (var item in Model)
-        {
-            <div class="col-sm-4">
-                <div class="product-image-wrapper">
-                    <div class="single-products">
-
-                        <div class="productinfo text-center">
-                            <a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id">
-                                <img src="~/media/products/@item.Image" alt="@item.Name" width="100%" />
-                                <h2>@item.Price.ToString("#,##0 VNĐ")</h2>
-                                <p>@item.Name</p>
-                                <p>Danh mục :@item.Category.Name</p>
-                                <p>Thương hiệu :@item.Brand.Name</p>
-                            </a>
-                            @* <a class="btn btn-default add-to-cart" asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a> *@
-                            @* <button class="btn btn-default add-to-cart" data-product_id="@item.Id"><i
-                                    class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button> *@
-                            @if (@item.Quantity==0)
-							{
-								<button type="button" class="btn btn-default"><i class="fa fa-shopping-cart"></i>Hết hàng</button>
-							}
-							else
-							{
-								<button class="btn btn-default add-to-cart" data-product_id="@item.Id"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
-							}
-                        </div>
-                    </div>
-                    <div class="choose">
-						@if (User.Identity?.IsAuthenticated ?? false)
-						{
-							<ul class="nav nav-pills nav-justified">
-								<li><button class="btn btn-danger add-btn-wishlist" data-product_id="@item.Id">Yêu thích</button></li>
-								<li><button class="btn btn-primary add-btn-compare" data-product_id="@item.Id">So sánh</button></li>
-							</ul>
-						}
-					</div>
-                </div>
-            </div>
-        }
+<!-- Categories Section -->
+<div class="categories-section" style="margin-bottom: 30px;">
+    <div class="category-section">
+        <h2>Danh Mục Sản Phẩm</h2>
+        <div class="category-grid" id="categoryGrid">
+            <vc:categories></vc:categories>
+        </div>
     </div>
 </div>
 
+<!-- Products Section -->
+<div class="products-section">
+    <div class="features_items">
+        <!--features_items-->
+        <h2 class="title text-center">Đề Xuất Sản Phẩm</h2>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model)
+                {
+                    <div class="swiper-slide">
+                        <div class="ul-product">
+                            <div class="ul-product-heading">
+                                <span class="ul-product-price">@item.Price.ToString("#,##0 VNĐ")</span>
+                                <!-- Add discount tag if applicable -->
+                                
+                            
+                                
+                                    <span class="ul-product-discount-tag">20% Off</span> <!-- Fallback if no discount -->
+                                
+                            </div>
+
+                            <div class="ul-product-img">
+                                <a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id">
+                                    <img src="~/media/products/@item.Image" alt="@item.Name" />
+                                </a>
+
+                                <div class="ul-product-actions">
+                                    @if (item.Quantity == 0)
+                                    {
+                                        <button type="button" disabled><i class="flaticon-shopping-bag"></i></button>
+                                    }
+                                    else
+                                    {
+                                        <button class="add-to-cart" data-product_id="@item.Id"><i class="flaticon-shopping-bag"></i></button>
+                                    }
+                                    <a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id"><i class="flaticon-hide"></i></a>
+                                    @if (User.Identity?.IsAuthenticated ?? false)
+                                    {
+                                        <button class="add-btn-wishlist" data-product_id="@item.Id"><i class="flaticon-heart"></i></button>
+                                        <button class="add-btn-compare" data-product_id="@item.Id"><i class="flaticon-compare"></i></button>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="ul-product-txt">
+                                <h4 class="ul-product-title"><a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id">@item.Name</a></h4>
+                                <h5 class="ul-product-category"><a asp-action="Index" asp-controller="Shop" asp-route-category="@item.Category.Name">@item.Category.Name</a></h5>
+                                <h5 class="ul-product-category">@item.Brand.Name</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</div>
+
+<!-- AD SECTION START -->
+        <div class="ul-container">
+            <section class="ul-ad">
+                <div class="ul-inner-container">
+                    <div class="ul-ad-content">
+                        <div class="ul-ad-txt">
+                            <span class="ul-ad-sub-title">Trending Products</span>
+                            <h2 class="ul-section-title">Get 30% Discount On All Hudis!</h2>
+                            <div class="ul-ad-categories">
+                                <span class="category"><span><i class="flaticon-check-mark"></i></span>Zara</span>
+                                <span class="category"><span><i class="flaticon-check-mark"></i></span>Gucie</span>
+                                <span class="category"><span><i class="flaticon-check-mark"></i></span>Publo</span>
+                                <span class="category"><span><i class="flaticon-check-mark"></i></span>Men's</span>
+                                <span class="category"><span><i class="flaticon-check-mark"></i></span>Women's</span>
+                            </div>
+                        </div>
+
+                        <div class="ul-ad-img">
+                            <img src="assets/img/ad-img.png" alt="Ad Image">
+                        </div>
+
+                        <a href="shop.html" class="ul-btn">Check Discount <i class="flaticon-up-right-arrow"></i></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- AD SECTION END -->
+
+
+
+
+    <!-- MOST SELLING START -->
+        <div class="ul-container">
+            <section class="ul-products ul-most-selling-products">
+                <div class="ul-inner-container">
+                    <div class="ul-section-heading flex-lg-row flex-column text-md-start text-center">
+                        <div class="left">
+                            <span class="ul-section-sub-title">most selling items</span>
+                            <h2 class="ul-section-title">Top selling Categories This Week</h2>
+                        </div>
+
+                        <div class="right">
+                            <div class="ul-most-sell-filter-navs">
+                                <button type="button" data-filter="all">All Products</button>
+                                <button type="button" data-filter=".best-selling">Best Selling</button>
+                                <button type="button" data-filter=".on-selling">On Selling</button>
+                                <button type="button" data-filter=".top-rating">Top Rating</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- products grid -->
+                    <div class="ul-bs-row row row-cols-xl-4 row-cols-lg-3 row-cols-sm-2 row-cols-1 ul-filter-products-wrapper">
+                        <!-- Best Selling Products -->
+                        @if (ViewBag.BestSellingProducts != null)
+                        {
+                            @foreach (var product in ViewBag.BestSellingProducts as List<ProductModel>)
+                            {
+                                <div class="mix col best-selling">
+                                    <div class="ul-product-horizontal">
+                                        <div class="ul-product-horizontal-img">
+                                            <img src="~/media/products/@product.Image" alt="@product.Name">
+                                        </div>
+
+                                        <div class="ul-product-horizontal-txt">
+                                            <span class="ul-product-price">@product.Price.ToString("#,##0 đ")</span>
+                                            <h4 class="ul-product-title"><a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">@product.Name</a></h4>
+                                            <h5 class="ul-product-category"><a asp-action="Index" asp-controller="Category" asp-route-Slug="@product.Category.Slug">@product.Category.Name</a></h5>
+                                            <div class="ul-product-rating">
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        <!-- On Selling Products -->
+                        @if (ViewBag.OnSellingProducts != null && ((List<ProductModel>)ViewBag.OnSellingProducts).Count > 0)
+                        {
+                            @foreach (var product in ViewBag.OnSellingProducts as List<ProductModel>)
+                            {
+                                <div class="mix col on-selling">
+                                    <div class="ul-product-horizontal">
+                                        <div class="ul-product-horizontal-img">
+                                            <img src="~/media/products/@product.Image" alt="@product.Name">
+                                        </div>
+
+                                        <div class="ul-product-horizontal-txt">
+                                            <span class="ul-product-price">@product.Price.ToString("#,##0 đ")</span>
+                                            <h4 class="ul-product-title"><a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">@product.Name</a></h4>
+                                            <h5 class="ul-product-category"><a asp-action="Index" asp-controller="Category" asp-route-Slug="@product.Category.Slug">@product.Category.Name</a></h5>
+                                            <div class="ul-product-rating">
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        <!-- Top Rating Products -->
+                        @if (ViewBag.TopRatingProducts != null && ((List<ProductModel>)ViewBag.TopRatingProducts).Count > 0)
+                        {
+                            @foreach (var product in ViewBag.TopRatingProducts as List<ProductModel>)
+                            {
+                                <div class="mix col top-rating">
+                                    <div class="ul-product-horizontal">
+                                        <div class="ul-product-horizontal-img">
+                                            <img src="~/media/products/@product.Image" alt="@product.Name">
+                                        </div>
+
+                                        <div class="ul-product-horizontal-txt">
+                                            <span class="ul-product-price">@product.Price.ToString("#,##0 đ")</span>
+                                            <h4 class="ul-product-title"><a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">@product.Name</a></h4>
+                                            <h5 class="ul-product-category"><a asp-action="Index" asp-controller="Category" asp-route-Slug="@product.Category.Slug">@product.Category.Name</a></h5>
+                                            <div class="ul-product-rating">
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                                <span class="star"><i class="flaticon-star"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        
+                        <!-- Debug info - remove after fixing -->
+                        @{
+                            var bestCount = ViewBag.BestSellingProducts != null ? ((List<ProductModel>)ViewBag.BestSellingProducts).Count : 0;
+                            var onCount = ViewBag.OnSellingProducts != null ? ((List<ProductModel>)ViewBag.OnSellingProducts).Count : 0;
+                            var topCount = ViewBag.TopRatingProducts != null ? ((List<ProductModel>)ViewBag.TopRatingProducts).Count : 0;
+                        }
+                        <!-- Debug: Best=@bestCount, On=@onCount, Top=@topCount -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- MOST SELLING END -->
+
+
+        <!-- VIDEO SECTION START -->
+        <div class="ul-container">
+            <div class="ul-video">
+                <div>
+                    <img src="assets/img/video-banner.jpg" alt="Video Banner" class="ul-video-cover">
+                </div>
+                <a href="https://youtu.be/cNOKQIw81SE?si=iwUyBvpTD3h8DpFK" data-fslightbox="video" class="ul-video-btn"><i class="flaticon-play-button-arrowhead"></i></a>
+            </div>
+        </div>
+        <!-- VIDEO SECTION END -->
+
+        <!-- REVIEWS SECTION START -->
+        <section class="ul-reviews overflow-hidden">
+            <div class="ul-section-heading text-center justify-content-center">
+                <div>
+                    <span class="ul-section-sub-title">Customer Reviews</span>
+                    <h2 class="ul-section-title">Product Reviews</h2>
+                    <p class="ul-reviews-heading-descr">Our references are very valuable, the result of a great effort...</p>
+                </div>
+            </div>
+
+            <!-- slider -->
+            <div class="ul-reviews-slider swiper">
+                <div class="swiper-wrapper">
+                    <!-- single review -->
+                    <div class="swiper-slide">
+                        <div class="ul-review">
+                            <div class="ul-review-rating">
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star-3"></i>
+                            </div>
+                            <p class="ul-review-descr">Praesent ut lacus a velit tincidunt aliquam a eget urna. Sed ullamcorper tristique nisl at pharetra turpis accumsan et etiam eu sollicitudin eros. In imperdiet accumsan.</p>
+                            <div class="ul-review-bottom">
+                                <div class="ul-review-reviewer">
+                                    <div class="reviewer-image"><img src="assets/img/review-author-1.png" alt="reviewer image"></div>
+                                    <div>
+                                        <h3 class="reviewer-name">Esther Howard</h3>
+                                        <span class="reviewer-role">Web Designer</span>
+                                    </div>
+                                </div>
+
+                                <!-- icon -->
+                                <div class="ul-review-icon"><i class="flaticon-left"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- single review -->
+                    <div class="swiper-slide">
+                        <div class="ul-review">
+                            <div class="ul-review-rating">
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star-3"></i>
+                            </div>
+                            <p class="ul-review-descr">Praesent ut lacus a velit tincidunt aliquam a eget urna. Sed ullamcorper tristique nisl at pharetra turpis accumsan et etiam eu sollicitudin eros. In imperdiet accumsan.</p>
+                            <div class="ul-review-bottom">
+                                <div class="ul-review-reviewer">
+                                    <div class="reviewer-image"><img src="assets/img/review-author-2.png" alt="reviewer image"></div>
+                                    <div>
+                                        <h3 class="reviewer-name">Wade Warren</h3>
+                                        <span class="reviewer-role">Marketing Coordinator</span>
+                                    </div>
+                                </div>
+
+                                <!-- icon -->
+                                <div class="ul-review-icon"><i class="flaticon-left"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- single review -->
+                    <div class="swiper-slide">
+                        <div class="ul-review">
+                            <div class="ul-review-rating">
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star-3"></i>
+                            </div>
+                            <p class="ul-review-descr">Praesent ut lacus a velit tincidunt aliquam a eget urna. Sed ullamcorper tristique nisl at pharetra turpis accumsan et etiam eu sollicitudin eros. In imperdiet accumsan.</p>
+                            <div class="ul-review-bottom">
+                                <div class="ul-review-reviewer">
+                                    <div class="reviewer-image"><img src="assets/img/review-author-3.png" alt="reviewer image"></div>
+                                    <div>
+                                        <h3 class="reviewer-name">Esther Howard</h3>
+                                        <span class="reviewer-role">Nursing Assistant</span>
+                                    </div>
+                                </div>
+
+                                <!-- icon -->
+                                <div class="ul-review-icon"><i class="flaticon-left"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- single review -->
+                    <div class="swiper-slide">
+                        <div class="ul-review">
+                            <div class="ul-review-rating">
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star-3"></i>
+                            </div>
+                            <p class="ul-review-descr">Praesent ut lacus a velit tincidunt aliquam a eget urna. Sed ullamcorper tristique nisl at pharetra turpis accumsan et etiam eu sollicitudin eros. In imperdiet accumsan.</p>
+                            <div class="ul-review-bottom">
+                                <div class="ul-review-reviewer">
+                                    <div class="reviewer-image"><img src="assets/img/review-author-4.png" alt="reviewer image"></div>
+                                    <div>
+                                        <h3 class="reviewer-name">John Doe</h3>
+                                        <span class="reviewer-role">Medical Assistant</span>
+                                    </div>
+                                </div>
+
+                                <!-- icon -->
+                                <div class="ul-review-icon"><i class="flaticon-left"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- single review -->
+                    <div class="swiper-slide">
+                        <div class="ul-review">
+                            <div class="ul-review-rating">
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star"></i>
+                                <i class="flaticon-star-3"></i>
+                            </div>
+                            <p class="ul-review-descr">Praesent ut lacus a velit tincidunt aliquam a eget urna. Sed ullamcorper tristique nisl at pharetra turpis accumsan et etiam eu sollicitudin eros. In imperdiet accumsan.</p>
+                            <div class="ul-review-bottom">
+                                <div class="ul-review-reviewer">
+                                    <div class="reviewer-image"><img src="assets/img/review-author-2.png" alt="reviewer image"></div>
+                                    <div>
+                                        <h3 class="reviewer-name">Leslie Alexander</h3>
+                                        <span class="reviewer-role">Medical Assistant</span>
+                                    </div>
+                                </div>
+
+                                <!-- icon -->
+                                <div class="ul-review-icon"><i class="flaticon-left"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- REVIEWS SECTION END -->
+
+        <!-- NEWSLETTER SUBSCRIPTION SECTION START -->
+        <div class="ul-container">
+            <section class="ul-nwsltr-subs">
+                <div class="ul-inner-container">
+                    <!-- heading -->
+                    <div class="ul-section-heading justify-content-center text-center">
+                        <div>
+                            <span class="ul-section-sub-title text-white">GET NEWSLETTER</span>
+                            <h2 class="ul-section-title text-white text-white">Sign Up to Newsletter</h2>
+                        </div>
+                    </div>
+
+                    <!-- form -->
+                    <div class="ul-nwsltr-subs-form-wrapper">
+                        <div class="icon"><i class="flaticon-airplane"></i></div>
+                        <form action="#" class="ul-nwsltr-subs-form">
+                            <input type="email" name="nwsltr-subs-email" id="nwsltr-subs-email" placeholder="Enter Your Email">
+                            <button type="submit">Subscribe Now <i class="flaticon-up-right-arrow"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- NEWSLETTER SUBSCRIPTION SECTION END -->
+
+
 @section Scripts {
     <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 5,
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                },
+                480: {
+                    slidesPerView: 2,
+                    spaceBetween: 15
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 20
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 20
+                },
+                1200: {
+                    slidesPerView: 5,
+                    spaceBetween: 20
+                }
+            }
+        });
+
+        // Initialize category and brand display
+        $(document).ready(function() {
+            // No need for category initialization anymore
+            
+            // Initialize filter for Most Selling section
+            initializeMostSellingFilter();
+        });
+
+        function initializeMostSellingFilter() {
+            console.log('Initializing filter...');
+            
+            // Set default filter to "all"
+            $('.ul-most-sell-filter-navs button[data-filter="all"]').addClass('active');
+            
+            // Show all products by default
+            $('.ul-filter-products-wrapper .mix').show();
+            
+            // Debug: Check how many items exist
+            console.log('Total mix items:', $('.ul-filter-products-wrapper .mix').length);
+            console.log('Best selling items:', $('.ul-filter-products-wrapper .best-selling').length);
+            console.log('On selling items:', $('.ul-filter-products-wrapper .on-selling').length);
+            console.log('Top rating items:', $('.ul-filter-products-wrapper .top-rating').length);
+            
+            // Filter button click handler
+            $('.ul-most-sell-filter-navs button').click(function() {
+                console.log('Filter clicked:', $(this).data('filter'));
+                
+                // Remove active class from all buttons
+                $('.ul-most-sell-filter-navs button').removeClass('active');
+                
+                // Add active class to clicked button
+                $(this).addClass('active');
+                
+                // Get filter value
+                var filterValue = $(this).data('filter');
+                
+                // Hide all products first
+                $('.ul-filter-products-wrapper .mix').hide();
+                
+                // Show filtered products
+                if (filterValue === 'all') {
+                    $('.ul-filter-products-wrapper .mix').show();
+                    console.log('Showing all items');
+                } else {
+                    var targetItems = $('.ul-filter-products-wrapper ' + filterValue);
+                    targetItems.show();
+                    console.log('Showing ' + filterValue + ' items:', targetItems.length);
+                }
+            });
+        }
 
         $('.add-to-cart').click(function () {
             var Id = $(this).data("product_id");
-
-            //alert(product_id);
-
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("Add", "Cart")",
-                data: { Id: Id }, // Send data to the server
-
+                data: { Id: Id },
                 success: function (result) {
-                    // Handle successful update
                     if (result) {
-
                         Swal.fire("Thêm giỏ hàng thành công.");
                     }
                 }
-
             });
         });
 
+        $('.add-btn-wishlist').click(function () {
+            var Id = $(this).data("product_id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddWishlist", "Home")",
+                data: { Id: Id },
+                success: function (result) {
+                    if (result) {
+                        Swal.fire("Thêm yêu thích sản phẩm thành công.");
+                    }
+                }
+            });
+        });
+
+        $('.add-btn-compare').click(function () {
+            var Id = $(this).data("product_id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddCompare", "Home")",
+                data: { Id: Id },
+                success: function (result) {
+                    if (result) {
+                        Swal.fire("Thêm so sánh thành công.");
+                    }
+                }
+            });
+        });
     </script>
-
-    <!---Add to Wishlish Script--->
-	<script>
-		$(document).ready(function () {
-			$('.add-btn-wishlist').click(function () {
-				var Id = $(this).data("product_id");
-
-				//alert(product_id);
-
-				$.ajax({
-					type: "POST",
-					url: "@Url.Action("AddWishlist", "Home")",
-					data: { Id: Id }, // Send data to the server
-
-					success: function (result) {
-						// Handle successful update
-						if (result) {
-
-							Swal.fire("Thêm yêu thích sản phẩm thành công.");
-						}
-					}
-
-				});
-			});
-		});
-	</script>
-	<!---//Add to Wishlish Script--->
-    <!---Add to Wishlish Script--->
-	<script>
-		$(document).ready(function () {
-			$('.add-btn-compare').click(function () {
-				var Id = $(this).data("product_id");
-
-				//alert(product_id);
-
-				$.ajax({
-					type: "POST",
-					url: "@Url.Action("AddCompare", "Home")",
-					data: { Id: Id }, // Send data to the server
-
-					success: function (result) {
-						// Handle successful update
-						if (result) {
-
-							Swal.fire("Thêm so sánh thành công.");
-						}
-					}
-
-				});
-			});
-		});
-	</script>
-	<!---//Add to Wishlish Script--->
-
 }

@@ -6,7 +6,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home | E-Shopper</title>
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="~/assets/icon/flaticon_glamer.css">
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="~/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="~/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="~/assets/vendor/animate-wow/animate.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.css"  rel="stylesheet">
 
     <link href="~/css/prettyPhoto.css" rel="stylesheet">
@@ -27,298 +40,361 @@
 </head><!--/head-->
 
 <body>
-    <header id="header">
-        <!--header-->
-        <div class="header_top">
-            <!--header_top-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="contactinfo">
-                            <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
-                            </ul>
+    <div class="preloader" id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- SIDEBAR SECTION START -->
+    <div class="ul-sidebar">
+        <!-- header -->
+        <div class="ul-sidebar-header">
+            <div class="ul-sidebar-header-logo">
+                <a href="index.html">
+                    <img src="assets/img/logo.svg" alt="logo" class="logo">
+                </a>
+            </div>
+            <!-- sidebar closer -->
+            <button class="ul-sidebar-closer"><i class="flaticon-close"></i></button>
+        </div>
+
+        <div class="ul-sidebar-header-nav-wrapper d-block d-lg-none"></div>
+
+        <div class="ul-sidebar-about d-none d-lg-block">
+            <span class="title">About glamer</span>
+            <p class="mb-0">Phasellus eget fermentum mauris. Suspendisse nec dignissim nulla. Integer non quam commodo, scelerisque felis id, eleifend turpis. Phasellus in nulla quis erat tempor tristique eget vel purus. Nulla pharetra pharetra pharetra. Praesent varius eget justo ut lacinia. Phasellus pharetra, velit viverra lacinia consequat, ipsum odio mollis dolor, nec facilisis arcu arcu ultricies sapien. Quisque ut dapibus nunc. Vivamus sit amet efficitur velit. Phasellus eget fermentum mauris. Suspendisse nec dignissim nulla. Integer non quam commodo, scelerisque felis id, eleifend turpis. Phasellus in nulla quis erat tempor tristique eget vel purus. Nulla pharetra pharetra pharetra. Praesent varius eget justo ut lacinia. Phasellus pharetra velit.</p>
+        </div>
+
+
+        <!-- product slider -->
+        <div class="ul-sidebar-products-wrapper d-none d-lg-flex">
+            <div class="ul-sidebar-products-slider swiper">
+                <div class="swiper-wrapper">
+                    <!-- product card -->
+                    <div class="swiper-slide">
+                        <div class="ul-product">
+                            <div class="ul-product-heading">
+                                <span class="ul-product-price">$99.00</span>
+                                <span class="ul-product-discount-tag">25% Off</span>
+                            </div>
+
+                            <div class="ul-product-img">
+                                <img src="assets/img/product-img-1.jpg" alt="Product Image">
+
+                                <div class="ul-product-actions">
+                                    <button><i class="flaticon-shopping-bag"></i></button>
+                                    <a href="#"><i class="flaticon-hide"></i></a>
+                                    <button><i class="flaticon-heart"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="ul-product-txt">
+                                <h4 class="ul-product-title"><a href="shop-details.html">Orange Airsuit</a></h4>
+                                <h5 class="ul-product-category"><a href="shop.html">Fashion Bag</a></h5>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="social-icons pull-right">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
+
+                    <!-- product card -->
+                    <div class="swiper-slide">
+                        <div class="ul-product">
+                            <div class="ul-product-heading">
+                                <span class="ul-product-price">$99.00</span>
+                                <span class="ul-product-discount-tag">25% Off</span>
+                            </div>
+
+                            <div class="ul-product-img">
+                                <img src="assets/img/product-img-2.jpg" alt="Product Image">
+
+                                <div class="ul-product-actions">
+                                    <button><i class="flaticon-shopping-bag"></i></button>
+                                    <a href="#"><i class="flaticon-hide"></i></a>
+                                    <button><i class="flaticon-heart"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="ul-product-txt">
+                                <h4 class="ul-product-title"><a href="shop-details.html">Orange Airsuit</a></h4>
+                                <h5 class="ul-product-category"><a href="shop.html">Fashion Bag</a></h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- product card -->
+                    <div class="swiper-slide">
+                        <div class="ul-product">
+                            <div class="ul-product-heading">
+                                <span class="ul-product-price">$99.00</span>
+                                <span class="ul-product-discount-tag">25% Off</span>
+                            </div>
+
+                            <div class="ul-product-img">
+                                <img src="assets/img/product-img-2.jpg" alt="Product Image">
+
+                                <div class="ul-product-actions">
+                                    <button><i class="flaticon-shopping-bag"></i></button>
+                                    <a href="#"><i class="flaticon-hide"></i></a>
+                                    <button><i class="flaticon-heart"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="ul-product-txt">
+                                <h4 class="ul-product-title"><a href="shop-details.html">Orange Airsuit</a></h4>
+                                <h5 class="ul-product-category"><a href="shop.html">Fashion Bag</a></h5>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><!--/header_top-->
 
-        <div class="header-middle">
-            <!--header-middle-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="logo pull-left">
-                            <a href="index.html"><img src="images/home/logo.png" alt="" /></a>
-                        </div>
-                        <div class="btn-group pull-right">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                    USA
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Canada</a></li>
-                                    <li><a href="#">UK</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                    DOLLAR
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Canadian Dollar</a></li>
-                                    <li><a href="#">Pound</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="shop-menu pull-right">
-                            <ul class="nav navbar-nav">
-                                
-                                
-                                <li><a asp-controller="Cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                @if(User.Identity?.IsAuthenticated ?? false)
-                                {
-                                    <li><a asp-controller="Account" asp-action="Logout"><i class="fa fa-lock"></i>Hi, @User.Identity.Name, Logout</a></li>
-                                    <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> // cho checkout vào đây thì nghĩa là sau khi đăng nhập mới được checkout
-                                    <li><a asp-action="History" asp-controller="Account"><i class="fa fa-user"></i> Account</a></li>
-                                    <li><a asp-action="Wishlist" asp-controller="Home"><i class="fa fa-heart"></i> Wishlist</a></li>
-									<li><a asp-action="Compare" asp-controller="Home"><i class="fa fa-star"></i> Compare</a></li>
-                                }
-                                else
-                                {
-                                    <li><a asp-controller="Account" asp-action="Login"><i class="fa fa-lock"></i>Login</a></li>
-                                }
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="ul-sidebar-products-slider-nav flex-shrink-0">
+                <button class="prev"><i class="flaticon-left-arrow"></i></button>
+                <button class="next"><i class="flaticon-arrow-point-to-right"></i></button>
             </div>
-        </div><!--/header-middle-->
+        </div>
 
-        <div class="header-bottom">
-            <!--header-bottom-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="mainmenu pull-left">
-                            <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
-                                <li class="dropdown">
-                                    <a asp-controller="Product">Shop<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a asp-controller="Category">Category</a></li>
-                                        <li><a asp-controller="Product" asp-action="Details">Product Details</a></li>
-                                        <li><a asp-controller="Cart" asp-action="Checkout">Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="404.html">404</a></li>
-                                <li><a asp-controller="Home" asp-action="Contact" >Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-						<form asp-controller="Product" asp-action="Search" method="post">
-						<div class="search_box pull-right">
-								<input type="text" placeholder="Search" name="searchTerm" />
-								<button class="btn btn-warning" type="submit">Search</button>
+        <div class="ul-sidebar-about d-none d-lg-block">
+            <p class="mb-0">Phasellus eget fermentum mauris. Suspendisse nec dignissim nulla. Integer non quam commodo, scelerisque felis id, eleifend turpis. Phasellus in nulla quis erat tempor tristique eget vel purus. Nulla pharetra pharetra pharetra. Praesent varius eget justo ut lacinia. Phasellus pharetra, velit viverra lacinia consequat, ipsum odio mollis dolor, nec facilisis arcu arcu ultricies sapien. Quisque ut dapibus nunc. Vivamus sit amet efficitur velit. Phasellus eget fermentum mauris. Suspendisse nec dignissim nulla. Integer non quam commodo, scelerisque felis id, eleifend turpis. Phasellus in nulla quis erat tempor tristique eget vel purus. Nulla pharetra pharetra pharetra. Praesent varius eget justo ut lacinia. Phasellus pharetra velit.</p>
+        </div>
 
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-        </div><!--/header-bottom-->
-    </header><!--/header-->
+        <!-- sidebar footer -->
+        <div class="ul-sidebar-footer">
+            <span class="ul-sidebar-footer-title">Follow us</span>
 
-    @* <section id="slider">
-        <!--slider-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#slider-carousel" data-slide-to="1"></li>
-                            <li data-target="#slider-carousel" data-slide-to="2"></li>
-                        </ol>
+            <div class="ul-sidebar-footer-social">
+                <a href="#"><i class="flaticon-facebook-app-symbol"></i></a>
+                <a href="#"><i class="flaticon-twitter"></i></a>
+                <a href="#"><i class="flaticon-instagram"></i></a>
+                <a href="#"><i class="flaticon-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- SIDEBAR SECTION END -->
 
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="col-sm-12">
-                                    <img src="https://thietkewebchuyen.com/wp-content/uploads/thiet-ke-banner-website-anh-bia-Facebook-shop-thoi-trang-quan-ao-10.jpg" width="100%" />
 
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="images/home/girl1.jpg" class="girl img-responsive" alt="" />
-                                    <img src="images/home/pricing.png" class="pricing" alt="" />
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>100% Responsive Design</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="images/home/girl2.jpg" class="girl img-responsive" alt="" />
-                                    <img src="images/home/pricing.png" class="pricing" alt="" />
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>Free Ecommerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="images/home/girl3.jpg" class="girl img-responsive" alt="" />
-                                    <img src="images/home/pricing.png" class="pricing" alt="" />
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-
+    <!-- HEADER SECTION START -->
+    <header class="ul-header">
+        <!-- header top -->
+        <div class="ul-header-top">
+            <div class="ul-header-top-slider splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                        <li class="splide__slide">
+                            <p class="ul-header-top-slider-item"><i class="flaticon-sparkle"></i> limited time offer</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section><!--/slider--> *@
+
+        <!-- header bottom -->
+        <div class="ul-header-bottom">
+            <div class="ul-container">
+                <div class="ul-header-bottom-wrapper">
+                    <!-- header left -->
+                    <div class="header-bottom-left">
+                        <div class="logo-container">
+                            <a href="index.html" class="d-inline-block"><img src="assets/img/logo.svg" alt="logo" class="logo"></a>
+                        </div>
+
+                        <!-- search form -->
+                        <div class="ul-header-search-form-wrapper flex-grow-1 flex-shrink-0">
+                            <form asp-controller="Product" asp-action="Search" method="post">
+                                @* <div class="dropdown-wrapper">
+                                    <select name="search-category" id="ul-header-search-category">
+                                        <option data-placeholder="true">Select Category</option>
+                                        <option value="1">Clothing</option>
+                                        <option value="2">Watches</option>
+                                        <option value="3">Jewellery</option>
+                                        <option value="4">Glasses</option>
+                                    </select>
+                                </div> *@
+                                <div class="ul-header-search-form-right">
+                                    <input type="search" name="searchTerm" id="ul-header-search" placeholder="Search Here">
+                                    <button type="submit"><span class="icon"><i class="flaticon-search-interface-symbol"></i></span></button>
+                                </div>
+                            </form>
+
+                            <button class="ul-header-mobile-search-closer d-xxl-none"><i class="flaticon-close"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- header nav -->
+                    <div class="ul-header-nav-wrapper">
+                        <div class="to-go-to-sidebar-in-mobile">
+                            <nav class="ul-header-nav">
+                                <a asp-action="Index" asp-controller="Home">Home</a>
+                                <a asp-action="Index" asp-controller="Cart"><i class="fa fa-shopping-cart"></i> Cart</a>
+                                @if (User.Identity?.IsAuthenticated ?? false)
+								{
+									<a asp-action="History" asp-controller="Account"><i class="fa fa-user"></i> Account</a>
+									<a asp-action="Wishlist" asp-controller="Home"><i class="fa fa-heart"></i> Wishlist</a>
+									<a asp-action="Compare" asp-controller="Home"><i class="fa fa-star"></i> Compare</a>
+									<a asp-controller="Account" asp-action="Logout"><i class="fa fa-lock"></i>Hi @User.Identity.Name Logout </a>
+								}
+								else
+								{
+									<li><a asp-controller="Account" asp-action="Login"><i class="fa fa-lock"></i>Login</a></li>
+								}
+
+                                <div class="has-sub-menu has-mega-menu">
+                                    <a role="button">Pages</a>
+
+                                    <div class="ul-header-submenu ul-header-megamenu">
+                                        <div class="single-col">
+                                            <span class="single-col-title">Inner Pages</span>
+                                            <ul>
+                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="blog.html">Blogs</a></li>
+                                                <li><a href="blog-2.html">Blogs Layout 2</a></li>
+                                                <li><a href="blog-details.html">Blog Details</a></li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="faq.html">FAQ</a></li>
+                                                <li><a href="our-store.html">Our Store</a></li>
+                                                <li><a href="reviews.html">Reviews</a></li>
+                                                <li><a href="login.html">Log In</a></li>
+                                                <li><a href="signup.html">Sign Up</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="single-col">
+                                            <span class="single-col-title">Shop Pages</span>
+                                            <ul>
+                                                <li><a href="shop.html">Shop Left Sidebar</a></li>
+                                                <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+                                                <li><a href="shop-no-sidebar.html">Shop Full Width</a></li>
+                                                <li><a href="shop-details.html">Shop Details</a></li>
+                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="cart.html">Cart</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="single-col">
+                                            <span class="single-col-title">Men's</span>
+                                            <ul>
+                                                <li><a href="#">Clothing</a></li>
+                                                <li><a href="#">Footwear</a></li>
+                                                <li><a href="#">Accessories</a></li>
+                                                <li><a href="#">Activewear</a></li>
+                                                <li><a href="#">Grooming</a></li>
+                                                <li><a href="#">Ethnic Wear</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="single-col">
+                                            <span class="single-col-title">Women's</span>
+                                            <ul>
+                                                <li><a href="#">Clothing</a></li>
+                                                <li><a href="#">Footwear</a></li>
+                                                <li><a href="#">Bags & Accessories</a></li>
+                                                <li><a href="#">Activewear</a></li>
+                                                <li><a href="#">Beauty & Grooming</a></li>
+                                                <li><a href="#">Ethnic Wear</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="single-col">
+                                            <span class="single-col-title">Children's</span>
+                                            <ul>
+                                                <li><a href="#">Clothing</a></li>
+                                                <li><a href="#">Footwear</a></li>
+                                                <li><a href="#">Accessories</a></li>
+                                                <li><a href="#">Toys & Games</a></li>
+                                                <li><a href="#">Baby Essentials</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="single-col">
+                                            <span class="single-col-title">Jewellery</span>
+                                            <ul>
+                                                <li><a href="#">Ethnic & Traditional Jewellery</a></li>
+                                                <li><a href="#">Bridal Jewellery</a></li>
+                                                <li><a href="#">Bracelets</a></li>
+                                                <li><a href="#">Rings</a></li>
+                                                <li><a href="#">Earrings</a></li>
+                                                <li><a href="#">Chains & Pendants</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- actions -->
+                    <div class="ul-header-actions">
+                        <button class="ul-header-mobile-search-opener d-xxl-none"><i class="flaticon-search-interface-symbol"></i></button>
+                        <a href="login.html"><i class="flaticon-user"></i></a>
+                        <a href="wishlist.html"><i class="flaticon-heart"></i></a>
+                        <a href="cart.html"><i class="flaticon-shopping-bag"></i></a>
+                    </div>
+
+                    <!-- sidebar opener -->
+                    <div class="d-inline-flex">
+                        <button class="ul-header-sidebar-opener"><i class="flaticon-hamburger"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- HEADER SECTION END -->
 
     <section>
-        <div class="container">
-            <div class="row">
-                @Html.Partial("_NotificationPartial")
-                @RenderBody()
-            </div>
-        </div>
+        <partial name="_NotificationPartial" />
+        @RenderBody()
     </section>
 
-    <footer id="footer">
-        <!--Footer-->
-        <partial name="_FooterPartial"/>
-
-        @* <div class="footer-widget">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Service</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Online Help</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Order Status</a></li>
-                                <li><a href="#">Change Location</a></li>
-                                <li><a href="#">FAQ’s</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Quock Shop</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">T-Shirt</a></li>
-                                <li><a href="#">Mens</a></li>
-                                <li><a href="#">Womens</a></li>
-                                <li><a href="#">Gift Cards</a></li>
-                                <li><a href="#">Shoes</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Policies</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Terms of Use</a></li>
-                                <li><a href="#">Privecy Policy</a></li>
-                                <li><a href="#">Refund Policy</a></li>
-                                <li><a href="#">Billing System</a></li>
-                                <li><a href="#">Ticket System</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>About Shopper</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Company Information</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Store Location</a></li>
-                                <li><a href="#">Affillate Program</a></li>
-                                <li><a href="#">Copyright</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-sm-offset-1">
-                        <div class="single-widget">
-                            <h2>About Shopper</h2>
-                            <form action="#" class="searchform">
-                                <input type="text" placeholder="Your email address" />
-                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                                <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div> *@
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <p class="pull-left">Copyright © 2025 E-SHOPPER Inc. All rights reserved.</p>
-                    <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
-                </div>
-            </div>
-        </div>
-
-    </footer><!--/Footer-->
+    <!-- FOOTER SECTION START -->
+    <partial name="_FooterPartial" />
+    <!-- FOOTER SECTION END -->
 
 <div id="fb-root"></div>
+
+
+<!-- libraries JS -->
+    <script src="~/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/splide/splide.min.js"></script>
+    <script src="~/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="~/assets/vendor/animate-wow/wow.min.js"></script>
+    <script src="~/assets/vendor/splittype/index.min.js"></script>
+    <script src="assets/vendor/mixitup/mixitup.min.js"></script>
+    <script src="~/assets/vendor/fslightbox/fslightbox.js"></script>
+
+    <!-- custom JS -->
+    <script src="~/assets/js/main.js"></script>
+    <script src="~/assets/js/countdown.js"></script>
+
+
+
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v23.0"></script>
 
 

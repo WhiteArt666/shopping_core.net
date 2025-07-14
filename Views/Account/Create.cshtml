@@ -1,44 +1,75 @@
 ﻿@model UserModel
 @{
     ViewData["Title"] = "Register User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section id="form">
-    <!--form-->
-    <div class="container">
-        <div class="row">
-            
-            <div class="col-sm-8 col-sm-offset-1">
-                <div class="signup-form">
-                    <!--sign up form-->
-                    <h2>New User Signup!</h2>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <form asp-action="Create" asp-controller="Account">
 
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input asp-for="Username" class="form-control"> </input>
-                            <span asp-validation-for="Username" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input asp-for="Email" class="form-control"> </input>
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input asp-for="Password" class="form-control"> </input>
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-
-                        <button type="submit" class="btn btn-default">Login</button>
-                    </form>
-                </div><!--/sign up form-->
+<main>
+    <!-- BREADCRUMB SECTION START -->
+    <div class="ul-container">
+        <div class="ul-breadcrumb">
+            <h2 class="ul-breadcrumb-title">Register</h2>
+            <div class="ul-breadcrumb-nav">
+                <a href="/"> <i class="flaticon-home"></i> Home</a>
+                <i class="flaticon-arrow-point-to-right"></i>
+                <span class="current-page">Register</span>
             </div>
         </div>
     </div>
-</section><!--/form-->
+    <!-- BREADCRUMB SECTION END -->
+
+    <!-- REGISTER SECTION START -->
+    <div class="ul-container">
+        <div class="ul-login">
+            <div class="ul-inner-page-container">
+                <div class="row justify-content-evenly align-items-center flex-column-reverse flex-md-row">
+                    <div class="col-md-5">
+                        <div class="ul-login-img text-center">
+                            <img src="~/assets/img/login-img.svg" alt="Register Image">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-7">
+                        <form asp-action="Create" asp-controller="Account" method="post" class="ul-contact-form">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <!-- Username -->
+                            <div class="form-group">
+                                <div class="position-relative">
+                                    <input asp-for="Username" placeholder="Enter Username" />
+                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group">
+                                <div class="position-relative">
+                                    <input asp-for="Email" type="email" placeholder="Enter Email" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group">
+                                <div class="position-relative">
+                                    <input asp-for="Password" type="password" placeholder="Enter Password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <button type="submit">Register</button>
+                        </form>
+
+                        <p class="text-center mt-4 mb-0">Already have an account? 
+                            <a asp-action="Login" asp-controller="Account">Log In</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

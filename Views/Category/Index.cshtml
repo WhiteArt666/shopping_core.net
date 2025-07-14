@@ -4,11 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-sm-3">
-    <partial name="_SidebPartial" />
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <partial name="_SidebPartial" />
+        </div>
 
-<div class="col-sm-9 padding-right">
+        <div class="col-sm-9 padding-right">
     <div class="features_items">
         @if (ViewBag.count > 0)
         {
@@ -18,52 +20,108 @@
         <!--features_items-->
         <h2 class="title text-center">@ViewBag.Slug</h2>
 
-        @foreach (var item in Model)
-        {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="ul-product">
+                        <div class="ul-product-heading">
+                            <span class="ul-product-price">@item.Price.ToString("#,##0 VNĐ")</span>
+                            <!-- Add discount tag if applicable -->
+                            
+                            
+                            
+                                <span class="ul-product-discount-tag">20% Off</span> <!-- Fallback if no discount -->
+                            
+                        </div>
 
-            <div class="col-sm-4">
-                <div class="product-image-wrapper">
+                        <div class="ul-product-img">
+                            <a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id">
+                                <img src="~/media/products/@item.Image" alt="@item.Name" />
+                            </a>
 
-                    <a>
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <img src="~/media/products/@item.Image" alt="@item.Name" width="100px" height="200px" />
-                                <h2>@item.Price.ToString("#,##0 VNĐ")</h2>
-                                <p>@item.Name</p>
-                                <p>Danh mục: @item.Category.Name</p>
-                                <p>Thương hiệu: @item.Brand.Name</p>
-
-                                <a asp-action="Add" asp-controller="Cart" asp-route-Id="@item.Id"
-                                    class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <div class="ul-product-actions">
+                                @if (item.Quantity == 0)
+                                {
+                                    <button type="button" disabled><i class="flaticon-shopping-bag"></i></button>
+                                }
+                                else
+                                {
+                                    <button class="add-to-cart" data-product_id="@item.Id"><i class="flaticon-shopping-bag"></i></button>
+                                }
+                                <a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id"><i class="flaticon-hide"></i></a>
+                                @if (User.Identity?.IsAuthenticated ?? false)
+                                {
+                                    <button class="add-btn-wishlist" data-product_id="@item.Id"><i class="flaticon-heart"></i></button>
+                                    <button class="add-btn-compare" data-product_id="@item.Id"><i class="flaticon-compare"></i></button>
+                                }
                             </div>
                         </div>
-                    </a>
 
-                    <div class="choose">
-                        <ul class="nav nav-pills nav-justified">
-                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                        </ul>
+                        <div class="ul-product-txt">
+                            <h4 class="ul-product-title"><a asp-action="Details" asp-controller="Product" asp-route-Id="@item.Id">@item.Name</a></h4>
+                            <h5 class="ul-product-category"><a asp-action="Index" asp-controller="Shop" asp-route-category="@item.Category.Name">@item.Category.Name</a></h5>
+                            <h5 class="ul-product-category">@item.Brand.Name</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-
+            }
+        </div>
     </div><!--features_items-->
-
-
-
+    </div>
 </div>
+
 @if (ViewBag.count > 0)
 {
     @section Scripts {
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
         <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             $(document).ready(function () {
+                $('.add-to-cart').click(function () {
+                    var Id = $(this).data("product_id");
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Add", "Cart")",
+                        data: { Id: Id },
+                        success: function (result) {
+                            if (result) {
+                                Swal.fire("Thêm giỏ hàng thành công.");
+                            }
+                        }
+                    });
+                });
+
+                $('.add-btn-wishlist').click(function () {
+                    var Id = $(this).data("product_id");
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("AddWishlist", "Home")",
+                        data: { Id: Id },
+                        success: function (result) {
+                            if (result) {
+                                Swal.fire("Thêm yêu thích sản phẩm thành công.");
+                            }
+                        }
+                    });
+                });
+
+                $('.add-btn-compare').click(function () {
+                    var Id = $(this).data("product_id");
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("AddCompare", "Home")",
+                        data: { Id: Id },
+                        success: function (result) {
+                            if (result) {
+                                Swal.fire("Thêm so sánh thành công.");
+                            }
+                        }
+                    });
+                });
 
                 $("#slider-range").slider({
-
                     range: true,
                     min: @ViewBag.minprice,
                     max: @ViewBag.maxprice,
@@ -74,51 +132,34 @@
                             style: 'currency',
                             currency: 'VND'
                         });
-
                         const formattedValue = `${formatter.format(ui.values[0])} - ${formatter.format(ui.values[1])}`;
-
                         $("#amount").val(formattedValue);
                     }
-
                 });
+
                 const min = $("#slider-range").slider("values", 0);
                 const max = $("#slider-range").slider("values", 1);
-
                 const formatter = new Intl.NumberFormat('vi-VN', {
                     style: 'currency',
                     currency: 'VND'
                 });
-
                 $("#amount").val(`${formatter.format(min)} - ${formatter.format(max)}`);
 
-
-                //btn lọc giá
                 $('.btn-locgia').on('click', function () {
-
                     var url = $(this).data("current_url");
-                    // alert(url);
                     if (url) {
-                        window.location = url + "?startprice=" + $("#slider-range").slider("values", 0)
-                            + "&endprice=" + $("#slider-range").slider("values", 1);
+                        window.location = url + "?startprice=" + $("#slider-range").slider("values", 0) + "&endprice=" + $("#slider-range").slider("values", 1);
                     }
                     return false;
                 });
 
-            });
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-
                 $('#sort_by').on('change', function () {
-
                     var url = $(this).val();
-                    // alert(url);
                     if (url) {
                         window.location = url;
                     }
                     return false;
                 });
-
             });
         </script>
     }

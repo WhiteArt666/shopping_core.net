@@ -1,263 +1,338 @@
-﻿@model ProductDetailsViewModel
+﻿@using shopping_tutorial.Models
+@model ProductDetailsViewModel
 @{
     ViewData["Title"] = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row">
-	  <div class="col-sm-3">
-		<partial name="_SidebPartial" />
-	</div
-	
-	<div class="col-sm-9 padding-right">
-		<div class="product-details">
-			<!--product-details-->
-			<div class="col-sm-5">
-				<div class="view-product">
-					<img src="~/media/products/@Model.ProductDetails.Image" alt="" width="100px" height="200px" />
-					<h3>ZOOM</h3>
-				</div>
-				<div id="similar-product" class="carousel slide" data-ride="carousel">
 
-					<!-- Wrapper for slides -->
-					<div class="carousel-inner">
-						<div class="item">
-							<a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-							<a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-							<a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-						</div>
-					</div>
+<main>
+    <!-- BREADCRUMB SECTION START -->
+    <div class="ul-container">
+        <div class="ul-breadcrumb">
+            <h2 class="ul-breadcrumb-title">Shop Details</h2>
+            <div class="ul-breadcrumb-nav">
+                <a href="/"> <i class="flaticon-home"></i> Home</a>
+                <i class="flaticon-arrow-point-to-right"></i>
+                <a href="/Product">Shop</a>
+                <i class="flaticon-arrow-point-to-right"></i>
+                <span class="current-page">@Model.ProductDetails.Name</span>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB SECTION END -->
 
-					<!-- Controls -->
-					<a class="left item-control" href="#similar-product" data-slide="prev">
-						<i class="fa fa-angle-left"></i>
-					</a>
-					<a class="right item-control" href="#similar-product" data-slide="next">
-						<i class="fa fa-angle-right"></i>
-					</a>
-				</div>
+    <!-- MAIN CONTENT SECTION START -->
 
-			</div>
-			<div class="col-sm-7">
-				<div class="product-information">
-					<!--/product-information-->
-					<h2>@Model.ProductDetails.Name</h2>
-					<span>
-						<span>@Model.ProductDetails.Price.ToString("#,##0 VNĐ")</span>
-						<label>Quantity:</label>
-						<input type="text" value="3" />
-						@if (@Model.ProductDetails.Quantity==0)
-							{
-								<button type="button" class="btn btn-default"><i class="fa fa-shopping-cart"></i>Hết hàng</button>
-							}
-							else
-							{
-								<button class="btn btn-default add-to-cart" data-product_id="@Model.ProductDetails.Id"><i class="fa fa-shopping-cart"></i>Thêm giỏ hàng</button>
-							}
-					</span>
-					<p><b>Availability:</b> In Stock</p>
-					<p><b>Condition:</b> New</p>
-					<p><b>Brand:</b> @Model.ProductDetails.Name</p>
-					<p><b>Category:</b> @Model.ProductDetails.Name</p>
-					<a href=""><img src="images/product-details/share.png" class="share img-responsive" alt="" /></a>
-				</div><!--/product-information-->
-			</div>
-		</div><!--/product-details-->
+    <div class="ul-inner-page-container">
+        <div class="ul-product-details">
+            <div class="ul-product-details-top">
+                <div class="row ul-bs-row row-cols-lg-2 row-cols-1 align-items-center">
+                     <!-- img -->
+                    <div class="col">
+                        <div class="ul-product-details-img">
+                            <div class="ul-product-details-img-slider swiper">
+                                <div class="swiper-wrapper">
+                                    <!-- single img -->
+                                    <div class="swiper-slide"><img src="~/media/products/@Model.ProductDetails.Image" alt="@Model.ProductDetails.Name"></div>
+                                    <!-- single img -->
+                                    <div class="swiper-slide"><img src="~/media/products/@Model.ProductDetails.Image" alt="@Model.ProductDetails.Name"></div>
+                                </div>
 
-		<div class="category-tab shop-details-tab">
-			<!--category-tab-->
-			<div class="col-sm-12">
-				<ul class="nav nav-tabs">
-					<li><a href="#details" data-toggle="tab">Details</a></li>
-					<li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
-					<li><a href="#tag" data-toggle="tab">Tag</a></li>
-					<li class="active"><a href="#reviews" data-toggle="tab">Đánh giá (5)</a></li>
-				</ul>
-			</div>
-			<div class="tab-content">
-				<div class="tab-pane fade active in" id="details">
+                                <div class="ul-product-details-img-slider-nav" id="ul-product-details-img-slider-nav">
+                                    <button class="prev"><i class="flaticon-left-arrow"></i></button>
+                                    <button class="next"><i class="flaticon-arrow-point-to-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-					@Html.Raw(Model.ProductDetails.Description)
-					
-				</div>
+                    <!-- txt -->
+                    <div class="col">
+                        <div class="ul-product-details-txt">
+                            <div class="ul-product-details-rating">
+                                @{
+                                    var ratings = ViewBag.ProductRatings as List<RatingModel> ?? new List<RatingModel>();
+                                    var averageRating = ratings.Any() ? ratings.Average(r => int.Parse(r.Star ?? "0")) : 0;
+                                    var reviewCount = ratings.Count;
+                                }
+                                <span class="rating">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= averageRating)
+                                        {
+                                            <i class="flaticon-star"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="flaticon-star-3"></i>
+                                        }
+                                    }
+                                </span>
+                                <span class="review-number">(@reviewCount Khách Hàng Đã Đánh Giá)</span>
+                            </div>
 
-				<div class="tab-pane fade" id="companyprofile">
-					 @foreach (var relatedProduct in ViewBag.RelatedProducts as IEnumerable<ProductModel>)
-    {
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="images/home/gallery1.jpg" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-	}
-					
+                            <span class="ul-product-details-price">@Model.ProductDetails.Price.ToString("#,##0 VNĐ")</span>
+                            <h3 class="ul-product-details-title">@Model.ProductDetails.Name</h3>
 
-				</div>
-
-				<div class="tab-pane fade" id="tag">
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="images/home/gallery1.jpg" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="images/home/gallery2.jpg" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="images/home/gallery3.jpg" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="images/home/gallery4.jpg" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="tab-pane fade active in" id="reviews">
-					<div class="col-sm-12">
-						<ul>
-							<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-							<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-							<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-						</ul>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-						<p><b>Write Your Review</b></p>
-
-						
-						<form autocomplete="off" asp-action="CommentProduct" asp-controller="Product" method="POST">
-							<span>
-								<input asp-for="@Model.ProductDetails.Id" name="ProductId" type="hidden" />
-								<input name="Star" type="hidden" value="4" />
-								<input asp-for="@Model.Name"  type="text" placeholder="Your Name" />
-								<span asp-validation-for="@Model.Name" class="text-danger"></span>
-								<input asp-for="@Model.Email" name="Email" type="email" placeholder="Email Address" />
-								<span asp-validation-for="@Model.Email" class="text-danger"></span>
-							</span>
-							<textarea asp-for="@Model.Comment"></textarea>
-							<span asp-validation-for="@Model.Comment" class="text-danger"></span>
-
-							<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-							<button type="submit" class="btn btn-default pull-right">
-								Submit
-							</button>
-						</form>
-					</div>
-				</div>
-
-			</div>
-		</div><!--/category-tab-->
-
-		<div class="recommended_items">
-			<!--recommended_items-->
-			<h2 class="title text-center">Related Products</h2>
-
-			<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-
-					<div class="item active">
-						 @foreach (var relatedProduct in @ViewBag.RelatedProducts as IEnumerable<ProductModel>)
-    {
-						<div class="col-sm-4">
-								<div class="product-image-wrapper">
-									<div class="single-products">
+                            @* <p class="ul-product-details-descr">@Model.ProductDetails.Description</p> *@
 
 
-										<div class="productinfo text-center">
-											<a asp-action="Detail" asp-controller="Product" asp-route-Id="@relatedProduct.Id">
-												<img src="~/media/products/@relatedProduct.Image" alt="@relatedProduct.Name" width="100px" height="200px" />
-												<h2>@relatedProduct.Price.ToString("#,##0 VNĐ")</h2>
-												<p>@relatedProduct.Name</p>
-												<p>Danh mục: @relatedProduct.Category.Name</p>
-												<p>Thương hiệu: @relatedProduct.Brand.Name</p>
-											</a>
-											
-										</div>
+                            <!-- product options -->
+                            <div class="ul-product-details-options">
+                                <div class="ul-product-details-option ul-product-details-sizes">
+                                    <span class="title">Size</span>
 
+                                    <form action="#" class="variants">
+                                        <label for="ul-product-details-size-1">
+                                            <input type="radio" name="product-size" id="ul-product-details-size-1" checked hidden>
+                                            <span class="size-btn">S</span>
+                                        </label>
 
-									</div>
-									
-								</div>
-						</div>
-	}
-						
-					</div>
-					
-				</div>
-				<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-					<i class="fa fa-angle-left"></i>
-				</a>
-				<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-					<i class="fa fa-angle-right"></i>
-				</a>
-			</div>
+                                        <label for="ul-product-details-size-2">
+                                            <input type="radio" name="product-size" id="ul-product-details-size-2" hidden>
+                                            <span class="size-btn">M</span>
+                                        </label>
 
-		</div><!--/recommended_items-->
+                                        <label for="ul-product-details-size-3">
+                                            <input type="radio" name="product-size" id="ul-product-details-size-3" hidden>
+                                            <span class="size-btn">L</span>
+                                        </label>
 
-	</div>
-</div>
+                                        <label for="ul-product-details-size-4">
+                                            <input type="radio" name="product-size" id="ul-product-details-size-4" hidden>
+                                            <span class="size-btn">XL</span>
+                                        </label>
+
+                                        <label for="ul-product-details-size-5">
+                                            <input type="radio" name="product-size" id="ul-product-details-size-5" hidden>
+                                            <span class="size-btn">XXL</span>
+                                        </label>
+                                    </form>
+                                </div>
+
+                                <div class="ul-product-details-option ul-product-details-colors">
+                                    <span class="title">Color</span>
+                                    <form action="#" class="variants">
+                                        <label for="ul-product-details-color-1">
+                                            <input type="radio" name="product-color" id="ul-product-details-color-1" checked hidden>
+                                            <span class="color-btn green"></span>
+                                        </label>
+
+                                        <label for="ul-product-details-color-2">
+                                            <input type="radio" name="product-color" id="ul-product-details-color-2" hidden>
+                                            <span class="color-btn blue"></span>
+                                        </label>
+
+                                        <label for="ul-product-details-color-3">
+                                            <input type="radio" name="product-color" id="ul-product-details-color-3" hidden>
+                                            <span class="color-btn brown"></span>
+                                        </label>
+
+                                        <label for="ul-product-details-color-4">
+                                            <input type="radio" name="product-color" id="ul-product-details-color-4" hidden>
+                                            <span class="color-btn red"></span>
+                                        </label>
+                                    </form>
+                                </div>
+                            </div>
+
+							
+
+                            <div class="ul-product-details-option ul-product-details-quantity">
+                                <span class="title">Chọn Số Lượng</span>
+                                <form action="#" class="ul-product-quantity-wrapper">
+                                    <input type="number" name="product-quantity" id="ul-product-details-quantity" class="ul-product-quantity" value="1" min="1" readonly>
+                                    <div class="btns">
+                                        <button type="button" class="quantityIncreaseButton"><i class="flaticon-plus"></i></button>
+                                        <button type="button" class="quantityDecreaseButton"><i class="flaticon-minus-sign"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="ul-product-details-actions">
+                                <div class="left">
+                                    @if (Model.ProductDetails.Quantity == 0)
+                                    {
+                                        <button type="button" class="add-to-cart"><i class="flaticon-cart"></i> Hết hàng</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="add-to-cart" data-product_id="@Model.ProductDetails.Id">
+                                            Thêm Giỏ Hàng <span class="icon"><i class="flaticon-cart"></i></span>
+                                        </button>
+                                    }
+                                    <button class="add-to-wishlist"><span class="icon"><i class="flaticon-heart"></i></span> Thêm Ưa Thích</button>
+                                </div>
+                                <div class="share-options">
+                                    <button><i class="flaticon-facebook-app-symbol"></i></button>
+                                    <button><i class="flaticon-twitter"></i></button>
+                                    <button><i class="flaticon-linkedin-big-logo"></i></button>
+                                    <a href="#"><i class="flaticon-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ul-product-details-bottom">
+                <!-- description -->
+                <div class="ul-product-details-long-descr-wrapper">
+                    <h3 class="ul-product-details-inner-title">Mô Tả Sản Phẩm</h3>
+                    <p>@Html.Raw(Model.ProductDetails.Description)</p>
+                </div>
+
+                <!-- reviews -->
+                <div class="ul-product-details-reviews">
+                    @{
+                        var productRatings = ViewBag.ProductRatings as List<RatingModel> ?? new List<RatingModel>();
+                    }
+                    <h3 class="ul-product-details-inner-title">@productRatings.Count Đánh Giá</h3>
+                    
+                    @if (productRatings.Any())
+                    {
+                        @foreach (var rating in productRatings)
+                        {
+                            <div class="ul-product-details-review">
+                                <div class="ul-product-details-review-reviewer-img">
+                                    <img src="/images/reviewer-img-1.png" alt="Reviewer Image">
+                                </div>
+                                <div class="ul-product-details-review-txt">
+                                    <div class="header">
+                                        <div class="left">
+                                            <h4 class="reviewer-name">@rating.Name</h4>
+                                            <h5 class="review-date">@DateTime.Now.ToString("MMMM d, yyyy") at @DateTime.Now.ToString("h:mm tt")</h5>
+                                        </div>
+                                        <div class="right">
+                                            <div class="rating">
+                                                @{
+                                                    var starCount = int.Parse(rating.Star ?? "0");
+                                                }
+                                                @for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= starCount)
+                                                    {
+                                                        <i class="flaticon-star"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="flaticon-star-3"></i>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>@rating.Comment</p>
+                                    <button class="ul-product-details-review-reply-btn">Trả Lời</button>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="no-reviews">Sản phẩm chưa có đánh giá nào.</p>
+                    }
+                </div>
+
+                <div class="ul-product-details-review-form-wrapper">
+                    <h3 class="ul-product-details-inner-title">Write A Review</h3>
+                    <span class="note">Your email address will not be published.</span>
+
+                    <form class="ul-product-details-review-form" method="POST" asp-action="CommentProduct" asp-controller="Product">
+                        <div class="form-group rating-field-wrapper">
+                            <span class="title">Rate this product? *</span>
+                            <div class="rating-field">
+                                <button type="button" data-rating="1"><i class="flaticon-star-3"></i></button>
+                                <button type="button" data-rating="2"><i class="flaticon-star-3"></i></button>
+                                <button type="button" data-rating="3"><i class="flaticon-star-3"></i></button>
+                                <button type="button" data-rating="4"><i class="flaticon-star-3"></i></button>
+                                <button type="button" data-rating="5"><i class="flaticon-star-3"></i></button>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="ProductId" value="@Model.ProductDetails.Id" />
+                        <input type="hidden" name="Star" id="selectedRating" value="5" />
+                        <div class="row row-cols-2 row-cols-xxs-1 ul-bs-row">
+                            <div class="form-group">
+                                <input asp-for="Name" placeholder="Your Name" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Email" placeholder="Your Email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-12">
+                                <textarea asp-for="Comment" placeholder="Your Review"></textarea>
+                                <span asp-validation-for="Comment" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Đăng Đánh Giá<span><i class="flaticon-up-right-arrow"></i></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- related products -->
+            <div class="ul-related-products">
+                <h3 class="ul-product-details-inner-title">Sản Phẩm Liên Quan</h3>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+                    @if (ViewBag.RelatedProducts != null)
+                    {
+                        foreach (var related in ViewBag.RelatedProducts as IEnumerable<ProductModel>)
+                        {
+                            <div class="col">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <a asp-action="Detail" asp-controller="Product" asp-route-id="@related.Id">
+                                            <img src="/media/products/@related.Image" alt="@related.Name" />
+                                            <h2>@related.Price.ToString("#,##0 VNĐ")</h2>
+                                            <p>@related.Name</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- MAIN CONTENT SECTION END -->
+</main>
+
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         $('.add-to-cart').click(function () {
             var Id = $(this).data("product_id");
-
-            //alert(product_id);
-
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("Add", "Cart")",
-                data: { Id: Id }, // Send data to the server
-
+                data: { Id: Id },
                 success: function (result) {
-                    // Handle successful update
                     if (result) {
-
                         Swal.fire("Thêm giỏ hàng thành công.");
                     }
                 }
+            });
+        });
 
+        // Handle rating selection
+        $('.rating-field button').click(function () {
+            var rating = $(this).data('rating');
+            $('#selectedRating').val(rating);
+            
+            // Update visual representation
+            $('.rating-field button').each(function(index) {
+                var star = $(this).find('i');
+                if (index < rating) {
+                    star.removeClass('flaticon-star-3').addClass('flaticon-star');
+                } else {
+                    star.removeClass('flaticon-star').addClass('flaticon-star-3');
+                }
             });
         });
     </script>

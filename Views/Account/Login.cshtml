@@ -1,43 +1,65 @@
-﻿@model LoginViewModel 
+﻿@model LoginViewModel
 @{
     ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section id="">
-    <!--form-->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-sm-offset-1">
-                <div class="login-form">
-                    <!--login form-->
-                    <h2>Login to your account</h2>
 
-                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                    <form asp-action="Login" asp-controller="Account">
-                       
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input asp-for="Username" class="form-control"> </input>
-                            <span asp-validation-for="Username" class="text-danger"></span>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input asp-for="Password" class="form-control"> </input>
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                        
-                        <button class="btn btn-default">Login</button>
-                        <a asp-action="Create" asp-controller="Account">Tạo tài khoản mới </a>
-                    </form>
-                </div><!--/login form-->
+<main>
+    <!-- BREADCRUMB SECTION START -->
+    <div class="ul-container">
+        <div class="ul-breadcrumb">
+            <h2 class="ul-breadcrumb-title">Log In</h2>
+            <div class="ul-breadcrumb-nav">
+                <a href="/"><i class="flaticon-home"></i> Home</a>
+                <i class="flaticon-arrow-point-to-right"></i>
+                <span class="current-page">Log In</span>
             </div>
         </div>
     </div>
-</section><!--/form-->
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+    <!-- BREADCRUMB SECTION END -->
 
+    <!-- LOGIN SECTION -->
+    <div class="ul-container">
+        <div class="ul-login">
+            <div class="ul-inner-page-container">
+                <div class="row justify-content-evenly align-items-center flex-column-reverse flex-md-row">
+                    <div class="col-md-5">
+                        <div class="ul-login-img text-center">
+                            <img src="~/assets/img/login-img.svg" alt="Login Image">
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-7">
+                        <form asp-action="Login" asp-controller="Account" class="ul-contact-form" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="form-group">
+                                <div class="position-relative">
+                                    <input asp-for="Username" placeholder="Enter Email Address" />
+                                    <span asp-validation-for="Username" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="position-relative">
+                                    <input asp-for="Password" type="password" placeholder="Enter Password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <button type="submit">Log In</button>
+                        </form>
+
+                        <p class="text-center mt-4 mb-0">Don't have an account? 
+                            <a asp-action="Create" asp-controller="Account">Sign Up</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

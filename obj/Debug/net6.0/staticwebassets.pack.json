@@ -5,6 +5,534 @@
       "PackagePath": "staticwebassets\\shopping_tutorial.j0bjn4jw80.bundle.scp.css"
     },
     {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\css\\flaticon_glamer.css",
+      "PackagePath": "staticwebassets\\assets\\css\\flaticon_glamer.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\css\\flaticon_glamer.css.map",
+      "PackagePath": "staticwebassets\\assets\\css\\flaticon_glamer.css.map"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\css\\style.css",
+      "PackagePath": "staticwebassets\\assets\\css\\style.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\css\\style.css.map",
+      "PackagePath": "staticwebassets\\assets\\css\\style.css.map"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\icon\\flaticon_glamer.css",
+      "PackagePath": "staticwebassets\\assets\\icon\\flaticon_glamer.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\icon\\flaticon_glamer.eot",
+      "PackagePath": "staticwebassets\\assets\\icon\\flaticon_glamer.eot"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\icon\\flaticon_glamer.html",
+      "PackagePath": "staticwebassets\\assets\\icon\\flaticon_glamer.html"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\icon\\flaticon_glamer.scss",
+      "PackagePath": "staticwebassets\\assets\\icon\\flaticon_glamer.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\icon\\flaticon_glamer.svg",
+      "PackagePath": "staticwebassets\\assets\\icon\\flaticon_glamer.svg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\icon\\flaticon_glamer.ttf",
+      "PackagePath": "staticwebassets\\assets\\icon\\flaticon_glamer.ttf"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\icon\\flaticon_glamer.woff",
+      "PackagePath": "staticwebassets\\assets\\icon\\flaticon_glamer.woff"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\icon\\flaticon_glamer.woff2",
+      "PackagePath": "staticwebassets\\assets\\icon\\flaticon_glamer.woff2"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\about-cover-img.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\about-cover-img.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\about-img-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\about-img-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\about-img-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\about-img-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\ad-banner-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\ad-banner-bg.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\ad-img.png",
+      "PackagePath": "staticwebassets\\assets\\img\\ad-img.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\android.png",
+      "PackagePath": "staticwebassets\\assets\\img\\android.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\banner-img-slide-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\banner-img-slide-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\banner-img-slide-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\banner-img-slide-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\banner-img-slide-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\banner-img-slide-3.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\banner-slide-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\banner-slide-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\banner-slide-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\banner-slide-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\banner-slide-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\banner-slide-3.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\blog-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\blog-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\blog-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\blog-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\blog-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\blog-3.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\blog-big-img-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\blog-big-img-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\blog-big-img-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\blog-big-img-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\blog-big-img-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\blog-big-img-3.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\category-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\category-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\category-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\category-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\category-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\category-3.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\category-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\category-4.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\category-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\category-5.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\category-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\category-6.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\category-7.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\category-7.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\gallery-item-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\gallery-item-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\gallery-item-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\gallery-item-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\gallery-item-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\gallery-item-3.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\gallery-item-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\gallery-item-4.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\gallery-item-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\gallery-item-5.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\gallery-item-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\gallery-item-6.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\ios.png",
+      "PackagePath": "staticwebassets\\assets\\img\\ios.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\login-img.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\login-img.svg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\logo-white.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logo-white.svg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\logo.svg",
+      "PackagePath": "staticwebassets\\assets\\img\\logo.svg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\map-img.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\map-img.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\nwsltr-subs-bg.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\nwsltr-subs-bg.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\payment-methods.png",
+      "PackagePath": "staticwebassets\\assets\\img\\payment-methods.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-details-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-details-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-3.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-4.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-5.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-6.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-10.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-10.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-11.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-11.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-12.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-12.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-3.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-3.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-4.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-5.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-5.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-6.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-6.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-7.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-7.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-8.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-8.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\product-img-sm-9.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\product-img-sm-9.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\products-sub-banner-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\products-sub-banner-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\products-sub-banner-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\products-sub-banner-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\review-author-1.png",
+      "PackagePath": "staticwebassets\\assets\\img\\review-author-1.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\review-author-2.png",
+      "PackagePath": "staticwebassets\\assets\\img\\review-author-2.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\review-author-3.png",
+      "PackagePath": "staticwebassets\\assets\\img\\review-author-3.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\review-author-4.png",
+      "PackagePath": "staticwebassets\\assets\\img\\review-author-4.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\reviewer-img-1.png",
+      "PackagePath": "staticwebassets\\assets\\img\\reviewer-img-1.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\reviewer-img-2.png",
+      "PackagePath": "staticwebassets\\assets\\img\\reviewer-img-2.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\store-1.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\store-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\store-2.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\store-2.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\sub-banner-1.png",
+      "PackagePath": "staticwebassets\\assets\\img\\sub-banner-1.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\sub-banner-2.png",
+      "PackagePath": "staticwebassets\\assets\\img\\sub-banner-2.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\sub-banner-3.png",
+      "PackagePath": "staticwebassets\\assets\\img\\sub-banner-3.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\subs-form-bg.png",
+      "PackagePath": "staticwebassets\\assets\\img\\subs-form-bg.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\img\\video-banner.jpg",
+      "PackagePath": "staticwebassets\\assets\\img\\video-banner.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\js\\accordion.js",
+      "PackagePath": "staticwebassets\\assets\\js\\accordion.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\js\\countdown-loop.js",
+      "PackagePath": "staticwebassets\\assets\\js\\countdown-loop.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\js\\countdown.js",
+      "PackagePath": "staticwebassets\\assets\\js\\countdown.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\js\\main.js",
+      "PackagePath": "staticwebassets\\assets\\js\\main.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\main\\_breakpoints.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\main\\_breakpoints.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\main\\_components.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\main\\_components.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\main\\_global.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\main\\_global.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\main\\_variables.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\main\\_variables.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_about.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_about.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_blog-details.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_blog-details.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_cart.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_cart.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_checkout.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_checkout.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_contact.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_contact.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_p-blog.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_p-blog.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_p-products.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_p-products.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_product-details.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_product-details.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\pages\\_store.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\pages\\_store.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_ad.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_ad.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_blog.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_blog.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_categories.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_categories.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_flash-sale.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_flash-sale.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_footer.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_footer.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_gallery.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_gallery.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_header.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_header.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_hero.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_hero.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_nwsltr-subs.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_nwsltr-subs.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_products.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_products.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_reviews.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_reviews.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_sidebar.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_sidebar.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_sub-banner.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_sub-banner.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\sections\\_video.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\sections\\_video.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\scss\\style.scss",
+      "PackagePath": "staticwebassets\\assets\\scss\\style.scss"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\animate-wow\\animate.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\animate-wow\\animate.min.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\animate-wow\\wow.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\animate-wow\\wow.min.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\bootstrap\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\fslightbox\\fslightbox.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\fslightbox\\fslightbox.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\mixitup\\mixitup.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\mixitup\\mixitup.min.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\no-ui-slider\\nouislider.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\no-ui-slider\\nouislider.min.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\no-ui-slider\\nouislider.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\no-ui-slider\\nouislider.min.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\slim-select\\slimselect.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\slim-select\\slimselect.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\slim-select\\slimselect.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\slim-select\\slimselect.min.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\splide\\splide-extension-auto-scroll.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\splide\\splide-extension-auto-scroll.min.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\splide\\splide.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\splide\\splide.min.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\splide\\splide.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\splide\\splide.min.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\splittype\\index.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\splittype\\index.min.js"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\swiper\\swiper-bundle.min.css",
+      "PackagePath": "staticwebassets\\assets\\vendor\\swiper\\swiper-bundle.min.css"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\assets\\vendor\\swiper\\swiper-bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\vendor\\swiper\\swiper-bundle.min.js"
+    },
+    {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\backend\\js\\site.js",
       "PackagePath": "staticwebassets\\backend\\js\\site.js"
     },
@@ -325,6 +853,10 @@
       "PackagePath": "staticwebassets\\media\\logo\\25ce5ce1-235a-48bf-b893-89dff225d276_Memoji 09.png"
     },
     {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\logo\\6d767042-83c2-4ffd-b9ad-04708f399ff7_20250212_F4vXpxq2xu.jpeg",
+      "PackagePath": "staticwebassets\\media\\logo\\6d767042-83c2-4ffd-b9ad-04708f399ff7_20250212_F4vXpxq2xu.jpeg"
+    },
+    {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\logo\\c68f4906-4bb9-46af-bd1b-e669d9c30b46_Memoji 09.png",
       "PackagePath": "staticwebassets\\media\\logo\\c68f4906-4bb9-46af-bd1b-e669d9c30b46_Memoji 09.png"
     },
@@ -405,6 +937,14 @@
       "PackagePath": "staticwebassets\\media\\sliders\\475a1b0e-7454-4782-8daa-ccc3de1b5f57_20250217_VdqHBV28.png"
     },
     {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\74f4724e-b98d-4f5a-aa9c-24b0ad1261b5_banner-slide-1.jpg",
+      "PackagePath": "staticwebassets\\media\\sliders\\74f4724e-b98d-4f5a-aa9c-24b0ad1261b5_banner-slide-1.jpg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\c3eec8d1-bee3-4425-ae94-830488c7ece7_banner-slide-3.jpg",
+      "PackagePath": "staticwebassets\\media\\sliders\\c3eec8d1-bee3-4425-ae94-830488c7ece7_banner-slide-3.jpg"
+    },
+    {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\c4f0856d-7098-45e3-b774-2874a953d457_20250612_04qcL5B6.jfif",
       "PackagePath": "staticwebassets\\media\\sliders\\c4f0856d-7098-45e3-b774-2874a953d457_20250612_04qcL5B6.jfif"
     },
@@ -413,12 +953,20 @@
       "PackagePath": "staticwebassets\\media\\sliders\\c735931f-01de-4baa-bbdd-b8a4e57cf35e_20250304_Pgm3LPnY.jfif"
     },
     {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\ca5d2f41-6851-4d41-8808-a0144144d7a2_banner-slide-3.jpg",
+      "PackagePath": "staticwebassets\\media\\sliders\\ca5d2f41-6851-4d41-8808-a0144144d7a2_banner-slide-3.jpg"
+    },
+    {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\def4656f-c50f-4804-8f59-2f45567188f1_20241219_oKgt4chx.jfif",
       "PackagePath": "staticwebassets\\media\\sliders\\def4656f-c50f-4804-8f59-2f45567188f1_20241219_oKgt4chx.jfif"
     },
     {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\e3652b4d-65e3-4cf2-a3d9-4a01a5dace4e_20250522_bqLYZFPc.png",
       "PackagePath": "staticwebassets\\media\\sliders\\e3652b4d-65e3-4cf2-a3d9-4a01a5dace4e_20250522_bqLYZFPc.png"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\eeb5293d-2500-4356-a319-b269f43e5761_banner-slide-2.jpg",
+      "PackagePath": "staticwebassets\\media\\sliders\\eeb5293d-2500-4356-a319-b269f43e5761_banner-slide-2.jpg"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.shopping_tutorial.props",

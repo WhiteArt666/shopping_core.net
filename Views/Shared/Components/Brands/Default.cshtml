@@ -2,9 +2,17 @@
 
 @foreach (var item in Model)
 {
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title"><a asp-action="Index" asp-controller="Brand" asp-route-Slug="@item.Slug">@item.Name</a></h4>
-        </div>
+    <div class="col">
+        <a class="ul-category" asp-action="Index" asp-controller="Brand" asp-route-Slug="@item.Slug">
+            @* <div class="ul-category-img">
+                <img src="/images/fixed-image.jpg" alt="Category Image">
+            </div> *@
+            <div class="ul-category-txt">
+                <span>@item.Name</span>
+            </div>
+            <div class="ul-category-btn">
+                <span><i class="flaticon-arrow-point-to-right"></i></span>
+            </div>
+        </a>
     </div>
 }

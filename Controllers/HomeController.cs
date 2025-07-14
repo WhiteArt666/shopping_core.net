@@ -28,6 +28,33 @@ public class HomeController : Controller
         var sliders = _dataContext.Sliders.Where(s => s.Status == 1).ToList();
         ViewBag.Sliders = sliders;
 
+        // Best Selling: Products with highest Sold count
+        var bestSellingProducts = _dataContext.Products
+            .Include("Category")
+            .Include("Brand")
+            .OrderByDescending(p => p.Sold)
+            .Take(4)
+            .ToList();
+        ViewBag.BestSellingProducts = bestSellingProducts;
+
+        // On Selling: Products with highest Quantity
+        var onSellingProducts = _dataContext.Products
+            .Include("Category")
+            .Include("Brand")
+            .OrderByDescending(p => p.Price)
+            .Take(4)
+            .ToList();
+        ViewBag.OnSellingProducts = onSellingProducts;
+
+        // Top Rating: Random products
+        var topRatingProducts = _dataContext.Products
+            .Include("Category")
+            .Include("Brand")
+            .OrderBy(p => p.Sold)
+            .Take(4)
+            .ToList();
+        ViewBag.TopRatingProducts = topRatingProducts;
+
         return View(products);
     }
     public async Task<IActionResult> ContactAsync()
