@@ -144,6 +144,18 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"xmtrqz9r93"},{"Name":"integrity","Value":"sha256-NxswqEfEezuOumHw2hhy1tAd5cb\u002BHel\u002BsIMrg6u2thk="},{"Name":"label","Value":"_content/shopping_tutorial/assets/icon/flaticon_glamer.svg"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"110256"},{"Name":"Content-Type","Value":"image/svg\u002Bxml"},{"Name":"ETag","Value":"\u0022NxswqEfEezuOumHw2hhy1tAd5cb\u002BHel\u002BsIMrg6u2thk=\u0022"},{"Name":"Last-Modified","Value":"Thu, 10 Oct 2024 11:16:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/shopping_tutorial/assets/img/20250212_BWEjSujucS.9z69ihf1bo.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\20250212_BWEjSujucS.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"9z69ihf1bo"},{"Name":"integrity","Value":"sha256-lfFTeWvMQq8tBcyPYTwvScjXTtB6Cly4wfUZgFBMb0Y="},{"Name":"label","Value":"_content/shopping_tutorial/assets/img/20250212_BWEjSujucS.jpeg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"512490"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022lfFTeWvMQq8tBcyPYTwvScjXTtB6Cly4wfUZgFBMb0Y=\u0022"},{"Name":"Last-Modified","Value":"Thu, 26 Jun 2025 08:51:33 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/shopping_tutorial/assets/img/20250212_BWEjSujucS.jpeg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\20250212_BWEjSujucS.jpeg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-lfFTeWvMQq8tBcyPYTwvScjXTtB6Cly4wfUZgFBMb0Y="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"512490"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022lfFTeWvMQq8tBcyPYTwvScjXTtB6Cly4wfUZgFBMb0Y=\u0022"},{"Name":"Last-Modified","Value":"Thu, 26 Jun 2025 08:51:33 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/shopping_tutorial/assets/img/about-cover-img.bv106hlfl4.jpg">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\img\about-cover-img.jpg'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

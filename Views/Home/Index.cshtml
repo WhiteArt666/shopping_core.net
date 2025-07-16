@@ -144,7 +144,7 @@
                         </div>
 
                         <div class="ul-ad-img">
-                            <img src="assets/img/ad-img.png" alt="Ad Image">
+                            <img src="assets/img/20250212_BWEjSujucS.jpeg" alt="Ad Image">
                         </div>
 
                         <a href="shop.html" class="ul-btn">Check Discount <i class="flaticon-up-right-arrow"></i></a>
@@ -154,8 +154,162 @@
         </div>
         <!-- AD SECTION END -->
 
+        <!-- PRODUCTS SECTION START -->
+        <div class="ul-container">
+            <section class="ul-products">
+                <div class="ul-inner-container">
+                    <div class="ul-section-heading">
+                        <div class="left">
+                            <span class="ul-section-sub-title">Summer collection</span>
+                            <h2 class="ul-section-title">Shopping Every Day</h2>
+                        </div>
 
+                        <div class="right"><a asp-action="Index" asp-controller="Product" class="ul-btn">More Collection <i class="flaticon-up-right-arrow"></i></a></div>
+                    </div>
 
+                    <div class="row ul-bs-row">
+                        <!-- 1st row -->
+                        <div class="col-lg-3 col-md-4 col-12">
+                            <!-- sub bannner -->
+                            <div class="ul-products-sub-banner">
+                                <div class="ul-products-sub-banner-img">
+                                    <img src="~/wwwroot/assets/img/products-sub-banner-1.jpg" alt="Sub Banner Image">
+                                </div>
+                                <div class="ul-products-sub-banner-txt">
+                                    <h3 class="ul-products-sub-banner-title">Trending Now Only This Weekend!</h3>
+                                    <a asp-action="Index" asp-controller="Product" class="ul-btn">Shop Now <i class="flaticon-up-right-arrow"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-md-8 col-12">
+                            <!-- products grid -->
+                            <div class="swiper ul-products-slider-1">
+                                <div class="swiper-wrapper">
+                                    @if (Model != null)
+                                    {
+                                        @foreach (var product in Model.Take(6))
+                                        {
+                                            <div class="swiper-slide">
+                                                <div class="ul-product">
+                                                    <div class="ul-product-heading">
+                                                        <span class="ul-product-price">@product.Price.ToString("#,##0 VNĐ")</span>
+                                                        <span class="ul-product-discount-tag">20% Off</span>
+                                                    </div>
+
+                                                    <div class="ul-product-img">
+                                                        <a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">
+                                                            <img src="~/media/products/@product.Image" alt="@product.Name">
+                                                        </a>
+
+                                                        <div class="ul-product-actions">
+                                                            @if (product.Quantity == 0)
+                                                            {
+                                                                <button type="button" disabled><i class="flaticon-shopping-bag"></i></button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button class="add-to-cart" data-product_id="@product.Id"><i class="flaticon-shopping-bag"></i></button>
+                                                            }
+                                                            <a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id"><i class="flaticon-hide"></i></a>
+                                                            @if (User.Identity?.IsAuthenticated ?? false)
+                                                            {
+                                                                <button class="add-btn-wishlist" data-product_id="@product.Id"><i class="flaticon-heart"></i></button>
+                                                            }
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="ul-product-txt">
+                                                        <h4 class="ul-product-title"><a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">@product.Name</a></h4>
+                                                        <h5 class="ul-product-category"><a asp-action="Index" asp-controller="Shop" asp-route-category="@product.Category.Name">@product.Category.Name</a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- slider navigation -->
+                            <div class="ul-products-slider-nav ul-products-slider-1-nav">
+                                <button class="prev"><i class="flaticon-left-arrow"></i></button>
+                                <button class="next"><i class="flaticon-arrow-point-to-right"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- 2nd row -->
+                        <div class="col-lg-3 col-md-4 col-12">
+                            <!-- sub bannner -->
+                            <div class="ul-products-sub-banner">
+                                <div class="ul-products-sub-banner-img">
+                                    <img src="~/wwwroot/assets/img/products-sub-banner-2.jpg" alt="Sub Banner Image">
+                                </div>
+                                <div class="ul-products-sub-banner-txt">
+                                    <h3 class="ul-products-sub-banner-title">Trending Now Only This Weekend!</h3>
+                                    <a asp-action="Index" asp-controller="Product" class="ul-btn">Shop Now <i class="flaticon-up-right-arrow"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9 col-md-8 col-12">
+                            <!-- products grid -->
+                            <div class="swiper ul-products-slider-2">
+                                <div class="swiper-wrapper">
+                                    @if (Model != null)
+                                    {
+                                        @foreach (var product in Model.Skip(6).Take(6))
+                                        {
+                                            <div class="swiper-slide">
+                                                <div class="ul-product">
+                                                    <div class="ul-product-heading">
+                                                        <span class="ul-product-price">@product.Price.ToString("#,##0 VNĐ")</span>
+                                                        <span class="ul-product-discount-tag">20% Off</span>
+                                                    </div>
+
+                                                    <div class="ul-product-img">
+                                                        <a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">
+                                                            <img src="~/media/products/@product.Image" alt="@product.Name">
+                                                        </a>
+
+                                                        <div class="ul-product-actions">
+                                                            @if (product.Quantity == 0)
+                                                            {
+                                                                <button type="button" disabled><i class="flaticon-shopping-bag"></i></button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button class="add-to-cart" data-product_id="@product.Id"><i class="flaticon-shopping-bag"></i></button>
+                                                            }
+                                                            <a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id"><i class="flaticon-hide"></i></a>
+                                                            @if (User.Identity?.IsAuthenticated ?? false)
+                                                            {
+                                                                <button class="add-btn-wishlist" data-product_id="@product.Id"><i class="flaticon-heart"></i></button>
+                                                            }
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="ul-product-txt">
+                                                        <h4 class="ul-product-title"><a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">@product.Name</a></h4>
+                                                        <h5 class="ul-product-category"><a asp-action="Index" asp-controller="Shop" asp-route-category="@product.Category.Name">@product.Category.Name</a></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- slider navigation -->
+                            <div class="ul-products-slider-nav ul-products-slider-2-nav">
+                                <button class="prev"><i class="flaticon-left-arrow"></i></button>
+                                <button class="next"><i class="flaticon-arrow-point-to-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- PRODUCTS SECTION END -->
 
     <!-- MOST SELLING START -->
         <div class="ul-container">
@@ -276,18 +430,106 @@
             </section>
         </div>
         <!-- MOST SELLING END -->
-
+        
 
         <!-- VIDEO SECTION START -->
         <div class="ul-container">
             <div class="ul-video">
                 <div>
-                    <img src="assets/img/video-banner.jpg" alt="Video Banner" class="ul-video-cover">
+                    <img src="~/wwwroot/assets/img/video-banner.jpg" alt="Video Banner" class="ul-video-cover">
                 </div>
                 <a href="https://youtu.be/cNOKQIw81SE?si=iwUyBvpTD3h8DpFK" data-fslightbox="video" class="ul-video-btn"><i class="flaticon-play-button-arrowhead"></i></a>
             </div>
         </div>
         <!-- VIDEO SECTION END -->
+
+        <!-- FLASH SALE SECTION START -->
+        <div class="overflow-hidden">
+            <div class="ul-container">
+                <div class="ul-flash-sale">
+                    <div class="ul-inner-container">
+                        <!-- heading -->
+                        <div class="ul-section-heading ul-flash-sale-heading">
+                            <div class="left">
+                                <span class="ul-section-sub-title">New Collection</span>
+                                <h2 class="ul-section-title">Trending Flash Sell</h2>
+                            </div>
+
+                            <div class="ul-flash-sale-countdown-wrapper">
+                                <div class="ul-flash-sale-countdown">
+                                    <div class="days-wrapper">
+                                        <div class="days number">00</div>
+                                        <span class="txt">Days</span>
+                                    </div>
+                                    <div class="hours-wrapper">
+                                        <div class="hours number">00</div>
+                                        <span class="txt">Hours</span>
+                                    </div>
+                                    <div class="minutes-wrapper">
+                                        <div class="minutes number">00</div>
+                                        <span class="txt">Min</span>
+                                    </div>
+                                    <div class="seconds-wrapper">
+                                        <div class="seconds number">00</div>
+                                        <span class="txt">Sec</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a asp-action="Index" asp-controller="Product" class="ul-btn">View All Collection <i class="flaticon-up-right-arrow"></i></a>
+                        </div>
+
+                        <!-- produtcs slider -->
+                        <div class="ul-flash-sale-slider swiper">
+                            <div class="swiper-wrapper">
+                                @if (Model != null)
+                                {
+                                    @foreach (var product in Model.Take(8))
+                                    {
+                                        <div class="swiper-slide">
+                                            <div class="ul-product">
+                                                <div class="ul-product-heading">
+                                                    <span class="ul-product-price">@product.Price.ToString("#,##0 VNĐ")</span>
+                                                    <span class="ul-product-discount-tag">25% Off</span>
+                                                </div>
+
+                                                <div class="ul-product-img">
+                                                    <a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">
+                                                        <img src="~/media/products/@product.Image" alt="@product.Name">
+                                                    </a>
+
+                                                    <div class="ul-product-actions">
+                                                        @if (product.Quantity == 0)
+                                                        {
+                                                            <button type="button" disabled><i class="flaticon-shopping-bag"></i></button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button class="add-to-cart" data-product_id="@product.Id"><i class="flaticon-shopping-bag"></i></button>
+                                                        }
+                                                        <a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id"><i class="flaticon-hide"></i></a>
+                                                        @if (User.Identity?.IsAuthenticated ?? false)
+                                                        {
+                                                            <button class="add-btn-wishlist" data-product_id="@product.Id"><i class="flaticon-heart"></i></button>
+                                                        }
+                                                    </div>
+                                                </div>
+
+                                                <div class="ul-product-txt">
+                                                    <h4 class="ul-product-title"><a asp-action="Details" asp-controller="Product" asp-route-Id="@product.Id">@product.Name</a></h4>
+                                                    <h5 class="ul-product-category"><a asp-action="Index" asp-controller="Shop" asp-route-category="@product.Category.Name">@product.Category.Name</a></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FLASH SALE SECTION END -->
 
         <!-- REVIEWS SECTION START -->
         <section class="ul-reviews overflow-hidden">
@@ -500,12 +742,122 @@
             }
         });
 
+        // Initialize product sliders
+        var productSlider1 = new Swiper('.ul-products-slider-1', {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.ul-products-slider-1-nav .next',
+                prevEl: '.ul-products-slider-1-nav .prev',
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 15
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 20
+                }
+            }
+        });
+
+        var productSlider2 = new Swiper('.ul-products-slider-2', {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.ul-products-slider-2-nav .next',
+                prevEl: '.ul-products-slider-2-nav .prev',
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 15
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 20
+                }
+            }
+        });
+
+        // Initialize Flash Sale slider
+        var flashSaleSlider = new Swiper('.ul-flash-sale-slider', {
+            slidesPerView: 5,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                },
+                480: {
+                    slidesPerView: 2,
+                    spaceBetween: 15
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 20
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 20
+                },
+                1200: {
+                    slidesPerView: 5,
+                    spaceBetween: 20
+                }
+            }
+        });
+
+        // Flash Sale Countdown Timer
+        function initFlashSaleCountdown() {
+            // Set countdown target date (24 hours from now)
+            const targetDate = new Date().getTime() + (24 * 60 * 60 * 1000);
+            
+            const countdown = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                if (distance < 0) {
+                    clearInterval(countdown);
+                    $('.ul-flash-sale-countdown .number').text('00');
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                $('.ul-flash-sale-countdown .days').text(days.toString().padStart(2, '0'));
+                $('.ul-flash-sale-countdown .hours').text(hours.toString().padStart(2, '0'));
+                $('.ul-flash-sale-countdown .minutes').text(minutes.toString().padStart(2, '0'));
+                $('.ul-flash-sale-countdown .seconds').text(seconds.toString().padStart(2, '0'));
+            }, 1000);
+        }
+
         // Initialize category and brand display
         $(document).ready(function() {
             // No need for category initialization anymore
             
             // Initialize filter for Most Selling section
             initializeMostSellingFilter();
+            
+            // Initialize Flash Sale countdown
+            initFlashSaleCountdown();
         });
 
         function initializeMostSellingFilter() {
