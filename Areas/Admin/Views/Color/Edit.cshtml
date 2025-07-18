@@ -1,0 +1,72 @@
+@model shopping_tutorial.Models.ColorModel
+@{
+    ViewData["Title"] = "Chỉnh sửa màu sắc";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Chỉnh sửa màu sắc</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+                    <input asp-for="Id" type="hidden" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Tên màu sắc</label>
+                        <input asp-for="Name" class="form-control" placeholder="Ví dụ: Đỏ, Xanh dương..." />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="ColorCode" class="form-label">Mã màu (Hex)</label>
+                        <div class="input-group">
+                            <input asp-for="ColorCode" type="color" class="form-control form-control-color" style="width: 60px;" />
+                            <input asp-for="ColorCode" type="text" class="form-control" placeholder="#FF0000" />
+                        </div>
+                        <span asp-validation-for="ColorCode" class="text-danger"></span>
+                        <div class="form-text">Chọn màu hoặc nhập mã hex (ví dụ: #FF0000)</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Mô tả (tùy chọn)</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Mô tả về màu sắc..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Quay lại
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Cập nhật màu sắc
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Sync color picker with text input
+        $(document).ready(function() {
+            const colorPicker = $('input[type="color"]');
+            const textInput = $('input[type="text"][name="ColorCode"]');
+            
+            colorPicker.on('change', function() {
+                textInput.val($(this).val().toUpperCase());
+            });
+            
+            textInput.on('input', function() {
+                const value = $(this).val();
+                if (/^#[0-9A-F]{6}$/i.test(value)) {
+                    colorPicker.val(value);
+                }
+            });
+        });
+    </script>
+}

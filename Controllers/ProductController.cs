@@ -32,7 +32,15 @@ namespace shopping_tutorial.Controllers
 		public async Task<IActionResult> Details(int Id)
 		{
 			if (Id <= 0) return RedirectToAction("Index");
-			var productById = _dataContext.Products.Include(p => p.Ratings).Where(p => p.Id == Id).FirstOrDefault();
+			var productById = await _dataContext.Products
+				.Include(p => p.Ratings)
+				.Include(p => p.ProductVariants)
+					.ThenInclude(pv => pv.Color)
+				.Include(p => p.ProductVariants)
+					.ThenInclude(pv => pv.Size)
+				.Include(p => p.Category)
+				.Include(p => p.Brand)
+				.FirstOrDefaultAsync(p => p.Id == Id);
 			
 			if (productById == null) return RedirectToAction("Index");
 			
@@ -40,7 +48,7 @@ namespace shopping_tutorial.Controllers
 			var productRatings = await _dataContext.Ratings.Where(r => r.ProductId == Id).ToListAsync();
 			ViewBag.ProductRatings = productRatings;
 			
-			//relatred product
+			//related product
 			var relatedProducts = await _dataContext.Products
 			.Where(p => p.CategoryId == productById.CategoryId && p.Id != productById.Id)
 			.Take(4)

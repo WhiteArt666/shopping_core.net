@@ -581,6 +581,14 @@
       "PackagePath": "staticwebassets\\images\\2.jpg"
     },
     {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\images\\20250212_BWEjSujucS.jpeg",
+      "PackagePath": "staticwebassets\\images\\20250212_BWEjSujucS.jpeg"
+    },
+    {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\images\\20250212_NqEdXsHKQM.jpeg",
+      "PackagePath": "staticwebassets\\images\\20250212_NqEdXsHKQM.jpeg"
+    },
+    {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\images\\404.png",
       "PackagePath": "staticwebassets\\images\\404.png"
     },

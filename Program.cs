@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using shopping_tutorial.Areas.Admin.Repository;
 using shopping_tutorial.Models;
 using shopping_tutorial.Repository;
+using shopping_tutorial.Data;
 
 internal class Program
 {
@@ -100,7 +101,10 @@ internal class Program
         {
             var services = scope.ServiceProvider;
             var context = services.GetRequiredService<DataContext>();
-            SeedData.seedingData(context);
+            shopping_tutorial.Repository.SeedData.seedingData(context);
+            
+            // Seed Colors and Sizes
+            shopping_tutorial.Data.SeedData.SeedColorsAndSizesSync(context);
         }
 
         //var context =app.Services.CreateScope().ServiceProvider.GetRequiredService<DataContext>();

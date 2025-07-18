@@ -24,7 +24,14 @@ namespace shopping_tutorial.Controllers
             }
 
             ViewBag.Slug = slug;
-            IQueryable<ProductModel> productsByCategory = _dataContext.Products.Where(p => p.CategoryId == category.Id);
+            IQueryable<ProductModel> productsByCategory = _dataContext.Products
+                .Include(p => p.ProductVariants)
+                    .ThenInclude(pv => pv.Color)
+                .Include(p => p.ProductVariants)
+                    .ThenInclude(pv => pv.Size)
+                .Include(p => p.Category)
+                .Include(p => p.Brand)
+                .Where(p => p.CategoryId == category.Id);
             var count = await productsByCategory.CountAsync();
             if (count > 0)
             {

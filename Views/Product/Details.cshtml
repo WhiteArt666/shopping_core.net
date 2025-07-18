@@ -5,6 +5,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .size-btn.active {
+        background-color: #007bff !important;
+        color: white !important;
+        border-color: #007bff !important;
+    }
+    
+    .color-btn.active {
+        border: 3px solid #007bff !important;
+        box-shadow: 0 0 5px rgba(0,123,255,0.5) !important;
+    }
+    
+    .ul-product-details-price-section {
+        margin-bottom: 15px;
+    }
+    
+    .ul-product-details-price {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #e74c3c;
+    }
+    
+    .ul-product-details-original-price {
+        font-size: 1.2em;
+        color: #999;
+    }
+    
+    .ul-product-details-discount {
+        font-size: 0.9em;
+        display: inline-block;
+    }
+</style>
+
 <main>
     <!-- BREADCRUMB SECTION START -->
     <div class="ul-container">
@@ -71,70 +104,104 @@
                                 <span class="review-number">(@reviewCount Khách Hàng Đã Đánh Giá)</span>
                             </div>
 
-                            <span class="ul-product-details-price">@Model.ProductDetails.Price.ToString("#,##0 VNĐ")</span>
+                            <!-- Price Display -->
+                            <div class="ul-product-details-price-section">
+                                @{
+                                    var defaultVariant = Model.ProductDetails.ProductVariants?.FirstOrDefault(pv => pv.IsActive);
+                                }
+                                @if (defaultVariant != null && defaultVariant.DiscountPrice > 0 && defaultVariant.DiscountPrice < defaultVariant.OriginalPrice)
+                                {
+                                    <span class="ul-product-details-price current-price" id="current-price">@defaultVariant.DiscountPrice.ToString("#,##0 VNĐ")</span>
+                                    <span class="ul-product-details-original-price" id="original-price" style="text-decoration: line-through; color: #999; margin-left: 10px;">@defaultVariant.OriginalPrice.ToString("#,##0 VNĐ")</span>
+                                    <span class="ul-product-details-discount" id="discount-percent" style="background: #ff4757; color: white; padding: 2px 8px; border-radius: 4px; margin-left: 10px; font-size: 0.9em;">-@defaultVariant.DiscountPercentage%</span>
+                                }
+                                else if (defaultVariant != null)
+                                {
+                                    <span class="ul-product-details-price current-price" id="current-price">@defaultVariant.OriginalPrice.ToString("#,##0 VNĐ")</span>
+                                    <span class="ul-product-details-original-price" id="original-price" style="display: none;"></span>
+                                    <span class="ul-product-details-discount" id="discount-percent" style="display: none;"></span>
+                                }
+                                else
+                                {
+                                    <span class="ul-product-details-price current-price" id="current-price">@Model.ProductDetails.Price.ToString("#,##0 VNĐ")</span>
+                                    <span class="ul-product-details-original-price" id="original-price" style="display: none;"></span>
+                                    <span class="ul-product-details-discount" id="discount-percent" style="display: none;"></span>
+                                }
+                            </div>
+                            
                             <h3 class="ul-product-details-title">@Model.ProductDetails.Name</h3>
 
                             @* <p class="ul-product-details-descr">@Model.ProductDetails.Description</p> *@
 
-
                             <!-- product options -->
-                            <div class="ul-product-details-options">
-                                <div class="ul-product-details-option ul-product-details-sizes">
-                                    <span class="title">Size</span>
+                            @if (Model.ProductDetails.ProductVariants != null && Model.ProductDetails.ProductVariants.Any())
+                            {
+                                <div class="ul-product-details-options">
+                                    <!-- Size Options -->
+                                    @{
+                                        var availableSizes = Model.ProductDetails.ProductVariants
+                                            .Where(pv => pv.IsActive)
+                                            .Select(pv => pv.Size)
+                                            .Distinct()
+                                            .ToList();
+                                    }
+                                    @if (availableSizes.Any())
+                                    {
+                                        <div class="ul-product-details-option ul-product-details-sizes">
+                                            <span class="title">Size</span>
+                                            <form action="#" class="variants">
+                                                @for (int i = 0; i < availableSizes.Count; i++)
+                                                {
+                                                    var size = availableSizes[i];
+                                                    <label for="ul-product-details-size-@size.Id">
+                                                        <input type="radio" name="product-size" id="ul-product-details-size-@size.Id" value="@size.Id" @(i == 0 ? "checked" : "") hidden>
+                                                        <span class="size-btn" data-size-id="@size.Id">@size.Name</span>
+                                                    </label>
+                                                }
+                                            </form>
+                                        </div>
+                                    }
 
-                                    <form action="#" class="variants">
-                                        <label for="ul-product-details-size-1">
-                                            <input type="radio" name="product-size" id="ul-product-details-size-1" checked hidden>
-                                            <span class="size-btn">S</span>
-                                        </label>
-
-                                        <label for="ul-product-details-size-2">
-                                            <input type="radio" name="product-size" id="ul-product-details-size-2" hidden>
-                                            <span class="size-btn">M</span>
-                                        </label>
-
-                                        <label for="ul-product-details-size-3">
-                                            <input type="radio" name="product-size" id="ul-product-details-size-3" hidden>
-                                            <span class="size-btn">L</span>
-                                        </label>
-
-                                        <label for="ul-product-details-size-4">
-                                            <input type="radio" name="product-size" id="ul-product-details-size-4" hidden>
-                                            <span class="size-btn">XL</span>
-                                        </label>
-
-                                        <label for="ul-product-details-size-5">
-                                            <input type="radio" name="product-size" id="ul-product-details-size-5" hidden>
-                                            <span class="size-btn">XXL</span>
-                                        </label>
-                                    </form>
+                                    <!-- Color Options -->
+                                    @{
+                                        var availableColors = Model.ProductDetails.ProductVariants
+                                            .Where(pv => pv.IsActive)
+                                            .Select(pv => pv.Color)
+                                            .Distinct()
+                                            .ToList();
+                                    }
+                                    @if (availableColors.Any())
+                                    {
+                                        <div class="ul-product-details-option ul-product-details-colors">
+                                            <span class="title">Color</span>
+                                            <form action="#" class="variants">
+                                                @for (int i = 0; i < availableColors.Count; i++)
+                                                {
+                                                    var color = availableColors[i];
+                                                    <label for="ul-product-details-color-@color.Id">
+                                                        <input type="radio" name="product-color" id="ul-product-details-color-@color.Id" value="@color.Id" @(i == 0 ? "checked" : "") hidden>
+                                                        <span class="color-btn" data-color-id="@color.Id" style="background-color: @color.ColorCode; width: 30px; height: 30px; border-radius: 50%; display: inline-block; border: 2px solid #ddd; margin-right: 5px; cursor: pointer;" title="@color.Name"></span>
+                                                    </label>
+                                                }
+                                            </form>
+                                        </div>
+                                    }
                                 </div>
-
-                                <div class="ul-product-details-option ul-product-details-colors">
-                                    <span class="title">Color</span>
-                                    <form action="#" class="variants">
-                                        <label for="ul-product-details-color-1">
-                                            <input type="radio" name="product-color" id="ul-product-details-color-1" checked hidden>
-                                            <span class="color-btn green"></span>
-                                        </label>
-
-                                        <label for="ul-product-details-color-2">
-                                            <input type="radio" name="product-color" id="ul-product-details-color-2" hidden>
-                                            <span class="color-btn blue"></span>
-                                        </label>
-
-                                        <label for="ul-product-details-color-3">
-                                            <input type="radio" name="product-color" id="ul-product-details-color-3" hidden>
-                                            <span class="color-btn brown"></span>
-                                        </label>
-
-                                        <label for="ul-product-details-color-4">
-                                            <input type="radio" name="product-color" id="ul-product-details-color-4" hidden>
-                                            <span class="color-btn red"></span>
-                                        </label>
-                                    </form>
+                            }
+                            else
+                            {
+                                <div class="ul-product-details-options">
+                                    <div class="ul-product-details-option ul-product-details-sizes">
+                                        <span class="title">Size</span>
+                                        <form action="#" class="variants">
+                                            <label for="ul-product-details-size-1">
+                                                <input type="radio" name="product-size" id="ul-product-details-size-1" checked hidden>
+                                                <span class="size-btn">Free Size</span>
+                                            </label>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            }
 
 							
 
@@ -333,6 +400,188 @@
                 } else {
                     star.removeClass('flaticon-star').addClass('flaticon-star-3');
                 }
+            });
+        });
+
+        // Handle variant selection and price update
+        @{
+            var variantList = new List<object>();
+            if (Model.ProductDetails.ProductVariants != null && Model.ProductDetails.ProductVariants.Any())
+            {
+                foreach(var pv in Model.ProductDetails.ProductVariants.Where(pv => pv.IsActive))
+                {
+                    variantList.Add(new {
+                        Id = pv.Id,
+                        ProductId = pv.ProductId,
+                        ColorId = pv.ColorId,
+                        SizeId = pv.SizeId,
+                        ColorName = pv.Color?.Name ?? "Unknown",
+                        SizeName = pv.Size?.Name ?? "Unknown",
+                        OriginalPrice = (double)pv.OriginalPrice,
+                        DiscountPrice = (double)pv.DiscountPrice,
+                        DiscountPercentage = (double)pv.DiscountPercentage,
+                        Quantity = pv.Quantity,
+                        IsActive = pv.IsActive
+                    });
+                }
+            }
+        }
+        // Create variants array directly in JavaScript
+        var variants = [
+            @if (Model.ProductDetails.ProductVariants != null)
+            {
+                var activeVariants = Model.ProductDetails.ProductVariants.Where(pv => pv.IsActive).ToList();
+                @for(int i = 0; i < activeVariants.Count; i++)
+                {
+                    var pv = activeVariants[i];
+                    <text>{
+                        Id: @pv.Id,
+                        ProductId: @pv.ProductId,
+                        ColorId: @pv.ColorId,
+                        SizeId: @pv.SizeId,
+                        ColorName: '@(pv.Color?.Name ?? "Unknown")',
+                        SizeName: '@(pv.Size?.Name ?? "Unknown")',
+                        OriginalPrice: @pv.OriginalPrice,
+                        DiscountPrice: @pv.DiscountPrice,
+                        DiscountPercentage: @pv.DiscountPercentage,
+                        Quantity: @pv.Quantity,
+                        IsActive: @(pv.IsActive.ToString().ToLower())
+                    }</text>
+                    @if (i < activeVariants.Count - 1) { <text>,</text> }
+                }
+            }
+        ];
+        
+        console.log('Variants data:', variants);
+        
+        // Debug raw ProductVariants
+        console.log('Raw ProductVariants count:', @(Model.ProductDetails.ProductVariants?.Count ?? 0));
+        @if (Model.ProductDetails.ProductVariants != null)
+        {
+            @foreach(var pv in Model.ProductDetails.ProductVariants)
+            {
+                <text>console.log('Raw variant - Id:@pv.Id, ColorId:@pv.ColorId, SizeId:@pv.SizeId, Active:@pv.IsActive');</text>
+            }
+        }
+        
+        // Debug: log each variant
+        if (variants && variants.length > 0) {
+            console.log('=== All Available Variants ===');
+            variants.forEach(function(v, index) {
+                console.log('Variant ' + index + ':', 'ColorId=' + v.ColorId + '(' + v.ColorName + ')', 'SizeId=' + v.SizeId + '(' + v.SizeName + ')', 'Price=' + v.OriginalPrice, 'Discount=' + v.DiscountPrice);
+            });
+            console.log('=== End Variants ===');
+        } else {
+            console.log('No variants found for this product');
+        }
+
+        function updatePrice() {
+            var selectedColorId = parseInt($('input[name="product-color"]:checked').val());
+            var selectedSizeId = parseInt($('input[name="product-size"]:checked').val());
+            
+            console.log('Selected Color ID:', selectedColorId, typeof selectedColorId);
+            console.log('Selected Size ID:', selectedSizeId, typeof selectedSizeId);
+            
+            var currentPriceElement = $('#current-price');
+            var originalPriceElement = $('#original-price');
+            var discountElement = $('#discount-percent');
+            
+            // Find variant for selected color and size
+            var variant = null;
+            if (!isNaN(selectedColorId) && !isNaN(selectedSizeId)) {
+                console.log('Looking for variant with ColorId=' + selectedColorId + ', SizeId=' + selectedSizeId);
+                
+                // Debug: show all variants we're checking against
+                variants.forEach(function(v, index) {
+                    console.log('Checking variant ' + index + ': ColorId=' + v.ColorId + ' (type:' + typeof v.ColorId + '), SizeId=' + v.SizeId + ' (type:' + typeof v.SizeId + ')');
+                });
+                
+                variant = variants.find(function(v) {
+                    var vColorId = parseInt(v.ColorId);
+                    var vSizeId = parseInt(v.SizeId);
+                    var match = vColorId === selectedColorId && vSizeId === selectedSizeId;
+                    
+                    console.log('Comparing: v.ColorId=' + vColorId + ' === ' + selectedColorId + ' AND v.SizeId=' + vSizeId + ' === ' + selectedSizeId + ' = ' + match);
+                    
+                    if (match) {
+                        console.log('✅ MATCH FOUND:', v);
+                    }
+                    return match;
+                });
+                
+                if (!variant) {
+                    console.log('❌ No variant found for ColorId=' + selectedColorId + ', SizeId=' + selectedSizeId);
+                    console.log('Available combinations:');
+                    variants.forEach(function(v) {
+                        console.log('  - ColorId=' + v.ColorId + ', SizeId=' + v.SizeId + ' (' + v.ColorName + ' / ' + v.SizeName + ')');
+                    });
+                }
+            }
+            
+            if (variant) {
+                // Variant found - show variant price
+                if (variant.DiscountPrice > 0 && variant.DiscountPrice < variant.OriginalPrice) {
+                    // Has discount
+                    currentPriceElement.text(new Intl.NumberFormat('vi-VN').format(variant.DiscountPrice) + ' VNĐ');
+                    originalPriceElement.text(new Intl.NumberFormat('vi-VN').format(variant.OriginalPrice) + ' VNĐ');
+                    originalPriceElement.show();
+                    discountElement.text('-' + Math.round(variant.DiscountPercentage) + '%');
+                    discountElement.show();
+                } else {
+                    // No discount
+                    currentPriceElement.text(new Intl.NumberFormat('vi-VN').format(variant.OriginalPrice) + ' VNĐ');
+                    originalPriceElement.hide();
+                    discountElement.hide();
+                }
+            } else {
+                // No variant found - show product base price
+                var basePrice = @Model.ProductDetails.Price;
+                console.log('Using base price:', basePrice);
+                currentPriceElement.text(new Intl.NumberFormat('vi-VN').format(basePrice) + ' VNĐ');
+                originalPriceElement.hide();
+                discountElement.hide();
+            }
+        }
+
+        // Initialize price on page load and set active classes
+        $(document).ready(function() {
+            console.log('Document ready - initializing...');
+            
+            // Set first size as active
+            $('.size-btn').first().addClass('active');
+            // Set first color as active
+            $('.color-btn').first().addClass('active');
+            
+            // Trigger initial price update
+            updatePrice();
+            
+            // Bind change events to size and color selections
+            $('input[name="product-size"], input[name="product-color"]').change(function() {
+                console.log('Input changed');
+                updatePrice();
+            });
+
+            // Handle clicks on size and color buttons
+            $('.size-btn').click(function() {
+                console.log('Size button clicked');
+                // Remove active class from all size buttons
+                $('.size-btn').removeClass('active');
+                // Add active class to clicked button
+                $(this).addClass('active');
+                
+                var sizeId = $(this).data('size-id');
+                $('#ul-product-details-size-' + sizeId).prop('checked', true).trigger('change');
+            });
+
+            $('.color-btn').click(function() {
+                console.log('Color button clicked');
+                // Remove active class from all color buttons
+                $('.color-btn').removeClass('active');
+                // Add active class to clicked button
+                $(this).addClass('active');
+                
+                var colorId = $(this).data('color-id');
+                $('#ul-product-details-color-' + colorId).prop('checked', true).trigger('change');
             });
         });
     </script>

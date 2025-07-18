@@ -26,9 +26,10 @@
         <tr>
              <th>Id</th>
                 <th>Product Name</th>
-                <th>Quantity</th>
+                <th>Total Quantity<br/><small>(Product + Variants)</small></th>
                 <th>Sold out</th>
                 <th>Product Quantity</th>
+                <th>Product Variants</th>
                 @* <th>Product Description</th> *@
                 <th>Product Price</th>
                 <th>Product Image</th>
@@ -45,18 +46,43 @@
                     <td>@item.Id</td>
                     <td>@item.Name</td>
                     <td>
-                        @if (@item.Quantity == 0)
+                        @{
+                            var variantsQuantity = item.ProductVariants?.Sum(pv => pv.Quantity) ?? 0;
+                            var totalQuantity = item.Quantity + variantsQuantity;
+                        }
+                        @if (totalQuantity == 0)
                         {
-                            <span class="text text-danger"><b> @item.Quantity</b></span>
+                            <span class="text-danger"><b>@totalQuantity</b></span>
                         }
                         else
                         {
-                            <span class="text text-primary"> @item.Quantity</span>
+                            <span class="text-primary"><b>@totalQuantity</b></span>
                         }
-                       
-                        </td>
+                        <br />
+                        <small class="text-muted">
+                            Product: @item.Quantity | Variants: @variantsQuantity
+                        </small>
+                    </td>
                         <td>@item.Sold</td>
                     <td><a asp-action="CreateProductQuantity" asp-controller="Product" asp-route-Id="@item.Id">Add Quantity</a></td>
+                    <td>
+                        @{
+                            var variantCount = item.ProductVariants?.Count ?? 0;
+                        }
+                        <a class="btn btn-info btn-sm" asp-action="ManageVariants" asp-controller="Product" asp-route-Id="@item.Id">
+                            <i class="fas fa-palette"></i> Manage Variants (@variantCount)
+                        </a>
+                        @if (variantCount > 0)
+                        {
+                            <br/>
+                            <small class="text-success">@variantCount variant(s) available</small>
+                        }
+                        else
+                        {
+                            <br/>
+                            <small class="text-muted">No variants</small>
+                        }
+                    </td>
                     @* <td>@Html.Raw(@item.Description)</td> *@
                     <td>@item.Price.ToString("#,##0 VNĐ")</td>
                     <td> <img src="~/media/products/@item.Image" width="120px" height="150px" /> </td>

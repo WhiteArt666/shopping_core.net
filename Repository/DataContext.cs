@@ -31,6 +31,11 @@ namespace shopping_tutorial.Repository
         public DbSet<CategoryModel> Categories { get; set; }
 		public DbSet<OrderModel> Orders { get; set; }
 		public DbSet<OrderDetails> OrderDetails { get; set; }
+		
+		// Product Variants DbSets
+		public DbSet<ColorModel> Colors { get; set; }
+		public DbSet<SizeModel> Sizes { get; set; }
+		public DbSet<ProductVariantModel> ProductVariants { get; set; }
        
 
     }

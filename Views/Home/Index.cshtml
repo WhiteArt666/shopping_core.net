@@ -76,13 +76,16 @@
                     <div class="swiper-slide">
                         <div class="ul-product">
                             <div class="ul-product-heading">
-                                <span class="ul-product-price">@item.Price.ToString("#,##0 VNĐ")</span>
-                                <!-- Add discount tag if applicable -->
-                                
-                            
-                                
-                                    <span class="ul-product-discount-tag">20% Off</span> <!-- Fallback if no discount -->
-                                
+                                @if (item.DisplayDiscountPrice.HasValue && item.DiscountPercentage > 0)
+                                {
+                                    <span class="ul-product-price">@item.DisplayDiscountPrice.Value.ToString("#,##0 VNĐ")</span>
+                                    <span class="ul-product-original-price" style="text-decoration: line-through; color: #999; font-size: 0.9em;">@item.DisplayOriginalPrice.ToString("#,##0 VNĐ")</span>
+                                    <span class="ul-product-discount-tag">-@item.DiscountPercentage%</span>
+                                }
+                                else
+                                {
+                                    <span class="ul-product-price">@item.Price.ToString("#,##0 VNĐ")</span>
+                                }
                             </div>
 
                             <div class="ul-product-img">
@@ -698,6 +701,11 @@
                             <button type="submit">Subscribe Now <i class="flaticon-up-right-arrow"></i></button>
                         </form>
                     </div>
+                </div>
+
+                <div class="ul-nwsltr-subs-img">
+                    <img src="~wwwroot/images/20250212_BWEjSujucS.jpeg" alt="Newsletter Subscription Image">
+
                 </div>
             </section>
         </div>

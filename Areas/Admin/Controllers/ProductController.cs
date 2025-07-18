@@ -24,7 +24,12 @@ namespace shopping_tutorial.Areas.Admin.Controllers
         [Route("Index")]
         public async Task<IActionResult> Index()
         {
-            return View(await _dataContext.Products.OrderByDescending(p => p.Id).Include(p => p.Category).Include(p => p.Brand).ToListAsync());
+            return View(await _dataContext.Products
+                .OrderByDescending(p => p.Id)
+                .Include(p => p.Category)
+                .Include(p => p.Brand)
+                .Include(p => p.ProductVariants)
+                .ToListAsync());
         }
         [Route("Create")]
         [HttpGet]
@@ -219,6 +224,21 @@ namespace shopping_tutorial.Areas.Admin.Controllers
 
             return RedirectToAction("CreateProductQuantity", "Product", new { Id = productQuantityModel.ProductId });
 
+        }
+        
+        // Manage Product Variants
+        [Route("ManageVariants")]
+        [HttpGet]
+        public async Task<IActionResult> ManageVariants(int Id)
+        {
+            var product = await _dataContext.Products.FindAsync(Id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            ViewBag.Product = product;
+            return RedirectToAction("Index", "ProductVariant", new { productId = Id });
         }
     }
 }

@@ -1,0 +1,197 @@
+@model shopping_tutorial.Models.ProductVariantModel
+@{
+    ViewData["Title"] = "Chỉnh sửa biến thể sản phẩm";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <h4>Chỉnh sửa biến thể sản phẩm</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+                    <input asp-for="Id" type="hidden" />
+                    <input asp-for="SKU" type="hidden" />
+                    <input asp-for="DateCreated" type="hidden" />
+                    <input asp-for="Sold" type="hidden" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label asp-for="ProductId" class="form-label">Sản phẩm</label>
+                                <select asp-for="ProductId" class="form-select" asp-items="ViewBag.Products">
+                                    <option value="">-- Chọn sản phẩm --</option>
+                                </select>
+                                <span asp-validation-for="ProductId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label asp-for="ColorId" class="form-label">Màu sắc</label>
+                                <select asp-for="ColorId" class="form-select" asp-items="ViewBag.Colors">
+                                    <option value="">-- Chọn màu --</option>
+                                </select>
+                                <span asp-validation-for="ColorId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="mb-3">
+                                <label asp-for="SizeId" class="form-label">Size</label>
+                                <select asp-for="SizeId" class="form-select" asp-items="ViewBag.Sizes">
+                                    <option value="">-- Chọn size --</option>
+                                </select>
+                                <span asp-validation-for="SizeId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label asp-for="OriginalPrice" class="form-label">Giá gốc (₫)</label>
+                                <input asp-for="OriginalPrice" type="number" step="1000" min="0" class="form-control" />
+                                <span asp-validation-for="OriginalPrice" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label asp-for="DiscountPrice" class="form-label">Giá khuyến mãi (₫) - Tùy chọn</label>
+                                <input asp-for="DiscountPrice" type="number" step="1000" min="0" class="form-control" />
+                                <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+                                <div class="form-text">Để trống hoặc 0 nếu không có khuyến mãi</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label asp-for="Quantity" class="form-label">Số lượng</label>
+                                <input asp-for="Quantity" type="number" min="0" class="form-control" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">SKU hiện tại</label>
+                                <input value="@Model.SKU" class="form-control" readonly />
+                                <div class="form-text">SKU sẽ được cập nhật tự động khi thay đổi sản phẩm, màu sắc hoặc size</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input asp-for="IsActive" type="checkbox" class="form-check-input" />
+                                    <label asp-for="IsActive" class="form-check-label">
+                                        Kích hoạt biến thể này
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Current Stats -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-light">
+                                <h6><i class="fas fa-info-circle"></i> Thông tin hiện tại:</h6>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <strong>Ngày tạo:</strong> @Model.DateCreated.ToString("dd/MM/yyyy HH:mm")
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Cập nhật cuối:</strong> @Model.DateUpdated.ToString("dd/MM/yyyy HH:mm")
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Đã bán:</strong> @Model.Sold sản phẩm
+                                    </div>
+                                    <div class="col-md-3">
+                                        <strong>Trạng thái:</strong> 
+                                        <span class="badge @(Model.IsActive ? "bg-success" : "bg-secondary")">
+                                            @(Model.IsActive ? "Hoạt động" : "Không hoạt động")
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Preview Section -->
+                    <div class="row" id="preview-section">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                <h6><i class="fas fa-eye"></i> Xem trước biến thể:</h6>
+                                <div id="preview-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" asp-route-productId="@Model.ProductId" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Quay lại
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Cập nhật biến thể
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Update preview when inputs change
+            function updatePreview() {
+                const productSelect = $('#ProductId');
+                const colorSelect = $('#ColorId');
+                const sizeSelect = $('#SizeId');
+                const originalPrice = $('#OriginalPrice').val();
+                const discountPrice = $('#DiscountPrice').val();
+                
+                if (productSelect.val() && colorSelect.val() && sizeSelect.val()) {
+                    const productName = productSelect.find('option:selected').text();
+                    const colorName = colorSelect.find('option:selected').text();
+                    const sizeName = sizeSelect.find('option:selected').text();
+                    
+                    let effectivePrice = originalPrice;
+                    let discountPercentage = 0;
+                    
+                    if (discountPrice && parseFloat(discountPrice) > 0 && parseFloat(discountPrice) < parseFloat(originalPrice)) {
+                        effectivePrice = discountPrice;
+                        discountPercentage = Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
+                    }
+                    
+                    const previewHtml = `
+                        <div class="row">
+                            <div class="col-md-3"><strong>Sản phẩm:</strong> ${productName}</div>
+                            <div class="col-md-2"><strong>Màu:</strong> ${colorName}</div>
+                            <div class="col-md-2"><strong>Size:</strong> ${sizeName}</div>
+                            <div class="col-md-2"><strong>Giá gốc:</strong> ${parseInt(originalPrice || 0).toLocaleString()} ₫</div>
+                            <div class="col-md-3">
+                                <strong>Giá bán:</strong> 
+                                <span class="text-primary">${parseInt(effectivePrice || 0).toLocaleString()} ₫</span>
+                                ${discountPercentage > 0 ? `<span class="badge bg-danger ms-1">-${discountPercentage}%</span>` : ''}
+                            </div>
+                        </div>
+                    `;
+                    
+                    $('#preview-content').html(previewHtml);
+                    $('#preview-section').show();
+                } else {
+                    $('#preview-section').hide();
+                }
+            }
+            
+            // Bind change events
+            $('#ProductId, #ColorId, #SizeId, #OriginalPrice, #DiscountPrice').on('change keyup', updatePreview);
+            
+            // Initial preview update
+            updatePreview();
+        });
+    </script>
+}

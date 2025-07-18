@@ -23,7 +23,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var products = _dataContext.Products.Include("Category").Include("Brand").ToList();
+        var products = _dataContext.Products
+            .Include("Category")
+            .Include("Brand")
+            .Include(p => p.ProductVariants)
+                .ThenInclude(pv => pv.Color)
+            .Include(p => p.ProductVariants)
+                .ThenInclude(pv => pv.Size)
+            .ToList();
 
         var sliders = _dataContext.Sliders.Where(s => s.Status == 1).ToList();
         ViewBag.Sliders = sliders;
@@ -32,6 +39,10 @@ public class HomeController : Controller
         var bestSellingProducts = _dataContext.Products
             .Include("Category")
             .Include("Brand")
+            .Include(p => p.ProductVariants)
+                .ThenInclude(pv => pv.Color)
+            .Include(p => p.ProductVariants)
+                .ThenInclude(pv => pv.Size)
             .OrderByDescending(p => p.Sold)
             .Take(4)
             .ToList();
@@ -41,6 +52,10 @@ public class HomeController : Controller
         var onSellingProducts = _dataContext.Products
             .Include("Category")
             .Include("Brand")
+            .Include(p => p.ProductVariants)
+                .ThenInclude(pv => pv.Color)
+            .Include(p => p.ProductVariants)
+                .ThenInclude(pv => pv.Size)
             .OrderByDescending(p => p.Price)
             .Take(4)
             .ToList();
@@ -50,6 +65,10 @@ public class HomeController : Controller
         var topRatingProducts = _dataContext.Products
             .Include("Category")
             .Include("Brand")
+            .Include(p => p.ProductVariants)
+                .ThenInclude(pv => pv.Color)
+            .Include(p => p.ProductVariants)
+                .ThenInclude(pv => pv.Size)
             .OrderBy(p => p.Sold)
             .Take(4)
             .ToList();

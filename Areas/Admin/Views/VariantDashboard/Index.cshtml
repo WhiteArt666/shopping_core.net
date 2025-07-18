@@ -1,0 +1,290 @@
+@{
+    ViewData["Title"] = "Dashboard Biến thể sản phẩm";
+    var stats = ViewBag.Stats;
+    var recentVariants = ViewBag.RecentVariants as IEnumerable<shopping_tutorial.Models.ProductVariantModel>;
+    var topSellingVariants = ViewBag.TopSellingVariants as IEnumerable<shopping_tutorial.Models.ProductVariantModel>;
+}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2><i class="fas fa-palette"></i> Dashboard Biến thể sản phẩm</h2>
+            <div class="btn-group" role="group">
+                <a asp-controller="Color" asp-action="Index" class="btn btn-primary">
+                    <i class="fas fa-palette"></i> Quản lý màu sắc
+                </a>
+                <a asp-controller="Size" asp-action="Index" class="btn btn-info">
+                    <i class="fas fa-ruler"></i> Quản lý size
+                </a>
+                <a asp-controller="ProductVariant" asp-action="Index" class="btn btn-success">
+                    <i class="fas fa-th-list"></i> Quản lý biến thể
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card border-primary">
+            <div class="card-body text-center">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-boxes fa-2x text-primary"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-primary">@stats.TotalProducts</h3>
+                        <h6 class="text-muted">Tổng sản phẩm</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card border-info">
+            <div class="card-body text-center">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-palette fa-2x text-info"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-info">@stats.TotalColors</h3>
+                        <h6 class="text-muted">Tổng màu sắc</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card border-warning">
+            <div class="card-body text-center">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-ruler fa-2x text-warning"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-warning">@stats.TotalSizes</h3>
+                        <h6 class="text-muted">Tổng size</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card border-success">
+            <div class="card-body text-center">
+                <div class="row">
+                    <div class="col">
+                        <i class="fas fa-th-list fa-2x text-success"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="text-success">@stats.TotalVariants</h3>
+                        <h6 class="text-muted">Tổng biến thể</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Statistics -->
+<div class="row mb-4">
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card border-success bg-light">
+            <div class="card-body text-center">
+                <h4 class="text-success">@stats.ActiveVariants</h4>
+                <small class="text-muted">Biến thể hoạt động</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card border-secondary bg-light">
+            <div class="card-body text-center">
+                <h4 class="text-secondary">@stats.InactiveVariants</h4>
+                <small class="text-muted">Biến thể không hoạt động</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card border-danger bg-light">
+            <div class="card-body text-center">
+                <h4 class="text-danger">@stats.VariantsWithDiscount</h4>
+                <small class="text-muted">Biến thể có khuyến mãi</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card border-warning bg-light">
+            <div class="card-body text-center">
+                <h4 class="text-warning">@stats.OutOfStockVariants</h4>
+                <small class="text-muted">Biến thể hết hàng</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Variants -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-clock"></i> Biến thể mới nhất</h5>
+            </div>
+            <div class="card-body">
+                @if (recentVariants != null && recentVariants.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Màu/Size</th>
+                                    <th>Giá</th>
+                                    <th>Ngày tạo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var variant in recentVariants)
+                                {
+                                    <tr>
+                                        <td>@variant.Product.Name</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div style="width: 15px; height: 15px; background-color: @variant.Color.ColorCode; border: 1px solid #ccc; border-radius: 2px; margin-right: 5px;"></div>
+                                                @variant.Color.Name / @variant.Size.Name
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="text-primary">@variant.EffectivePrice.ToString("N0") ₫</span>
+                                            @if (variant.DiscountPercentage > 0)
+                                            {
+                                                <small class="badge bg-danger">-@variant.DiscountPercentage%</small>
+                                            }
+                                        </td>
+                                        <td>@variant.DateCreated.ToString("dd/MM/yyyy")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted text-center">Chưa có biến thể nào được tạo.</p>
+                }
+                <div class="text-center mt-3">
+                    <a asp-controller="ProductVariant" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                        Xem tất cả biến thể
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Top Selling Variants -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-fire"></i> Biến thể bán chạy</h5>
+            </div>
+            <div class="card-body">
+                @if (topSellingVariants != null && topSellingVariants.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Màu/Size</th>
+                                    <th>Đã bán</th>
+                                    <th>Tồn kho</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var variant in topSellingVariants)
+                                {
+                                    <tr>
+                                        <td>@variant.Product.Name</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div style="width: 15px; height: 15px; background-color: @variant.Color.ColorCode; border: 1px solid #ccc; border-radius: 2px; margin-right: 5px;"></div>
+                                                @variant.Color.Name / @variant.Size.Name
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-success">@variant.Sold</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge @(variant.Quantity > 0 ? "bg-primary" : "bg-warning")">
+                                                @variant.Quantity
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted text-center">Chưa có biến thể nào được bán.</p>
+                }
+                <div class="text-center mt-3">
+                    <a asp-controller="ProductVariant" asp-action="Index" class="btn btn-outline-success btn-sm">
+                        Xem báo cáo bán hàng
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-bolt"></i> Thao tác nhanh</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-2">
+                        <a asp-controller="Color" asp-action="Create" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-plus"></i> Thêm màu sắc
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-controller="Size" asp-action="Create" class="btn btn-outline-info w-100">
+                            <i class="fas fa-plus"></i> Thêm size
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-controller="ProductVariant" asp-action="Create" class="btn btn-outline-success w-100">
+                            <i class="fas fa-plus"></i> Thêm biến thể
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary w-100">
+                            <i class="fas fa-list"></i> Quản lý sản phẩm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
