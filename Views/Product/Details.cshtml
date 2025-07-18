@@ -218,9 +218,20 @@
 
                             <div class="ul-product-details-actions">
                                 <div class="left">
-                                    @if (Model.ProductDetails.Quantity == 0)
+                                    @{
+                                        var hasStock = false;
+                                        if (Model.ProductDetails.ProductVariants != null && Model.ProductDetails.ProductVariants.Any())
+                                        {
+                                            hasStock = Model.ProductDetails.ProductVariants.Any(v => v.IsActive && v.Quantity > 0);
+                                        }
+                                        else
+                                        {
+                                            hasStock = Model.ProductDetails.Quantity > 0;
+                                        }
+                                    }
+                                    @if (!hasStock)
                                     {
-                                        <button type="button" class="add-to-cart"><i class="flaticon-cart"></i> Hết hàng</button>
+                                        <button type="button" class="add-to-cart" disabled><i class="flaticon-cart"></i> Hết hàng</button>
                                     }
                                     else
                                     {
@@ -374,17 +385,83 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('.add-to-cart').click(function () {
-            var Id = $(this).data("product_id");
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("Add", "Cart")",
-                data: { Id: Id },
-                success: function (result) {
-                    if (result) {
-                        Swal.fire("Thêm giỏ hàng thành công.");
-                    }
+            var productId = $(this).data("product_id");
+            var quantity = parseInt($('#ul-product-details-quantity').val()) || 1;
+            
+            // Kiểm tra xem có variants không
+            if (variants && variants.length > 0) {
+                var selectedColorId = parseInt($('input[name="product-color"]:checked').val());
+                var selectedSizeId = parseInt($('input[name="product-size"]:checked').val());
+                
+                // Tìm variant được chọn
+                var selectedVariant = variants.find(function(v) {
+                    return parseInt(v.ColorId) === selectedColorId && parseInt(v.SizeId) === selectedSizeId;
+                });
+                
+                if (!selectedVariant) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Vui lòng chọn size và màu sắc',
+                        text: 'Hãy chọn đầy đủ thông tin variant trước khi thêm vào giỏ hàng.'
+                    });
+                    return;
                 }
-            });
+                
+                // Kiểm tra số lượng tồn kho
+                if (quantity > selectedVariant.Quantity) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Không đủ hàng',
+                        text: 'Chỉ còn ' + selectedVariant.Quantity + ' sản phẩm trong kho.'
+                    });
+                    return;
+                }
+                
+                // Gửi request với variant
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AddVariant", "Cart")",
+                    data: { 
+                        productId: productId, 
+                        variantId: selectedVariant.Id,
+                        quantity: quantity
+                    },
+                    success: function (result) {
+                        if (result.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Thành công!',
+                                text: result.message
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Lỗi!',
+                                text: result.message
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lỗi!',
+                            text: 'Có lỗi xảy ra khi thêm sản phẩm vào giỏ hàng.'
+                        });
+                    }
+                });
+            } else {
+                // Không có variants - sử dụng method cũ
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Add", "Cart")",
+                    data: { Id: productId },
+                    success: function (result) {
+                        if (result) {
+                            Swal.fire("Thêm giỏ hàng thành công.");
+                        }
+                    }
+                });
+            }
         });
 
         // Handle rating selection

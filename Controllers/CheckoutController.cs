@@ -59,13 +59,33 @@ namespace shopping_tutorial.Controllers
 					orderdetails.UserName = userEmail;
 					orderdetails.OrderCode = ordercode;
 					orderdetails.ProductId = cart.ProductId;
+					orderdetails.ProductVariantId = cart.ProductVariantId;
 					orderdetails.Price = cart.Price;
 					orderdetails.Quantity = cart.Quantity;
-					//update product quantity
-					var product = await _dataContext.Products.Where(p => p.Id == cart.ProductId).FirstAsync();
-					product.Quantity -= cart.Quantity;
-					product.Sold += cart.Quantity;
-					_dataContext.Update(product);
+					
+					// Lưu thông tin variant
+					orderdetails.Size = cart.Size;
+					orderdetails.Color = cart.Color;
+					orderdetails.ColorCode = cart.ColorCode;
+					
+					// Update product/variant quantity
+					if (cart.ProductVariantId.HasValue)
+					{
+						// Có variant - cập nhật số lượng variant
+						var variant = await _dataContext.ProductVariants.Where(v => v.Id == cart.ProductVariantId.Value).FirstAsync();
+						variant.Quantity -= cart.Quantity;
+						variant.Sold += cart.Quantity;
+						_dataContext.Update(variant);
+					}
+					else
+					{
+						// Không có variant - cập nhật số lượng product
+						var product = await _dataContext.Products.Where(p => p.Id == cart.ProductId).FirstAsync();
+						product.Quantity -= cart.Quantity;
+						product.Sold += cart.Quantity;
+						_dataContext.Update(product);
+					}
+					
 					_dataContext.Add(orderdetails);// thêm dữ liệu tạo đơn hàng mới 
 					_dataContext.SaveChanges();
 				}

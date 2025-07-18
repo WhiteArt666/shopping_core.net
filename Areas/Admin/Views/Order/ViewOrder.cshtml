@@ -24,6 +24,7 @@
             <th scope="col">Order Code</th>
             <th scope="col">UserName</th>
             <th scope="col">Product Name</th>
+            <th scope="col">Variant Info</th>
             <th scope="col">Product Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Subtotal</th>
@@ -41,6 +42,31 @@
                     <th>@item.OrderCode</th>
                     <td>@item.UserName</td>
                     <th>@item.Product.Name</th>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Size) || !string.IsNullOrEmpty(item.Color))
+                        {
+                            <div class="variant-info">
+                                @if (!string.IsNullOrEmpty(item.Size))
+                                {
+                                    <span class="badge badge-secondary">Size: @item.Size</span>
+                                }
+                                @if (!string.IsNullOrEmpty(item.Color))
+                                {
+                                    <span class="badge badge-info">
+                                        Color: @item.Color
+                                        @if (!string.IsNullOrEmpty(item.ColorCode))
+                                        {
+                                            <span style="background-color: @item.ColorCode; width: 15px; height: 15px; display: inline-block; border: 1px solid #ccc; margin-left: 5px; vertical-align: middle;"></span>
+                                        }
+                                    </span>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <span class="text-muted">No variant</span>
+                        }
+                    </td>
                     <th>@item.Price</th>
                     <th>@item.Quantity</th>
                     <th>@subtotal.ToString("C")</th>
@@ -78,7 +104,14 @@
 </body>
 </html>
 @section Scripts{
-
+    <style>
+        .variant-info {
+            margin-top: 5px;
+        }
+        .badge {
+            margin-right: 5px;
+        }
+    </style>
     <script>
         new DataTable('#detail_order', {
             layout: {

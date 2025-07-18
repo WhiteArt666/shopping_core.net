@@ -39,23 +39,42 @@
 								</td>
 								<td class="cart_description">
 									<h4><a href="">@item.ProductName</a></h4>
+									@if (!string.IsNullOrEmpty(item.Size) || !string.IsNullOrEmpty(item.Color))
+									{
+										<div class="variant-info">
+											@if (!string.IsNullOrEmpty(item.Size))
+											{
+												<span class="variant-size">Size: @item.Size</span>
+											}
+											@if (!string.IsNullOrEmpty(item.Color))
+											{
+												<span class="variant-color">
+													Color: @item.Color 
+													@if (!string.IsNullOrEmpty(item.ColorCode))
+													{
+														<span class="color-preview" style="background-color: @item.ColorCode; width: 20px; height: 20px; display: inline-block; border: 1px solid #ccc; margin-left: 5px; vertical-align: middle;"></span>
+													}
+												</span>
+											}
+										</div>
+									}
 								</td>
 								<td class="cart_price">
 									<p>@item.Price.ToString("#,##0 VNĐ")</p>
 								</td>
 								<td class="">
 									
-										<a class="btn btn-default btn-sm" asp-action="Increase" asp-controller="Cart" asp-route-id="@item.ProductId" > + </a>
+										<a class="btn btn-default btn-sm" asp-action="Increase" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId" > + </a>
 									<input class="btn btn-default btn-sm" type="text" name="quantity" value="@item.Quantity" autocomplete="off" size="2">
-									<a class="btn btn-default btn-sm" asp-action="Decrease" asp-controller="Cart" asp-route-id="@item.ProductId"> - </a>
+									<a class="btn btn-default btn-sm" asp-action="Decrease" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId"> - </a>
 										@* <a class="btn btn-danger btn-sm" asp-action="Remove" asp-controller="Cart" asp-route-id="@item.ProductId"> Remove </a> *@
 									
 								</td>
 								<td class="cart_total">
-									<p class="cart_total_price">@Model.CartItems.Where(x => x.ProductId == item.ProductId).Sum(x => x.Quantity * x.Price).ToString("#,##0")</p>
+									<p class="cart_total_price">@((item.Quantity * item.Price).ToString("#,##0 VNĐ"))</p>
 								</td>
 								<td class="cart_delete">
-									<a class="cart_quantity_delete" asp-action="Remove" asp-controller="Cart" asp-route-id="@item.ProductId"><i class="fa fa-times"></i></a>
+									<a class="cart_quantity_delete" asp-action="Remove" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId"><i class="fa fa-times"></i></a>
 								</td>
 							</tr>
 						}
@@ -159,6 +178,23 @@
 </section>
 
 @section Scripts{
+	<style>
+		.variant-info {
+			margin-top: 5px;
+			font-size: 12px;
+		}
+		.variant-size, .variant-color {
+			display: inline-block;
+			background: #f8f9fa;
+			padding: 2px 8px;
+			border-radius: 3px;
+			margin-right: 8px;
+			border: 1px solid #dee2e6;
+		}
+		.color-preview {
+			border-radius: 2px;
+		}
+	</style>
 	<script>
 		$(".btn-apply-coupon").click(function () {
 			var coupon_value = $(".coupon-value").val();

@@ -25,8 +25,14 @@ namespace Shopping_Tutorial.Areas.Admin.Controllers
         [Route("ViewOrder")]
         public async Task<IActionResult> ViewOrder(string ordercode)
         {
-            var DetailsOrder = await _dataContext.OrderDetails.Include(od => od.Product)
-                .Where(od => od.OrderCode == ordercode).ToListAsync();
+            var DetailsOrder = await _dataContext.OrderDetails
+                .Include(od => od.Product)
+                .Include(od => od.ProductVariant)
+                .ThenInclude(pv => pv.Color)
+                .Include(od => od.ProductVariant)
+                .ThenInclude(pv => pv.Size)
+                .Where(od => od.OrderCode == ordercode)
+                .ToListAsync();
 
             var Order = _dataContext.Orders.Where(o => o.OrderCode == ordercode).First();
 
