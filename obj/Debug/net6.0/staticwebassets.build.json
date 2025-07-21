@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0D5eiKeYWstj+TaHrVy8fFwWAaQHrOyukR8jVDQJBFo=",
+  "Hash": "7e7XakREvFmkEzdSj2RRLuDJweHz6WnVWPU3aFwwmyQ=",
   "Source": "shopping_tutorial",
   "BasePath": "_content/shopping_tutorial",
   "Mode": "Default",
@@ -4763,6 +4763,27 @@
       "OriginalItemSpec": "wwwroot\\media\\products\\2.jpg"
     },
     {
+      "Identity": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\products\\4288c561-8324-49c9-ad31-a9440fa4d75c_ai9.jpg",
+      "SourceId": "shopping_tutorial",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\",
+      "BasePath": "_content/shopping_tutorial",
+      "RelativePath": "media/products/4288c561-8324-49c9-ad31-a9440fa4d75c_ai9#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "00qu8xfsqr",
+      "Integrity": "4ARnto7jcPW4XM6GkeXlB35HSOclayBLrf+0ANJC59U=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\media\\products\\4288c561-8324-49c9-ad31-a9440fa4d75c_ai9.jpg"
+    },
+    {
       "Identity": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\products\\78a7e3da-0767-4ff5-923a-65aa4131c634_tshirtblack.png",
       "SourceId": "shopping_tutorial",
       "SourceType": "Discovered",
@@ -4992,6 +5013,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\media\\sliders\\16743325-7689-49cc-a4b6-a18483c2031d_20250522_bqLYZFPc.png"
+    },
+    {
+      "Identity": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\3272eda8-d757-4f67-9779-0e139a23c4e1_ai10.jpg",
+      "SourceId": "shopping_tutorial",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\",
+      "BasePath": "_content/shopping_tutorial",
+      "RelativePath": "media/sliders/3272eda8-d757-4f67-9779-0e139a23c4e1_ai10#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5ise33ulyq",
+      "Integrity": "M4k/i16F/F7sBInK3j1a9yBkPXMUINP+r9sSQZ/6chc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\media\\sliders\\3272eda8-d757-4f67-9779-0e139a23c4e1_ai10.jpg"
     },
     {
       "Identity": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\475a1b0e-7454-4782-8daa-ccc3de1b5f57_20250217_VdqHBV28.png",
@@ -23553,6 +23595,88 @@
       ]
     },
     {
+      "Route": "media/products/4288c561-8324-49c9-ad31-a9440fa4d75c_ai9.00qu8xfsqr.jpg",
+      "AssetFile": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\products\\4288c561-8324-49c9-ad31-a9440fa4d75c_ai9.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "73253"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4ARnto7jcPW4XM6GkeXlB35HSOclayBLrf+0ANJC59U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Jul 2025 18:31:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "00qu8xfsqr"
+        },
+        {
+          "Name": "label",
+          "Value": "media/products/4288c561-8324-49c9-ad31-a9440fa4d75c_ai9.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4ARnto7jcPW4XM6GkeXlB35HSOclayBLrf+0ANJC59U="
+        }
+      ]
+    },
+    {
+      "Route": "media/products/4288c561-8324-49c9-ad31-a9440fa4d75c_ai9.jpg",
+      "AssetFile": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\products\\4288c561-8324-49c9-ad31-a9440fa4d75c_ai9.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "73253"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4ARnto7jcPW4XM6GkeXlB35HSOclayBLrf+0ANJC59U=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Jul 2025 18:31:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4ARnto7jcPW4XM6GkeXlB35HSOclayBLrf+0ANJC59U="
+        }
+      ]
+    },
+    {
       "Route": "media/products/78a7e3da-0767-4ff5-923a-65aa4131c634_tshirtblack.auxwc1mhkk.png",
       "AssetFile": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\products\\78a7e3da-0767-4ff5-923a-65aa4131c634_tshirtblack.png",
       "Selectors": [],
@@ -24451,6 +24575,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-/nnBH2vGXcdgG8HwbYKAPkCT9amilstnHqDPx+AdwG8="
+        }
+      ]
+    },
+    {
+      "Route": "media/sliders/3272eda8-d757-4f67-9779-0e139a23c4e1_ai10.5ise33ulyq.jpg",
+      "AssetFile": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\3272eda8-d757-4f67-9779-0e139a23c4e1_ai10.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "71537"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M4k/i16F/F7sBInK3j1a9yBkPXMUINP+r9sSQZ/6chc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Jul 2025 18:28:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5ise33ulyq"
+        },
+        {
+          "Name": "label",
+          "Value": "media/sliders/3272eda8-d757-4f67-9779-0e139a23c4e1_ai10.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-M4k/i16F/F7sBInK3j1a9yBkPXMUINP+r9sSQZ/6chc="
+        }
+      ]
+    },
+    {
+      "Route": "media/sliders/3272eda8-d757-4f67-9779-0e139a23c4e1_ai10.jpg",
+      "AssetFile": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\media\\sliders\\3272eda8-d757-4f67-9779-0e139a23c4e1_ai10.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "71537"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"M4k/i16F/F7sBInK3j1a9yBkPXMUINP+r9sSQZ/6chc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Jul 2025 18:28:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-M4k/i16F/F7sBInK3j1a9yBkPXMUINP+r9sSQZ/6chc="
         }
       ]
     },

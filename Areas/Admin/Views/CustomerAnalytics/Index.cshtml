@@ -1,0 +1,407 @@
+@model CustomerAnalyticsViewModel
+@{
+    ViewData["Title"] = "Phân tích khách hàng";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h3 mb-4">
+                <i class="fas fa-chart-line"></i> Phân tích khách hàng
+            </h1>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.Error
+                </div>
+            }
+
+            @if (ViewBag.Debug != null)
+            {
+                <div class="alert alert-info">
+                    <strong>Debug Info:</strong> @ViewBag.Debug<br>
+                    @if (ViewBag.DebugSummary != null)
+                    {
+                        <strong>Summary:</strong> @ViewBag.DebugSummary<br>
+                    }
+                    @if (ViewBag.TopSpenders != null)
+                    {
+                        <strong>Top Spenders:</strong> @ViewBag.TopSpenders<br>
+                    }
+                    @if (ViewBag.DebugUserNames != null)
+                    {
+                        <strong>@ViewBag.DebugUserNames</strong><br>
+                    }
+                    @if (ViewBag.DebugIdentityUsers != null)
+                    {
+                        <strong>@ViewBag.DebugIdentityUsers</strong><br>
+                    }
+                    @if (ViewBag.DebugFoundUsers != null)
+                    {
+                        <strong>@ViewBag.DebugFoundUsers</strong>
+                    }
+                </div>
+            }
+
+            <!-- Top Customers by Spending -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5><i class="fas fa-dollar-sign"></i> Top khách hàng theo chi tiêu</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Email</th>
+                                    <th>Tổng chi tiêu</th>
+                                    <th>Số đơn hàng</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.TopCustomersBySpending.Any())
+                                {
+                                    @for (int i = 0; i < Model.TopCustomersBySpending.Count; i++)
+                                    {
+                                        var customer = Model.TopCustomersBySpending[i];
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@customer.UserName</td>
+                                            <td>@customer.Email</td>
+                                            <td>@customer.TotalSpent.ToString("N0") VNĐ</td>
+                                            <td>@customer.OrderCount</td>
+                                            <td>
+                                                @if (customer.IsVIP)
+                                                {
+                                                    <span class="badge bg-warning text-dark">VIP</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary">Thường</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (customer.IsVIP)
+                                                {
+                                                    <button class="btn btn-sm btn-primary" onclick="showVoucherModal('@customer.UserId', '@customer.UserName')">
+                                                        <i class="fas fa-gift"></i> Gửi voucher
+                                                    </button>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="7" class="text-center text-muted">
+                                            <i class="fas fa-info-circle"></i> Chưa có dữ liệu khách hàng
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Customers by Orders -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5><i class="fas fa-shopping-cart"></i> Top khách hàng theo số đơn hàng</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Email</th>
+                                    <th>Số đơn hàng</th>
+                                    <th>Tổng chi tiêu</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.TopCustomersByOrders.Any())
+                                {
+                                    @for (int i = 0; i < Model.TopCustomersByOrders.Count; i++)
+                                    {
+                                        var customer = Model.TopCustomersByOrders[i];
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@customer.UserName</td>
+                                            <td>@customer.Email</td>
+                                            <td>@customer.OrderCount</td>
+                                            <td>@customer.TotalSpent.ToString("N0") VNĐ</td>
+                                            <td>
+                                                @if (customer.IsVIP)
+                                                {
+                                                    <span class="badge bg-warning text-dark">VIP</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-secondary">Thường</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted">
+                                            <i class="fas fa-info-circle"></i> Chưa có dữ liệu khách hàng
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIP Customers -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5><i class="fas fa-crown"></i> Khách hàng VIP</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Email</th>
+                                    <th>Tổng chi tiêu</th>
+                                    <th>Số đơn hàng</th>
+                                    <th>Đơn hàng cuối</th>
+                                    <th>Voucher độc quyền</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.VIPCustomers.Any())
+                                {
+                                    @for (int i = 0; i < Model.VIPCustomers.Count; i++)
+                                    {
+                                        var customer = Model.VIPCustomers[i];
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@customer.UserName</td>
+                                            <td>@customer.Email</td>
+                                            <td>@customer.TotalSpent.ToString("N0") VNĐ</td>
+                                            <td>@customer.OrderCount</td>
+                                            <td>
+                                                @if (customer.LastOrderDate != DateTime.MinValue)
+                                                {
+                                                    @customer.LastOrderDate.ToString("dd/MM/yyyy")
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">Chưa có</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (customer.HasExclusiveVoucher)
+                                                {
+                                                    <span class="badge bg-success">Đã có</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-warning text-dark">Chưa có</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary" onclick="showVoucherModal('@customer.UserId', '@customer.UserName')">
+                                                    <i class="fas fa-gift"></i> Gửi voucher
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="8" class="text-center text-muted">
+                                            <i class="fas fa-info-circle"></i> Chưa có khách hàng VIP
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Create Exclusive Voucher -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5><i class="fas fa-star"></i> Tạo voucher độc quyền cho khách hàng</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="customerSelect" class="form-label">Chọn khách hàng:</label>
+                            <select class="form-select" id="customerSelect">
+                                <option value="">Chọn khách hàng...</option>
+                                @foreach (var customer in Model.AllCustomers)
+                                {
+                                    <option value="@customer.UserId">@customer.UserName - @customer.Email</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="exclusiveCouponSelect" class="form-label">Chọn voucher:</label>
+                            <select class="form-select" id="exclusiveCouponSelect">
+                                <option value="">Chọn voucher...</option>
+                                @foreach (var coupon in Model.AvailableCoupons)
+                                {
+                                    <option value="@coupon.Id">@coupon.Name - @coupon.Description</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">&nbsp;</label>
+                            <button class="btn btn-success d-block" onclick="createExclusiveVoucher()">
+                                <i class="fas fa-plus"></i> Tạo voucher độc quyền
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal gửi voucher -->
+<div class="modal fade" id="voucherModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Gửi voucher độc quyền</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="voucherForm">
+                    <input type="hidden" id="selectedUserId" />
+                    <div class="mb-3">
+                        <label class="form-label">Khách hàng:</label>
+                        <p id="selectedUserName" class="fw-bold"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="couponSelect" class="form-label">Chọn voucher:</label>
+                        <select class="form-select" id="couponSelect" required>
+                            <option value="">Chọn voucher...</option>
+                            @foreach (var coupon in Model.AvailableCoupons)
+                            {
+                                <option value="@coupon.Id">@coupon.Name - @coupon.Description</option>
+                            }
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="sendVoucher()">Gửi voucher</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    function showVoucherModal(userId, userName) {
+        document.getElementById('selectedUserId').value = userId;
+        document.getElementById('selectedUserName').textContent = userName;
+        
+        var modal = new bootstrap.Modal(document.getElementById('voucherModal'));
+        modal.show();
+    }
+
+    function sendVoucher() {
+        var userId = document.getElementById('selectedUserId').value;
+        var couponId = document.getElementById('couponSelect').value;
+        
+        if (!couponId) {
+            alert('Vui lòng chọn voucher');
+            return;
+        }
+
+        fetch('@Url.Action("SendVoucherToVIP", "CustomerAnalytics", new { area = "Admin" })', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'RequestVerificationToken': document.querySelector('[name="__RequestVerificationToken"]').value
+            },
+            body: `userId=${userId}&couponId=${couponId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Gửi voucher thành công!');
+                location.reload();
+            } else {
+                alert('Lỗi: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra');
+        });
+
+        var modal = bootstrap.Modal.getInstance(document.getElementById('voucherModal'));
+        modal.hide();
+    }
+
+    function createExclusiveVoucher() {
+        var selectedUserId = document.getElementById('customerSelect').value;
+        var selectedCouponId = document.getElementById('exclusiveCouponSelect').value;
+        
+        if (!selectedUserId) {
+            alert('Vui lòng chọn khách hàng');
+            return;
+        }
+        
+        if (!selectedCouponId) {
+            alert('Vui lòng chọn voucher');
+            return;
+        }
+
+        if (!confirm('Bạn có chắc chắn muốn tạo voucher độc quyền cho khách hàng này?')) {
+            return;
+        }
+
+        fetch('@Url.Action("CreateExclusiveVoucher", "CustomerAnalytics", new { area = "Admin" })', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'RequestVerificationToken': document.querySelector('[name="__RequestVerificationToken"]').value
+            },
+            body: `selectedUserId=${selectedUserId}&selectedCouponId=${selectedCouponId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Tạo voucher độc quyền thành công!\n' + data.message);
+                location.reload();
+            } else {
+                alert('Lỗi: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra');
+        });
+    }
+</script>
+}

@@ -1,80 +1,95 @@
 @model IEnumerable<OrderModel>
 
 @{
-    ViewData["Title"] = "List Orders History" + @ViewBag.UserEmail;
-
+    ViewData["Title"] = "Lịch Sử Đơn Hàng - " + @ViewBag.UserEmail;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-   
-</head>
-<body>
-    <h3>List Orders History placed by: @ViewBag.UserEmail</h3>
-
-    <table class="table" id="myTable">
-        <thead>
-            <tr>
-                @* <th>Id</th> *@
-                @* <th>Order Code</th> *@
-                <th>Shipping Cost</th>
-                <th>Coupon</th>
-                <th>UserName</th>
-                <th>Order Status</th>
-                <th>Created Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    @* <td>@item.Id</td> *@
-                    @* <td>@item.OrderCode</td> *@
-                    <td>@item.ShippingCost.ToString("#,##0 VNĐ")</td>
-                    <td>@item.CouponCode</td>
-                    <td>@item.UserName</td>
-                    <td>
-                        @if (item.Status == 1)
-                        {
-                            <span class="text text-success">Đơn hàng mới</span>
-                        }
-                        else if (item.Status == 0)
-                        {
-                            <span class="text text-success">Đã Xử Lý</span>
-                        }
-                        else if (item.Status == 2)
-                        {
-                            <span class="text text-success">Đã Đóng Gói</span>
-                        }
-                        else if (item.Status == 4)
-                        {
-                            <span class="text text-success">Đã Vận Chuyển</span>
-                        }
-                        else if (item.Status == 5)
-                        {
-                            <span class="text text-success">Đã Hoàn Thành</span>
-                        }
-                        else
-                        {
-
-                            <span class="text text-danger">Đã Hủy !</span>
-                        }
-                        </td>
-                    <td>@item.CreatedDate.ToString("dd-MM-yyyy")</td>
-                    <td>
-                        @if(item.Status != 3 && item.Status != 2 && item.Status != 4 && item.Status != 5 ) {
-                        <a onclick="return confirm('Bạn xác nhận muốn hủy?')" class="btn btn-warning btn-sm" asp-action="CancelOrder" asp-controller="Account" asp-route-ordercode="@item.OrderCode">Hủy đơn hàng</a>
-                        }
-
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-</body>
-</html>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-history me-2"></i>
+                        Lịch Sử Đơn Hàng - @ViewBag.UserEmail
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped" id="myTable">
+                        <table class="table table-hover table-striped" id="myTable">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th><i class="fas fa-shipping-fast me-1"></i>Phí Vận Chuyển</th>
+                                    <th><i class="fas fa-ticket-alt me-1"></i>Mã Giảm Giá</th>
+                                    <th><i class="fas fa-user me-1"></i>Tên Người Dùng</th>
+                                    <th><i class="fas fa-info-circle me-1"></i>Trạng Thái</th>
+                                    <th><i class="fas fa-calendar me-1"></i>Ngày Tạo</th>
+                                    <th><i class="fas fa-cogs me-1"></i>Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><span class="badge bg-info fs-6">@item.ShippingCost.ToString("#,##0 VNĐ")</span></td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(item.CouponCode))
+                                            {
+                                                <span class="badge bg-warning text-dark">@item.CouponCode</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">Không có</span>
+                                            }
+                                        </td>
+                                        <td><strong>@item.UserName</strong></td>
+                                        <td>
+                                            @if (item.Status == 1)
+                                            {
+                                                <span class="badge bg-primary"><i class="fas fa-clock me-1"></i>Đơn hàng mới</span>
+                                            }
+                                            else if (item.Status == 0)
+                                            {
+                                                <span class="badge bg-info"><i class="fas fa-check me-1"></i>Đã Xử Lý</span>
+                                            }
+                                            else if (item.Status == 2)
+                                            {
+                                                <span class="badge bg-warning"><i class="fas fa-box me-1"></i>Đã Đóng Gói</span>
+                                            }
+                                            else if (item.Status == 4)
+                                            {
+                                                <span class="badge bg-secondary"><i class="fas fa-truck me-1"></i>Đã Vận Chuyển</span>
+                                            }
+                                            else if (item.Status == 5)
+                                            {
+                                                <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Đã Hoàn Thành</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i>Đã Hủy !</span>
+                                            }
+                                        </td>
+                                        <td><span class="text-muted">@item.CreatedDate.ToString("dd-MM-yyyy")</span></td>
+                                        <td>
+                                            @if(item.Status != 3 && item.Status != 2 && item.Status != 4 && item.Status != 5 ) {
+                                            <a onclick="return confirm('Bạn xác nhận muốn hủy?')" class="btn btn-outline-danger btn-sm" asp-action="CancelOrder" asp-controller="Account" asp-route-ordercode="@item.OrderCode">
+                                                <i class="fas fa-times me-1"></i>Hủy đơn hàng
+                                            </a>
+                                            }
+                                            else 
+                                            {
+                                                <span class="text-muted small">Không thể hủy</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

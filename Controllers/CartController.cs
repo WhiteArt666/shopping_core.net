@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -11,9 +12,12 @@ namespace shopping_tutorial.Controllers
     public class CartController : Controller
     {
         private readonly DataContext _dataContext;
-        public CartController(DataContext _context)
+        private readonly UserManager<AppUserModel> _userManager;
+        
+        public CartController(DataContext _context, UserManager<AppUserModel> userManager)
         {
             _dataContext = _context;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
@@ -278,6 +282,42 @@ namespace shopping_tutorial.Controllers
                 return Ok(new { success = false, message = "Coupon không tồn tại hoặc đã hết số lượng" });
             }
 
+            // KIỂM TRA VOUCHER ĐỘC QUYỀN
+            var exclusiveVoucher = await _dataContext.CustomerVouchers
+                .Where(cv => cv.CouponId == validCoupon.Id && cv.VoucherType == "Exclusive" && !cv.IsUsed)
+                .FirstOrDefaultAsync();
+
+            if (exclusiveVoucher != null)
+            {
+                // Nếu có voucher độc quyền, kiểm tra xem user hiện tại có phải là người được gửi không
+                if (User.Identity.IsAuthenticated)
+                {
+                    var currentUser = await _userManager.GetUserAsync(User);
+                    if (currentUser != null && currentUser.Id != exclusiveVoucher.UserId)
+                    {
+                        // User hiện tại không phải là người được gửi voucher độc quyền
+                        var exclusiveUser = await _userManager.FindByIdAsync(exclusiveVoucher.UserId);
+                        return Ok(new { 
+                            success = false, 
+                            message = $"Voucher này là độc quyền và chỉ dành cho khách hàng {exclusiveUser?.UserName ?? "đặc biệt"}. Bạn không thể sử dụng voucher này." 
+                        });
+                    }
+                    else if (currentUser != null && currentUser.Id == exclusiveVoucher.UserId)
+                    {
+                        // User hiện tại chính là người được gửi voucher độc quyền - cho phép sử dụng
+                        // Tiếp tục xử lý bình thường
+                    }
+                }
+                else
+                {
+                    // User chưa đăng nhập nhưng voucher là độc quyền
+                    return Ok(new { 
+                        success = false, 
+                        message = "Voucher này là độc quyền. Vui lòng đăng nhập để kiểm tra quyền sử dụng." 
+                    });
+                }
+            }
+
             string couponTitle = validCoupon.Name + " | " + validCoupon.Description;
 
             TimeSpan remainingTime = validCoupon.DateExpired - DateTime.Now;
@@ -296,6 +336,13 @@ namespace shopping_tutorial.Controllers
                     };
 
                     Response.Cookies.Append("CouponTitle", couponTitle, cookieOptions);
+                    
+                    // Thông báo đặc biệt cho voucher độc quyền
+                    if (exclusiveVoucher != null)
+                    {
+                        return Ok(new { success = true, message = "Áp dụng voucher độc quyền thành công! Voucher này chỉ dành riêng cho bạn." });
+                    }
+                    
                     return Ok(new { success = true, message = "Áp dụng mã giảm giá thành công" });
                 }
                 catch (Exception ex)

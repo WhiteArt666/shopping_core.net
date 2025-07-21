@@ -36,10 +36,9 @@ namespace shopping_tutorial.Repository
 		public DbSet<ColorModel> Colors { get; set; }
 		public DbSet<SizeModel> Sizes { get; set; }
 		public DbSet<ProductVariantModel> ProductVariants { get; set; }
-       
-
+		
+		// Customer Care DbSets
+		public DbSet<ChatMessageModel> ChatMessages { get; set; }
+		public DbSet<CustomerVoucherModel> CustomerVouchers { get; set; }
     }
-
-
-
 }

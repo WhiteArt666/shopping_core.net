@@ -1,0 +1,209 @@
+@model ChatViewModel
+@{
+    ViewData["Title"] = "Chat với khách hàng";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h3 mb-4">
+                <i class="fas fa-comments"></i> Chat với khách hàng
+            </h1>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger">
+                    @ViewBag.Error
+                </div>
+            }
+
+            <div class="row">
+                <!-- Danh sách khách hàng -->
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6><i class="fas fa-users"></i> Khách hàng</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="list-group list-group-flush" style="max-height: 500px; overflow-y: auto;">
+                                @foreach (var user in Model.AvailableUsers)
+                                {
+                                    <a href="@Url.Action("Index", new { userId = user.UserId })" 
+                                       class="list-group-item list-group-item-action @(user.UserId == Model.OtherUserId ? "active" : "")">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-1">
+                                                @user.UserName
+                                                @if (user.UnreadCount > 0)
+                                                {
+                                                    <span class="badge bg-danger">@user.UnreadCount</span>
+                                                }
+                                            </h6>
+                                            <small>
+                                                @if (user.LastMessageDate != DateTime.MinValue)
+                                                {
+                                                    @user.LastMessageDate.ToString("HH:mm")
+                                                }
+                                            </small>
+                                        </div>
+                                        <p class="mb-1 text-muted">@user.Email</p>
+                                    </a>
+                                }
+                                
+                                @if (!Model.AvailableUsers.Any())
+                                {
+                                    <div class="text-center p-3 text-muted">
+                                        <i class="fas fa-inbox fa-2x mb-2"></i>
+                                        <p>Chưa có khách hàng nào chat</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khung chat -->
+                <div class="col-md-8">
+                    @if (!string.IsNullOrEmpty(Model.OtherUserId))
+                    {
+                        <div class="card">
+                            <div class="card-header">
+                                <h6><i class="fas fa-user"></i> Chat với @Model.OtherUserName</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="chatMessages" style="height: 400px; overflow-y: auto; border: 1px solid #dee2e6; padding: 15px; margin-bottom: 15px; background-color: #f8f9fa;">
+                                    @foreach (var message in Model.Messages)
+                                    {
+                                        <div class="mb-3 @(message.IsFromAdmin ? "text-end" : "text-start")">
+                                            <div class="d-inline-block @(message.IsFromAdmin ? "bg-primary text-white" : "bg-light") p-2 rounded" style="max-width: 70%;">
+                                                <div>@message.Message</div>
+                                                <small class="@(message.IsFromAdmin ? "text-white-50" : "text-muted")">
+                                                    @message.SentTime.ToString("HH:mm")
+                                                </small>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="input-group">
+                                    <input type="text" id="messageInput" class="form-control" placeholder="Nhập tin nhắn..." maxlength="500">
+                                    <button class="btn btn-primary" type="button" onclick="sendMessage()">
+                                        <i class="fas fa-paper-plane"></i> Gửi
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-comments fa-3x text-muted mb-3"></i>
+                                <h5 class="text-muted">Chọn khách hàng để bắt đầu chat</h5>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    const currentUserId = '@Model.CurrentUserId';
+    const otherUserId = '@Model.OtherUserId';
+
+    function sendMessage() {
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value.trim();
+        
+        if (!message || !otherUserId) {
+            return;
+        }
+
+        fetch('@Url.Action("SendMessage")', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'RequestVerificationToken': document.querySelector('[name="__RequestVerificationToken"]').value
+            },
+            body: `receiverId=${otherUserId}&message=${encodeURIComponent(message)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Thêm tin nhắn vào UI
+                addMessageToChat(currentUserId, message, data.sentTime, true);
+                messageInput.value = '';
+                scrollToBottom();
+            } else {
+                alert('Lỗi: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Có lỗi xảy ra khi gửi tin nhắn');
+        });
+    }
+
+    function addMessageToChat(senderId, message, sentTime, isFromAdmin) {
+        const chatMessages = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        
+        messageDiv.className = `mb-3 ${isFromAdmin ? 'text-end' : 'text-start'}`;
+        messageDiv.innerHTML = `
+            <div class="d-inline-block ${isFromAdmin ? 'bg-primary text-white' : 'bg-light'} p-2 rounded" style="max-width: 70%;">
+                <div>${message}</div>
+                <small class="${isFromAdmin ? 'text-white-50' : 'text-muted'}">
+                    ${sentTime}
+                </small>
+            </div>
+        `;
+        
+        chatMessages.appendChild(messageDiv);
+    }
+
+    function scrollToBottom() {
+        const chatMessages = document.getElementById('chatMessages');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Enter để gửi tin nhắn
+    document.addEventListener('DOMContentLoaded', function() {
+        const messageInput = document.getElementById('messageInput');
+        if (messageInput) {
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Auto scroll to bottom
+            scrollToBottom();
+        }
+    });
+
+    // Polling để nhận tin nhắn mới (có thể thay bằng SignalR sau)
+    setInterval(function() {
+        if (otherUserId) {
+            loadNewMessages();
+        }
+    }, 3000);
+
+    function loadNewMessages() {
+        fetch(`@Url.Action("GetMessages")?userId=${otherUserId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Có thể cập nhật UI nếu có tin nhắn mới
+                // Để đơn giản, có thể reload trang hoặc chỉ thêm tin nhắn mới
+            }
+        })
+        .catch(error => {
+            console.error('Error loading messages:', error);
+        });
+    }
+</script>
+}
