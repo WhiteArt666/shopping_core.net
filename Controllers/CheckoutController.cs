@@ -5,23 +5,23 @@ using shopping_tutorial.Areas.Admin.Repository;
 using shopping_tutorial.Models;
 using shopping_tutorial.Repository;
 using System.Security.Claims;
+using System.Text;
 
 namespace shopping_tutorial.Controllers
 {
 	public class CheckoutController : Controller
 	{
 		private readonly DataContext _dataContext;
-        //private readonly IEmailSender _emailSender;
-        //public CheckoutController(IEmailSender emailSender, DataContext context)
-        //{
-        //    _dataContext = context;
-        //    _emailSender = emailSender;
-        //}
-        public CheckoutController(  DataContext context)
-		{
-			_dataContext = context;
-		}
-		public async Task<IActionResult> Checkout()
+        private readonly IConfiguration _configuration;
+
+        public CheckoutController(DataContext context, IConfiguration configuration)
+        {
+            _dataContext = context;
+            _configuration = configuration;
+        }
+
+
+        public async Task<IActionResult> Checkout()
 		{
 			var userEmail = User.FindFirstValue(ClaimTypes.Email);
 			if(userEmail == null)
@@ -103,5 +103,82 @@ namespace shopping_tutorial.Controllers
 			}
 			return View();
 		}
-	}
+        [HttpPost]
+        public async Task<IActionResult> CheckoutWithMomo()
+        {
+            var cartitems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+            if (cartitems.Count == 0) return RedirectToAction("Index", "Cart");
+
+            var orderId = Guid.NewGuid().ToString();
+            var amount = cartitems.Sum(x => x.Quantity * x.Price).ToString();
+
+            // Load Momo Config
+            var endpoint = _configuration["MomoAPI:MomoApiUrl"];
+            var partnerCode = _configuration["MomoAPI:PartnerCode"];
+            var accessKey = _configuration["MomoAPI:AccessKey"];
+            var secretKey = _configuration["MomoAPI:SecretKey"];
+            var returnUrl = _configuration["MomoAPI:ReturnUrl"];
+            var notifyUrl = _configuration["MomoAPI:NotifyUrl"];
+            var requestType = _configuration["MomoAPI:RequestType"];
+
+            var requestId = Guid.NewGuid().ToString();
+            var orderInfo = "Thanh toán đơn hàng tại LocalBrand";
+            var extraData = "";
+
+            string rawHash = $"partnerCode={partnerCode}&accessKey={accessKey}&requestId={requestId}&amount={amount}&orderId={orderId}&orderInfo={orderInfo}&returnUrl={returnUrl}&notifyUrl={notifyUrl}&extraData={extraData}";
+            var signature = CreateSignature(secretKey, rawHash);
+
+            var request = new MomoRequestModel
+            {
+                PartnerCode = partnerCode,
+                AccessKey = accessKey,
+                RequestId = requestId,
+                Amount = amount,
+                OrderId = orderId,
+                OrderInfo = orderInfo,
+                ReturnUrl = returnUrl,
+                NotifyUrl = notifyUrl,
+                ExtraData = extraData,
+                RequestType = requestType,
+                Signature = signature
+            };
+
+            using var httpClient = new HttpClient();
+            var content = new StringContent(JsonConvert.SerializeObject(request), Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(endpoint, content);
+            var responseBody = await response.Content.ReadAsStringAsync();
+            var momoResponse = JsonConvert.DeserializeObject<MomoResponseModel>(responseBody);
+
+            return Redirect(momoResponse.PayUrl); // Chuyển hướng sang cổng Momo
+        }
+
+        private string CreateSignature(string secretKey, string rawData)
+        {
+            var encoding = new System.Text.UTF8Encoding();
+            byte[] keyByte = encoding.GetBytes(secretKey);
+            byte[] messageBytes = encoding.GetBytes(rawData);
+            using (var hmacsha256 = new System.Security.Cryptography.HMACSHA256(keyByte))
+            {
+                byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
+                return BitConverter.ToString(hashmessage).Replace("-", "").ToLower();
+            }
+        }
+        [HttpGet]
+        public IActionResult PaymentCallBack(string message, int resultCode, string orderId)
+        {
+            if (resultCode == 0)
+            {
+                TempData["success"] = "Thanh toán MoMo thành công!";
+                return RedirectToAction("CheckoutSuccess", "Checkout");
+            }
+            else
+            {
+                TempData["error"] = $"Thanh toán thất bại: {message}";
+                return RedirectToAction("Index", "Cart");
+            }
+        }
+
+
+    }
+
 }
