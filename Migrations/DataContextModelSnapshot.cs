@@ -180,6 +180,9 @@ namespace shopping_tutorial.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<int>("LoyaltyPoints")
+                        .HasColumnType("int");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -416,6 +419,9 @@ namespace shopping_tutorial.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RequiredPoints")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -459,6 +465,33 @@ namespace shopping_tutorial.Migrations
                     b.HasIndex("CouponId");
 
                     b.ToTable("CustomerVouchers");
+                });
+
+            modelBuilder.Entity("shopping_tutorial.Models.LoyaltyHistoryModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LoyaltyHistories");
                 });
 
             modelBuilder.Entity("shopping_tutorial.Models.OrderDetails", b =>
@@ -786,6 +819,35 @@ namespace shopping_tutorial.Migrations
                     b.ToTable("Wishlists");
                 });
 
+            modelBuilder.Entity("UserCouponModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CouponId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("RedeemedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CouponId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCoupons");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -857,6 +919,15 @@ namespace shopping_tutorial.Migrations
                         .IsRequired();
 
                     b.Navigation("Coupon");
+                });
+
+            modelBuilder.Entity("shopping_tutorial.Models.LoyaltyHistoryModel", b =>
+                {
+                    b.HasOne("shopping_tutorial.Models.AppUserModel", "User")
+                        .WithMany("LoyaltyHistories")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("shopping_tutorial.Models.OrderDetails", b =>
@@ -942,6 +1013,28 @@ namespace shopping_tutorial.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("UserCouponModel", b =>
+                {
+                    b.HasOne("shopping_tutorial.Models.CouponModel", "Coupon")
+                        .WithMany()
+                        .HasForeignKey("CouponId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("shopping_tutorial.Models.AppUserModel", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Coupon");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("shopping_tutorial.Models.AppUserModel", b =>
+                {
+                    b.Navigation("LoyaltyHistories");
                 });
 
             modelBuilder.Entity("shopping_tutorial.Models.ProductModel", b =>

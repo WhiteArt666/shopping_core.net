@@ -1,0 +1,32 @@
+@model IEnumerable<shopping_tutorial.Models.LoyaltyHistoryModel>
+
+@{
+    ViewData["Title"] = "Lịch sử tích điểm";
+}
+
+<h2>Lịch sử tích điểm</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ngày</th>
+            <th>Số điểm</th>
+            <th>Lý do</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <!-- Cách 1: ToString -->
+            <td>@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+
+            <!-- Cách 2: string-interpolation -->
+            <!--<td>@($"{item.CreatedAt:dd/MM/yyyy HH:mm}")</td>-->
+
+            <td>@item.Points</td>
+            <td>@item.Reason</td>
+        </tr>
+    }
+    </tbody>
+</table>

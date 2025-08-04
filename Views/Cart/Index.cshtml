@@ -6,537 +6,527 @@
 }
 
 <div class="container mt-4">
-	<div class="row">
-		<div class="col-12">
-			<div class="card shadow-sm">
-				<div class="card-header bg-primary text-white">
-					<h4 class="mb-0">
-						<i class="fas fa-shopping-cart me-2"></i>Giỏ Hàng Của Bạn
-					</h4>
-					<nav aria-label="breadcrumb" class="mt-2">
-						<ol class="breadcrumb bg-transparent mb-0">
-							<li class="breadcrumb-item"><a href="#" class="text-white-50">Trang chủ</a></li>
-							<li class="breadcrumb-item active text-white">Giỏ hàng</li>
-						</ol>
-					</nav>
-				</div>
-				<div class="card-body p-0">
-					<div class="table-responsive">
-						<table class="table table-hover mb-0">
-							<thead class="table-dark">
-								<tr>
-									<th><i class="fas fa-image me-1"></i>Sản phẩm</th>
-									<th><i class="fas fa-info-circle me-1"></i>Mô tả</th>
-									<th><i class="fas fa-dollar-sign me-1"></i>Giá</th>
-									<th><i class="fas fa-sort-numeric-up me-1"></i>Số lượng</th>
-									<th><i class="fas fa-calculator me-1"></i>Tổng</th>
-									<th><i class="fas fa-cogs me-1"></i>Thao tác</th>
-								</tr>
-							</thead>
-							<tbody>
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-shopping-cart me-2"></i>Giỏ Hàng Của Bạn
+                    </h4>
+                    <nav aria-label="breadcrumb" class="mt-2">
+                        <ol class="breadcrumb bg-transparent mb-0">
+                            <li class="breadcrumb-item"><a href="#" class="text-white-50">Trang chủ</a></li>
+                            <li class="breadcrumb-item active text-white">Giỏ hàng</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th><i class="fas fa-image me-1"></i>Sản phẩm</th>
+                                    <th><i class="fas fa-info-circle me-1"></i>Mô tả</th>
+                                    <th><i class="fas fa-dollar-sign me-1"></i>Giá</th>
+                                    <th><i class="fas fa-sort-numeric-up me-1"></i>Số lượng</th>
+                                    <th><i class="fas fa-calculator me-1"></i>Tổng</th>
+                                    <th><i class="fas fa-cogs me-1"></i>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-					@if(Model.CartItems.Count > 0)
-					{
-						foreach (var item in Model.CartItems)
-						{
-							<tr class="align-middle">
-								<td class="text-center">
-									<a href="">
-										<img src="~/media/products/@item.Image" 
-											 class="img-thumbnail rounded" 
-											 alt="@item.ProductName" 
-											 width="70px" height="100px">
-									</a>
-								</td>
-								<td>
-									<h5 class="text-primary mb-2">
-										<a href="" class="text-decoration-none">@item.ProductName</a>
-									</h5>
-									@if (!string.IsNullOrEmpty(item.Size) || !string.IsNullOrEmpty(item.Color))
-									{
-										<div class="variant-info">
-											@if (!string.IsNullOrEmpty(item.Size))
-											{
-												<span class="variant-size">
-													<i class="fas fa-ruler me-1"></i>Size: @item.Size
-												</span>
-											}
-											@if (!string.IsNullOrEmpty(item.Color))
-											{
-												<span class="variant-color">
-													<i class="fas fa-palette me-1"></i>Color: @item.Color 
-													@if (!string.IsNullOrEmpty(item.ColorCode))
-													{
-														<span class="color-preview" style="background-color: @item.ColorCode; width: 20px; height: 20px; display: inline-block; border: 1px solid #ccc; margin-left: 5px; vertical-align: middle;"></span>
-													}
-												</span>
-											}
-										</div>
-									}
-								</td>
-								<td class="text-center">
-									<span class="badge bg-success fs-6">@item.Price.ToString("#,##0 VNĐ")</span>
-								</td>
-								<td class="text-center">
-									<div class="d-flex align-items-center justify-content-center gap-2">
-										<a class="btn btn-outline-secondary btn-sm" asp-action="Decrease" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId">
-											<i class="fas fa-minus"></i>
-										</a>
-										<input class="form-control text-center" style="width: 60px;" type="text" name="quantity" value="@item.Quantity" autocomplete="off" readonly>
-										<a class="btn btn-outline-secondary btn-sm" asp-action="Increase" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId">
-											<i class="fas fa-plus"></i>
-										</a>
-									</div>
-								</td>
-								<td class="text-center">
-									<strong class="text-primary">@((item.Quantity * item.Price).ToString("#,##0 VNĐ"))</strong>
-								</td>
-								<td class="text-center">
-									<a class="btn btn-outline-danger btn-sm" asp-action="Remove" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">
-										<i class="fas fa-trash"></i>
-									</a>
-								</td>
-							</tr>
-						}
-						
-						<!-- Summary Row -->
-						<tr class="table-light">
-							<td colspan="6">
-								<div class="row">
-									<div class="col-md-8">
-										<div class="p-3">
-											<h5 class="mb-3"><i class="fas fa-receipt me-2"></i>Thông tin đơn hàng</h5>
-											
-											<!-- Coupon Section -->
-											<div class="mb-3">
-												<label class="form-label"><i class="fas fa-ticket-alt me-1"></i>Mã giảm giá:</label>
-												<div class="input-group mb-2">
-													<input type="text" class="form-control coupon-value" placeholder="Nhập mã giảm giá" />
-													<button type="button" class="btn btn-outline-primary btn-apply-coupon">
-														<i class="fas fa-check me-1"></i>Áp dụng
-													</button>
-												</div>
-												
-												@if (!string.IsNullOrEmpty(Model.CouponCode))
-												{
-													<div class="alert alert-success alert-sm mb-2" role="alert">
-														<i class="fas fa-check-circle me-1"></i>Đã áp dụng: <strong>@Model.CouponCode</strong>
-													</div>
-												}
-												
-												<!-- Thông báo voucher (thành công/lỗi) -->
-												<div id="coupon-message" class="mb-2" style="display: none;">
-													<div id="coupon-alert" class="alert alert-sm mb-0" role="alert">
-														<span id="coupon-message-text"></span>
-													</div>
-												</div>
-												
-												<!-- Thông tin hướng dẫn -->
-												<small class="text-muted d-block">
-													<i class="fas fa-info-circle me-1"></i>
-													Một số voucher có thể là độc quyền và chỉ dành cho khách hàng được chỉ định.
-												</small>
-											</div>
+                    @if(Model.CartItems.Count > 0)
+                    {
+                        foreach (var item in Model.CartItems)
+                        {
+                            <tr class="align-middle">
+                                <td class="text-center">
+                                    <a href="">
+                                        <img src="~/media/products/@item.Image" 
+                                             class="img-thumbnail rounded" 
+                                             alt="@item.ProductName" 
+                                             width="70px" height="100px">
+                                    </a>
+                                </td>
+                                <td>
+                                    <h5 class="text-primary mb-2">
+                                        <a href="" class="text-decoration-none">@item.ProductName</a>
+                                    </h5>
+                                    @if (!string.IsNullOrEmpty(item.Size) || !string.IsNullOrEmpty(item.Color))
+                                    {
+                                        <div class="variant-info">
+                                            @if (!string.IsNullOrEmpty(item.Size))
+                                            {
+                                                <span class="variant-size">
+                                                    <i class="fas fa-ruler me-1"></i>Size: @item.Size
+                                                </span>
+                                            }
+                                            @if (!string.IsNullOrEmpty(item.Color))
+                                            {
+                                                <span class="variant-color">
+                                                    <i class="fas fa-palette me-1"></i>Color: @item.Color 
+                                                    @if (!string.IsNullOrEmpty(item.ColorCode))
+                                                    {
+                                                        <span class="color-preview" style="background-color: @item.ColorCode; width: 20px; height: 20px; display: inline-block; border: 1px solid #ccc; margin-left: 5px; vertical-align: middle;"></span>
+                                                    }
+                                                </span>
+                                            }
+                                        </div>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-success fs-6">@item.Price.ToString("#,##0 VNĐ")</span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex align-items-center justify-content-center gap-2">
+                                        <a class="btn btn-outline-secondary btn-sm" asp-action="Decrease" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId">
+                                            <i class="fas fa-minus"></i>
+                                        </a>
+                                        <input class="form-control text-center" style="width: 60px;" type="text" name="quantity" value="@item.Quantity" autocomplete="off" readonly>
+                                        <a class="btn btn-outline-secondary btn-sm" asp-action="Increase" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <strong class="text-primary">@((item.Quantity * item.Price).ToString("#,##0 VNĐ"))</strong>
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-outline-danger btn-sm" asp-action="Remove" asp-controller="Cart" asp-route-id="@item.ProductId" asp-route-variantId="@item.ProductVariantId" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        
+                        <!-- Summary Row -->
+                        <tr class="table-light">
+                            <td colspan="6">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="p-3">
+                                            <h5 class="mb-3"><i class="fas fa-receipt me-2"></i>Thông tin đơn hàng</h5>
+                                            
+                                            <!-- Coupon Section -->
+                                            <div class="mb-3">
+                                                <label class="form-label"><i class="fas fa-ticket-alt me-1"></i>Mã giảm giá:</label>
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group mb-2">
+    <input type="text" id="coupon-input" class="form-control" placeholder="Nhập mã giảm giá">
+    <button type="button" id="apply-coupon-btn" class="btn btn-outline-primary">
+        <i class="fas fa-check me-1"></i>Áp dụng
+    </button>
+</div>
+<div id="coupon-feedback" class="mt-2" style="display: none;"></div>
 
-											<!-- Shipping Section -->
-											<div class="mb-3">
-												<label class="form-label"><i class="fas fa-map-marker-alt me-1"></i>Địa chỉ giao hàng:</label>
-												<div class="row">
-													<div class="col-md-4 mb-2">
-														<select class="form-select css_select" id="tinh" name="tinh" title="Chọn Tỉnh Thành">
-															<option value="0">Tỉnh Thành</option>
-														</select>
-													</div>
-													<div class="col-md-4 mb-2">
-														<select class="form-select css_select" id="quan" name="quan" title="Chọn Quận Huyện">
-															<option value="0">Quận Huyện</option>
-														</select>
-													</div>
-													<div class="col-md-4 mb-2">
-														<select class="form-select css_select" id="phuong" name="phuong" title="Chọn Phường Xã">
-															<option value="0">Phường Xã</option>
-														</select>
-													</div>
-												</div>
-												<button type="button" class="btn btn-outline-info btn-add-shipping">
-													<i class="fas fa-calculator me-1"></i>Tính phí vận chuyển
-												</button>
-											</div>
-										</div>
-									</div>
+                                                </div>
+                                                
+                                                @if (!string.IsNullOrEmpty(Model.CouponCode))
+                                                {
+                                                    <div class="alert alert-success alert-sm mb-2" role="alert">
+                                                        <i class="fas fa-check-circle me-1"></i>Đã áp dụng: <strong>@Model.CouponCode</strong>
+                                                    </div>
+                                                }
+                                                
+                                                <!-- Thông báo voucher (thành công/lỗi) -->
+                                                <div id="coupon-message" class="mb-2" style="display: none;">
+                                                    <div id="coupon-alert" class="alert alert-sm mb-0" role="alert">
+                                                        <span id="coupon-message-text"></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Thông tin hướng dẫn -->
+                                                <small class="text-muted d-block">
+                                                    <i class="fas fa-info-circle me-1"></i>
+                                                    Một số voucher có thể là độc quyền và chỉ dành cho khách hàng được chỉ định.
+                                                </small>
+                                            </div>
 
-									<div class="col-md-4">
-										<div class="card">
-											<div class="card-header bg-success text-white">
-												<h6 class="mb-0"><i class="fas fa-calculator me-2"></i>Tổng cộng</h6>
-											</div>
-											<div class="card-body">
-												<div class="d-flex justify-content-between mb-2">
-													<span>Tạm tính:</span>
-													<strong>@Model.GrandTotal.ToString("#,##0 đ")</strong>
-												</div>
-												<div class="d-flex justify-content-between mb-2">
-													<span>Phí vận chuyển:</span>
-													<strong class="text-info">@Model.ShippingCost.ToString("#,##0 đ")</strong>
-												</div>
-												@if (@Model.ShippingCost > 0)
-												{
-													<div class="mb-2">
-														<a asp-action="RemoveShippingCookie" asp-controller="Cart" class="btn btn-outline-warning btn-sm">
-															<i class="fas fa-times me-1"></i>Xóa Phí Ship
-														</a>
-													</div>
-												}
-												<hr>
-												<div class="d-flex justify-content-between">
-													<strong>Tổng cộng:</strong>
-													<strong class="text-success fs-5">@((Model.GrandTotal + Model.ShippingCost).ToString("#,##0 đ"))</strong>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<!-- Action Buttons -->
-								<div class="row mt-3">
-									@if (User.Identity?.IsAuthenticated ?? false)
-									{
-										<div class="col-md-3">
-											@if (@Model.ShippingCost > 0)
-											{
-												<a class="btn btn-success w-100"
-												   onclick="return confirm('Xác nhận đặt hàng?');"
-												   asp-action="Checkout" asp-controller="Checkout">
-													<i class="fas fa-check me-2"></i>Xác nhận đặt hàng
-												</a>
-											}
-											else
-											{
-												<button disabled class="btn btn-secondary w-100">
-													<i class="fas fa-exclamation-triangle me-2"></i>Tính phí vận chuyển để xác nhận đơn.
-												</button>
-											}
-										</div>
+                                            <!-- Shipping Section -->
+                                            <div class="mb-3">
+                                                <label class="form-label"><i class="fas fa-map-marker-alt me-1"></i>Địa chỉ giao hàng:</label>
+                                                <div class="row">
+                                                    <div class="col-md-4 mb-2">
+                                                        <select class="form-select css_select" id="tinh" name="tinh" title="Chọn Tỉnh Thành">
+                                                            <option value="0">Tỉnh Thành</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4 mb-2">
+                                                        <select class="form-select css_select" id="quan" name="quan" title="Chọn Quận Huyện">
+                                                            <option value="0">Quận Huyện</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4 mb-2">
+                                                        <select class="form-select css_select" id="phuong" name="phuong" title="Chọn Phường Xã">
+                                                            <option value="0">Phường Xã</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-outline-info btn-add-shipping">
+                                                    <i class="fas fa-calculator me-1"></i>Tính phí vận chuyển
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
 
-										<div class="col-md-3">
-											<form method="POST" asp-action="CreatePaymentMomo" asp-controller="Payment">
-												<input type="hidden" name="FullName" value="@User.Identity.Name" />
-												<input type="hidden" name="Amount" value="@Model.GrandTotal" />
-												<input type="hidden" name="OrderInfo" value="Thanh toán qua Momo Payment tại HieuTanStore" />
-												<button class="btn btn-danger w-100" name="PayUrl" type="submit">
-													<i class="fab fa-cc-paypal me-1"></i>Pay with MoMo
-												</button>
-											</form>
-										</div>
-										<div class="col-md-3">
-											<form method="POST" asp-action="CreatePaymentUrlVnpay" asp-controller="Payment">
-												<input type="hidden" name="Name" value="@User.Identity.Name" />
-												<input type="hidden" name="Amount" value="@Model.GrandTotal" />
-												<input type="hidden" name="OrderDescription" value="Thanh toán qua Vnpay tại HieuTanStore" />
-												<input type="hidden" name="OrderType" value="other" />
-												<button class="btn btn-success w-100" type="submit">
-													<i class="fas fa-credit-card me-1"></i>Pay with Vnpay
-												</button>
-											</form>
-										</div>
-									}
-									<div class="col-md-3">
-										<a class="btn btn-outline-danger w-100" asp-action="Clear" asp-controller="Cart" onclick="return confirm('Bạn có chắc muốn xóa tất cả?')">
-											<i class="fas fa-trash me-2"></i>Xóa tất cả
-										</a>
-									</div>
-								</div>
-							</td>
-						</tr>
-					}
-					else{
-						<tr>
-							<td colspan="6" class="text-center py-5">
-								<div>
-									<i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
-									<h4 class="text-muted">Giỏ hàng của bạn đang trống</h4>
-									<p class="text-muted">Hãy thêm sản phẩm để bắt đầu mua sắm!</p>
-									<a asp-action="Index" asp-controller="Home" class="btn btn-primary">
-										<i class="fas fa-shopping-bag me-2"></i>Tiếp tục mua sắm
-									</a>
-								</div>
-							</td>
-						</tr>
-					}
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header bg-success text-white">
+                                                <h6 class="mb-0"><i class="fas fa-calculator me-2"></i>Tổng cộng</h6>
+                                            </div>
+                                            <div class="card-body">
+    <div class="d-flex justify-content-between mb-2">
+        <span>Tạm tính:</span>
+        <strong>@Model.GrandTotal.ToString("#,##0 đ")</strong>
+    </div>
+    <div class="d-flex justify-content-between mb-2">
+        <span>Phí vận chuyển:</span>
+        <strong class="text-info">@Model.ShippingCost.ToString("#,##0 đ")</strong>
+    </div>
+    @if (Model.Discount > 0)
+    {
+        <div class="d-flex justify-content-between mb-2">
+            <span class="text-success">Giảm giá:</span>
+            <strong class="text-success">-@Model.Discount.ToString("#,##0 đ")</strong>
+        </div>
+    }
+    @if (@Model.ShippingCost > 0)
+    {
+        <div class="mb-2">
+            <a asp-action="RemoveShippingCookie" asp-controller="Cart" class="btn btn-outline-warning btn-sm">
+                <i class="fas fa-times me-1"></i>Xóa Phí Ship
+            </a>
+        </div>
+    }
+    <hr>
+    <div class="d-flex justify-content-between">
+        <strong>Tổng cộng:</strong>
+        <strong class="text-success fs-5">@Model.FinalTotal.ToString("#,##0 đ")</strong>
+    </div>
+</div>
 
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="row mt-3">
+                                    @if (User.Identity?.IsAuthenticated ?? false)
+                                    {
+                                        <div class="col-md-3">
+                                            @if (@Model.ShippingCost > 0)
+                                            {
+                                                <a class="btn btn-success w-100"
+                                                   onclick="return confirm('Xác nhận đặt hàng?');"
+                                                   asp-action="Checkout" asp-controller="Checkout">
+                                                    <i class="fas fa-check me-2"></i>Xác nhận đặt hàng
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <button disabled class="btn btn-secondary w-100">
+                                                    <i class="fas fa-exclamation-triangle me-2"></i>Tính phí vận chuyển để xác nhận đơn.
+                                                </button>
+                                            }
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <form method="POST" asp-action="CreatePaymentMomo" asp-controller="Payment">
+                                                <input type="hidden" name="FullName" value="@User.Identity.Name" />
+                                                <input type="hidden" name="Amount" value="@Model.GrandTotal" />
+                                                <input type="hidden" name="OrderInfo" value="Thanh toán qua Momo Payment tại HieuTanStore" />
+                                                <button class="btn btn-danger w-100" name="PayUrl" type="submit">
+                                                    <i class="fab fa-cc-paypal me-1"></i>Pay with MoMo
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <form method="POST" asp-action="CreatePaymentUrlVnpay" asp-controller="Payment">
+                                                <input type="hidden" name="Name" value="@User.Identity.Name" />
+                                                <input type="hidden" name="Amount" value="@Model.GrandTotal" />
+                                                <input type="hidden" name="OrderDescription" value="Thanh toán qua Vnpay tại HieuTanStore" />
+                                                <input type="hidden" name="OrderType" value="other" />
+                                                <button class="btn btn-success w-100" type="submit">
+                                                    <i class="fas fa-credit-card me-1"></i>Pay with Vnpay
+                                                </button>
+                                            </form>
+                                        </div>
+                                    }
+                                    <div class="col-md-3">
+                                        <a class="btn btn-outline-danger w-100" asp-action="Clear" asp-controller="Cart" onclick="return confirm('Bạn có chắc muốn xóa tất cả?')">
+                                            <i class="fas fa-trash me-2"></i>Xóa tất cả
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    else{
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <div>
+                                    <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                                    <h4 class="text-muted">Giỏ hàng của bạn đang trống</h4>
+                                    <p class="text-muted">Hãy thêm sản phẩm để bắt đầu mua sắm!</p>
+                                    <a asp-action="Index" asp-controller="Home" class="btn btn-primary">
+                                        <i class="fas fa-shopping-bag me-2"></i>Tiếp tục mua sắm
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts{
-	<style>
-		.variant-info {
-			margin-top: 5px;
-			font-size: 12px;
-		}
-		
-		/* Styles for coupon section */
-		#coupon-message .alert {
-			border-radius: 6px;
-			font-size: 0.875rem;
-		}
-		
-		.alert-success {
-			background-color: #d4edda;
-			border-color: #c3e6cb;
-			color: #155724;
-		}
-		
-		.alert-danger {
-			background-color: #f8d7da;
-			border-color: #f5c6cb;
-			color: #721c24;
-		}
-		
-		.coupon-value:focus {
-			border-color: #80bdff;
-			box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-		}
-		
-		.btn-apply-coupon:disabled {
-			opacity: 0.6;
-			cursor: not-allowed;
-		}
-		
-		/* Coupon message alerts */
-		#coupon-message {
-			transition: all 0.3s ease-in-out;
-		}
-		
-		.alert-success {
-			background-color: #d1edff !important;
-			border-color: #0066cc !important;
-			color: #004085 !important;
-		}
-		
-		.alert-danger {
-			background-color: #f8d7da !important;
-			border-color: #f5c6cb !important;
-			color: #721c24 !important;
-		}
-		
-		/* Exclusive voucher styling */
-		.exclusive-voucher-info {
-			background: linear-gradient(135deg, #ffd700, #ffed4e);
-			border: 2px solid #ffb300;
-			border-radius: 8px;
-			padding: 10px;
-			margin-top: 8px;
-		}
-		
-		.exclusive-voucher-info .fas {
-			color: #ff8f00;
-		}
-		
-		.variant-size, .variant-color {
-			display: inline-block;
-			background: #f8f9fa;
-			padding: 2px 8px;
-			border-radius: 3px;
-			margin-right: 8px;
-			border: 1px solid #dee2e6;
-		}
-		
-		.color-preview {
-			border-radius: 2px;
-		}
-	</style>
-	<script>
-		$(".btn-apply-coupon").click(function () {
-			var coupon_value = $(".coupon-value").val();
-			
-			if (!coupon_value.trim()) {
-				Swal.fire({
-					icon: 'warning',
-					title: 'Vui lòng nhập mã giảm giá',
-					showConfirmButton: false,
-					timer: 2000
-				});
-				return;
-			}
-			
-			// Hiển thị loading
-			$(".btn-apply-coupon").prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>Đang kiểm tra...');
-			$("#coupon-message").hide();
-			
-			$.ajax({
-				type: "POST",
-				url: "@Url.Action("GetCoupon", "Cart")",
-				data: { coupon_value: coupon_value },
-				success: function (result) {
-					// Reset button
-					$(".btn-apply-coupon").prop('disabled', false).html('<i class="fas fa-check me-1"></i>Áp dụng');
-					
-					if (result.success) {
-						// Hiển thị thông báo thành công
-						$("#coupon-message-text").html('<i class="fas fa-check-circle me-1"></i>' + result.message);
-						$("#coupon-alert").removeClass('alert-danger').addClass('alert-success');
-						$("#coupon-message").fadeIn();
-						
-						// SweetAlert thành công
-						if (result.message.includes('độc quyền')) {
-							Swal.fire({
-								icon: 'success',
-								title: '🎉 Voucher Độc Quyền!',
-								text: result.message,
-								showConfirmButton: true,
-								confirmButtonText: 'Tuyệt vời!',
-								confirmButtonColor: '#28a745',
-								timer: 4000
-							}).then(() => {
-								location.reload();
-							});
-						} else {
-							Swal.fire({
-								icon: 'success',
-								title: 'Thành công!',
-								text: result.message,
-								showConfirmButton: false,
-								timer: 2000
-							}).then(() => {
-								location.reload();
-							});
-						}
-					} else {
-						// Hiển thị thông báo lỗi
-						$("#coupon-message-text").html('<i class="fas fa-exclamation-circle me-1"></i>' + result.message);
-						$("#coupon-alert").removeClass('alert-success').addClass('alert-danger');
-						$("#coupon-message").fadeIn();
-						
-						// SweetAlert với thông báo lỗi
-						if (result.message.includes('độc quyền')) {
-							Swal.fire({
-								icon: 'warning',
-								title: '🔒 Voucher Độc Quyền',
-								text: result.message,
-								showConfirmButton: true,
-								confirmButtonText: 'Hiểu rồi',
-								confirmButtonColor: '#ffc107'
-							});
-						} else {
-							Swal.fire({
-								icon: 'error',
-								title: 'Không thể áp dụng',
-								text: result.message,
-								showConfirmButton: false,
-								timer: 3000
-							});
-						}
-					}
-				},
-				error: function() {
-					// Reset button
-					$(".btn-apply-coupon").prop('disabled', false).html('<i class="fas fa-check me-1"></i>Áp dụng');
-					
-					// Hiển thị thông báo lỗi
-					$("#coupon-message-text").html('<i class="fas fa-times-circle me-1"></i>Lỗi kết nối server');
-					$("#coupon-alert").removeClass('alert-success').addClass('alert-danger');
-					$("#coupon-message").fadeIn();
-					
-					Swal.fire({
-						icon: 'error',
-						title: 'Lỗi kết nối',
-						text: 'Không thể kết nối đến server. Vui lòng thử lại.',
-						showConfirmButton: false,
-						timer: 3000
-					});
-				}
-			});
-		});
-		
-		// Ẩn thông báo khi người dùng nhập lại
-		$(".coupon-value").on('input', function() {
-			if ($(this).val().trim() === '') {
-				$("#coupon-message").fadeOut();
-			}
-		});
-		
-		// Enter key support
-		$(".coupon-value").on('keypress', function(e) {
-			if (e.which === 13) { // Enter key
-				$(".btn-apply-coupon").click();
-			}
-		});
-	</script>
-	<script>
-		$(document).ready(function () {
-			$(".btn-add-shipping").click(function () {
-				var tinh = $("#tinh").find('option:selected').text();
-				var quan = $("#quan").find('option:selected').text();
-				var phuong = $("#phuong").find('option:selected').text();
-				
-				// alert(tinh);
-				// alert(quan);
-				// alert(phuong);
-				// alert(price);
-				if (tinh == '' || quan == '' || phuong == '') {
-					Swal.fire("Làm ơn ko bỏ trống.");
-				} else {
-					$.ajax({
-						type: "POST",
-						url: "@Url.Action("GetShipping", "Cart")",
-						data: { tinh: tinh, quan: quan, phuong: phuong}, // Send data to the server
+    <style>
+        .variant-info {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        
+        /* Styles for coupon section */
+        #coupon-message .alert {
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
+        .coupon-value:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        
+        .btn-apply-coupon:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        /* Coupon message alerts */
+        #coupon-message {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .alert-success {
+            background-color: #d1edff !important;
+            border-color: #0066cc !important;
+            color: #004085 !important;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da !important;
+            border-color: #f5c6cb !important;
+            color: #721c24 !important;
+        }
+        
+        /* Exclusive voucher styling */
+        .exclusive-voucher-info {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border: 2px solid #ffb300;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 8px;
+        }
+        
+        .exclusive-voucher-info .fas {
+            color: #ff8f00;
+        }
+        
+        .variant-size, .variant-color {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-right: 8px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .color-preview {
+            border-radius: 2px;
+        }
+    </style>
+    <script>
+    $(document).ready(function () {
+        // ===== LOAD TỈNH ====
+        $.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function (resTinh) {
+            if (resTinh.error === 0) {
+                $.each(resTinh.data, function (_, tinh) {
+                    $("#tinh").append(`<option value="${tinh.id}">${tinh.full_name}</option>`);
+                });
+            }
+        });
 
-						success: function (result) {
-							// Handle successful update
-							if (result) {
+        // ===== KHI CHỌN TỈNH => LOAD QUẬN ====
+        $("#tinh").change(function () {
+            const idTinh = $(this).val();
+            $("#quan").html('<option value="">Quận Huyện</option>');
+            $("#phuong").html('<option value="">Phường Xã</option>');
 
-								location.reload();
+            $.getJSON(`https://esgoo.net/api-tinhthanh/2/${idTinh}.htm`, function (resQuan) {
+                if (resQuan.error === 0) {
+                    $.each(resQuan.data, function (_, quan) {
+                        $("#quan").append(`<option value="${quan.id}">${quan.full_name}</option>`);
+                    });
+                }
+            });
+        });
 
-							} 
-						}
+        // ===== KHI CHỌN QUẬN => LOAD PHƯỜNG ====
+        $("#quan").change(function () {
+            const idQuan = $(this).val();
+            $("#phuong").html('<option value="">Phường Xã</option>');
 
-					});
-				}
+            $.getJSON(`https://esgoo.net/api-tinhthanh/3/${idQuan}.htm`, function (resPhuong) {
+                if (resPhuong.error === 0) {
+                    $.each(resPhuong.data, function (_, phuong) {
+                        $("#phuong").append(`<option value="${phuong.id}">${phuong.full_name}</option>`);
+                    });
+                }
+            });
+        });
+
+        // ===== NHẤN "TÍNH PHÍ VẬN CHUYỂN" =====
+        // ===== NHẤN "TÍNH PHÍ VẬN CHUYỂN" =====
+$(".btn-add-shipping").click(function () {
+    const tinh = $("#tinh option:selected").text();
+    const quan = $("#quan option:selected").text();
+    const phuong = $("#phuong option:selected").text();
+
+    if (!tinh || !quan || !phuong || tinh === "Tỉnh Thành" || quan === "Quận Huyện" || phuong === "Phường Xã") {
+        Swal.fire("⚠️ Vui lòng chọn đầy đủ địa chỉ trước khi tính phí!");
+        return;
+    }
+
+    $.post("@Url.Action("GetShipping", "Cart")", { tinh, quan, phuong }, function (res) {
+        if (res) location.reload(); // ✅ Reload lại trang để cập nhật phí vận chuyển
+    });
+});
+
+        // ===== ÁP DỤNG MÃ GIẢM GIÁ =====
+$(".btn-apply-coupon").click(function () {
+    const code = $("#coupon-input").val().trim();
+    if (!code) {
+        Swal.fire("⚠️ Vui lòng nhập mã giảm giá!");
+        return;
+    }
+
+    $(".btn-apply-coupon").prop("disabled", true).html('<i class="fas fa-spinner fa-spin me-1"></i>Đang kiểm tra...');
+    $("#coupon-message").hide();
+
+    $.ajax({
+        type: "POST",
+        url: "@Url.Action("GetCoupon", "Cart")",
+        data: { coupon_value: code },
+        success: function (res) {
+            $(".btn-apply-coupon").prop("disabled", false).html('<i class="fas fa-check me-1"></i>Áp dụng');
+            const msgBox = $("#coupon-message");
+            const msgText = $("#coupon-message-text");
+            const alertBox = $("#coupon-alert");
+
+            if (res.success) {
+                Swal.fire({
+                    icon: "success",
+                    title: "🎉 Thành công!",
+                    text: res.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    $('#coupon-input').val('');
+                    location.reload(); // ✅ Reload trang để update tổng tiền, hiện mã đã áp dụng
+                });
+            } else {
+                msgText.html('<i class="fas fa-exclamation-circle me-1"></i>' + res.message);
+                alertBox.removeClass('alert-success').addClass('alert-danger');
+                msgBox.fadeIn();
+                Swal.fire("❌ Thất bại", res.message, "error");
+            }
+        },
+        error: function () {
+            $(".btn-apply-coupon").prop("disabled", false).html('<i class="fas fa-check me-1"></i>Áp dụng');
+            $("#coupon-message-text").html('<i class="fas fa-times-circle me-1"></i>Lỗi kết nối server');
+            $("#coupon-alert").removeClass('alert-success').addClass('alert-danger');
+            $("#coupon-message").fadeIn();
+            Swal.fire("❌ Lỗi", "Không thể kết nối đến server", "error");
+        }
+    });
+});
 
 
-			})
-			//Lấy tỉnh thành
-			$.getJSON('https://esgoo.net/api-tinhthanh/1/0.htm', function (data_tinh) {
-				if (data_tinh.error == 0) {
-					$.each(data_tinh.data, function (key_tinh, val_tinh) {
-						$("#tinh").append('<option value="' + val_tinh.id + '">' + val_tinh.full_name + '</option>');
-					});
-					$("#tinh").change(function (e) {
-						var idtinh = $(this).val();
-						//Lấy quận huyện
-						$.getJSON('https://esgoo.net/api-tinhthanh/2/' + idtinh + '.htm', function (data_quan) {
-							if (data_quan.error == 0) {
-								$("#quan").html('<option value="0">Quận Huyện</option>');
-								$("#phuong").html('<option value="0">Phường Xã</option>');
-								$.each(data_quan.data, function (key_quan, val_quan) {
-									$("#quan").append('<option value="' + val_quan.id + '">' + val_quan.full_name + '</option>');
-								});
-								//Lấy phường xã
-								$("#quan").change(function (e) {
-									var idquan = $(this).val();
-									$.getJSON('https://esgoo.net/api-tinhthanh/3/' + idquan + '.htm', function (data_phuong) {
-										if (data_phuong.error == 0) {
-											$("#phuong").html('<option value="0">Phường Xã</option>');
-											$.each(data_phuong.data, function (key_phuong, val_phuong) {
-												$("#phuong").append('<option value="' + val_phuong.id + '">' + val_phuong.full_name + '</option>');
-											});
-										}
-									});
-								});
+        // ===== ẨN THÔNG BÁO KHI NHẬP LẠI MÃ =====
+        $(".coupon-value").on('input', function () {
+            if (!$(this).val().trim()) {
+                $("#coupon-message").fadeOut();
+            }
+        });
 
-							}
-						}); //end $.getJson
+        // ===== ENTER TỰ ÁP DỤNG COUPON =====
+        $(".coupon-value").on('keypress', function (e) {
+            if (e.which === 13) {
+                $(".btn-apply-coupon").click();
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#apply-coupon-btn').click(function () {
+            const code = $('#coupon-input').val().trim();
+            if (!code) {
+                Swal.fire("⚠️ Vui lòng nhập mã giảm giá!");
+                return;
+            }
 
-					});
+            $.ajax({
+                type: "POST",
+                url: "/Cart/GetCoupon",
+                data: { coupon_value: code },
+                success: function (res) {
+                    if (res.success) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "🎉 Thành công!",
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire("❌ Thất bại", res.message, "error");
+                    }
+                },
+                error: function () {
+                    Swal.fire("❌ Lỗi", "Không thể gửi yêu cầu", "error");
+                }
+            });
+        });
 
-				}
-			});
-		});
-	</script>
-}
+        $('#coupon-input').keypress(function (e) {
+            if (e.which === 13) {
+                $('#apply-coupon-btn').click();
+            }
+        });
+    });
+</script>
+
+
+} 
+

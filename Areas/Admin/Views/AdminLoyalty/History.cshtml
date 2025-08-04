@@ -1,0 +1,26 @@
+@model IEnumerable<shopping_tutorial.Models.LoyaltyHistoryModel>
+@{
+    ViewData["Title"] = "Lịch sử điểm người dùng";
+}
+
+<h2>Lịch sử tích điểm</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ngày</th>
+            <th>Điểm</th>
+            <th>Lý do</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var h in Model)
+        {
+            <tr>
+                <td>@h.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@h.Points</td>
+                <td>@h.Reason</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-secondary" asp-action="UserPoints">← Quay lại danh sách</a>
