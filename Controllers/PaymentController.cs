@@ -22,10 +22,18 @@ namespace shopping_tutorial.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePaymentMomo(string FullName, decimal Amount, string OrderInfo)
         {
+            // ✅ Force logging to file thay vì console
+            System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", 
+                $"=== CreatePaymentMomo CALLED at {DateTime.Now} ===\n" +
+                $"FullName: '{FullName}'\n" +
+                $"Amount: {Amount}\n" +
+                $"OrderInfo: '{OrderInfo}'\n");
+            
             // Kiểm tra user đã đăng nhập
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
             if (userEmail == null)
             {
+                System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", "ERROR: User not authenticated\n");
                 return RedirectToAction("Login", "Account");
             }
 
@@ -33,42 +41,14 @@ namespace shopping_tutorial.Controllers
             var cartitems = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
             if (cartitems.Count == 0) 
             {
+                System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", "ERROR: Cart is empty\n");
                 TempData["error"] = "Giỏ hàng trống!";
                 return RedirectToAction("Index", "Cart");
             }
 
             try
             {
-                // Tính tổng tiền từ giỏ hàng, bao gồm phí ship và giảm giá
-                decimal grandTotal = cartitems.Sum(x => x.Quantity * x.Price);
-                decimal shippingCost = 0;
-                decimal discount = 0;
-
-                // Lấy phí ship từ cookie
-                if (Request.Cookies.TryGetValue("ShippingPrice", out string shipCookie))
-                {
-                    shippingCost = JsonConvert.DeserializeObject<decimal>(shipCookie);
-                }
-
-                // Lấy giảm giá từ cookie
-                if (Request.Cookies.TryGetValue("CouponApplied", out var discountStr))
-                {
-                    discount = decimal.TryParse(discountStr, out var parsed) ? parsed : 0;
-                }
-
-                decimal finalAmount = grandTotal + shippingCost - discount;
-
-                var orderId = Guid.NewGuid().ToString();
-                var amount = ((long)finalAmount).ToString(); // Chuyển thành long rồi về string
-
-                // Validate amount không được rỗng và phải > 0
-                if (string.IsNullOrEmpty(amount) || finalAmount <= 0)
-                {
-                    TempData["error"] = "Số tiền thanh toán không hợp lệ";
-                    return RedirectToAction("Index", "Cart");
-                }
-
-                // Load Momo Config
+                // Test config ngay từ đầu
                 var endpoint = _configuration["MomoAPI:MomoApiUrl"];
                 var partnerCode = _configuration["MomoAPI:PartnerCode"];
                 var accessKey = _configuration["MomoAPI:AccessKey"];
@@ -77,40 +57,49 @@ namespace shopping_tutorial.Controllers
                 var notifyUrl = _configuration["MomoAPI:NotifyUrl"];
                 var requestType = _configuration["MomoAPI:RequestType"];
 
-                // Kiểm tra config có đầy đủ không
+                System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", 
+                    $"=== CONFIG TEST ===\n" +
+                    $"endpoint: '{endpoint}'\n" +
+                    $"partnerCode: '{partnerCode}'\n" +
+                    $"accessKey: '{accessKey}'\n" +
+                    $"secretKey: '{(string.IsNullOrEmpty(secretKey) ? "NULL" : secretKey.Substring(0, Math.Min(5, secretKey.Length)))}...'\n" +
+                    $"returnUrl: '{returnUrl}'\n" +
+                    $"notifyUrl: '{notifyUrl}'\n" +
+                    $"requestType: '{requestType}'\n");
+
+                // Nếu có config null, dừng ngay
                 if (string.IsNullOrEmpty(endpoint) || string.IsNullOrEmpty(partnerCode) || 
                     string.IsNullOrEmpty(accessKey) || string.IsNullOrEmpty(secretKey) ||
                     string.IsNullOrEmpty(returnUrl) || string.IsNullOrEmpty(notifyUrl) ||
                     string.IsNullOrEmpty(requestType))
                 {
-                    Console.WriteLine($"Missing config - endpoint: {endpoint}, partnerCode: {partnerCode}, accessKey: {accessKey}, secretKey: {secretKey?.Substring(0, 5)}..., returnUrl: {returnUrl}, notifyUrl: {notifyUrl}, requestType: {requestType}");
+                    System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", "ERROR: Missing MoMo config\n");
                     TempData["error"] = "Cấu hình MoMo chưa đầy đủ trong appsettings.json";
                     return RedirectToAction("Index", "Cart");
                 }
 
+                // Simple test: Tạo request với hardcoded values
+                var orderId = Guid.NewGuid().ToString();
                 var requestId = Guid.NewGuid().ToString();
-                var orderInfo = $"Thanh toán đơn hàng tại LocalBrand - {finalAmount:N0} VNĐ";
-                var extraData = ""; // MoMo yêu cầu không được null
+                var amount = "50000"; // Test với số cố định
+                var orderInfo = "Test payment";
+                var extraData = "";
 
-                // Debug: In ra các giá trị
-                Console.WriteLine($"Creating MoMo request with:");
-                Console.WriteLine($"  partnerCode: {partnerCode}");
-                Console.WriteLine($"  accessKey: {accessKey}");
-                Console.WriteLine($"  requestId: {requestId}");
-                Console.WriteLine($"  amount: {amount}");
-                Console.WriteLine($"  orderId: {orderId}");
-                Console.WriteLine($"  orderInfo: {orderInfo}");
-                Console.WriteLine($"  returnUrl: {returnUrl}");
-                Console.WriteLine($"  notifyUrl: {notifyUrl}");
-                Console.WriteLine($"  extraData: '{extraData}'");
-                Console.WriteLine($"  requestType: {requestType}");
+                System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", 
+                    $"=== REQUEST DATA ===\n" +
+                    $"orderId: '{orderId}'\n" +
+                    $"requestId: '{requestId}'\n" +
+                    $"amount: '{amount}'\n" +
+                    $"orderInfo: '{orderInfo}'\n" +
+                    $"extraData: '{extraData}'\n");
 
-                // Tạo rawHash theo định dạng mới của MoMo API v2
+                // Tạo signature
                 string rawHash = $"accessKey={accessKey}&amount={amount}&extraData={extraData}&ipnUrl={notifyUrl}&orderId={orderId}&orderInfo={orderInfo}&partnerCode={partnerCode}&redirectUrl={returnUrl}&requestId={requestId}&requestType={requestType}";
                 var signature = CreateSignature(secretKey, rawHash);
-                
-                Console.WriteLine($"  rawHash: {rawHash}");
-                Console.WriteLine($"  signature: {signature}");
+
+                System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", 
+                    $"rawHash: '{rawHash}'\n" +
+                    $"signature: '{signature}'\n");
 
                 var request = new MomoRequestModel
                 {
@@ -128,6 +117,22 @@ namespace shopping_tutorial.Controllers
                     Lang = "vi"
                 };
 
+                // Validate từng field một
+                System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", 
+                    $"=== FINAL REQUEST VALIDATION ===\n" +
+                    $"request.PartnerCode: '{request.PartnerCode}'\n" +
+                    $"request.AccessKey: '{request.AccessKey}'\n" +
+                    $"request.RequestId: '{request.RequestId}'\n" +
+                    $"request.Amount: '{request.Amount}'\n" +
+                    $"request.OrderId: '{request.OrderId}'\n" +
+                    $"request.OrderInfo: '{request.OrderInfo}'\n" +
+                    $"request.RedirectUrl: '{request.RedirectUrl}'\n" +
+                    $"request.IpnUrl: '{request.IpnUrl}'\n" +
+                    $"request.ExtraData: '{request.ExtraData}'\n" +
+                    $"request.RequestType: '{request.RequestType}'\n" +
+                    $"request.Signature: '{request.Signature}'\n" +
+                    $"request.Lang: '{request.Lang}'\n");
+
                 // Validate các field required trước khi gửi
                 if (string.IsNullOrEmpty(request.PartnerCode) || 
                     string.IsNullOrEmpty(request.AccessKey) ||
@@ -141,6 +146,7 @@ namespace shopping_tutorial.Controllers
                     string.IsNullOrEmpty(request.RequestType) ||
                     string.IsNullOrEmpty(request.Signature))
                 {
+                    System.IO.File.AppendAllText(@"C:\temp\momo_debug.log", "ERROR: Request validation failed\n");
                     TempData["error"] = "Dữ liệu request MoMo không đầy đủ";
                     return RedirectToAction("Index", "Cart");
                 }

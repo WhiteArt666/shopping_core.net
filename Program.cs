@@ -6,6 +6,7 @@ using shopping_tutorial.Repository;
 using shopping_tutorial.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.DataProtection;
 
 internal class Program
 {
@@ -36,6 +37,11 @@ internal class Program
             options.Cookie.IsEssential = true;
         });
 
+        // ✅ Data Protection để fix correlation failed
+        builder.Services.AddDataProtection()
+            .PersistKeysToFileSystem(new DirectoryInfo(@"C:\temp\keys"))
+            .SetDefaultKeyLifetime(TimeSpan.FromDays(90));
+
         // Identity
         builder.Services.AddIdentity<AppUserModel, IdentityRole>()
             .AddEntityFrameworkStores<DataContext>()
@@ -44,8 +50,11 @@ internal class Program
         // Cookie config (fix Correlation failed)
         builder.Services.ConfigureApplicationCookie(options =>
         {
-            options.Cookie.SameSite = SameSiteMode.Lax; // Cho phép OAuth Google hoạt động
-            options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // ⚠️ Bắt buộc khi SameSite=None
+            options.Cookie.SameSite = SameSiteMode.Lax;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+            options.Cookie.HttpOnly = true;
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+            options.SlidingExpiration = true;
         });
 
         // Google Authentication
@@ -54,12 +63,33 @@ internal class Program
             options.DefaultScheme = IdentityConstants.ApplicationScheme;
             options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
         })
-        .AddCookie()
+        .AddCookie(options =>
+        {
+            options.Cookie.SameSite = SameSiteMode.Lax;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+        })
         .AddGoogle(googleOptions =>
         {
             googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
             googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
             googleOptions.CallbackPath = "/signin-google";
+            
+            // Fix correlation failed issue
+            googleOptions.SaveTokens = true;
+            googleOptions.Scope.Add("email");
+            googleOptions.Scope.Add("profile");
+            
+            googleOptions.Events.OnCreatingTicket = context =>
+            {
+                return Task.CompletedTask;
+            };
+            
+            googleOptions.Events.OnRemoteFailure = context =>
+            {
+                context.Response.Redirect("/Account/Login?error=google_failed");
+                context.HandleResponse();
+                return Task.CompletedTask;
+            };
         });
 
         // Razor Pages (nếu cần)
