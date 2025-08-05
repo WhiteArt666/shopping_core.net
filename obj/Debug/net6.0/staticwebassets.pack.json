@@ -573,6 +573,10 @@
       "PackagePath": "staticwebassets\\css\\responsive.css"
     },
     {
+      "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\css\\user-pages.css",
+      "PackagePath": "staticwebassets\\css\\user-pages.css"
+    },
+    {
       "Id": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

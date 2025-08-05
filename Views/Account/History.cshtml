@@ -1,3 +1,4 @@
+@using shopping_tutorial.Models
 @model IEnumerable<OrderModel>
 
 @{
@@ -5,88 +6,107 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">
-                        <i class="fas fa-history me-2"></i>
-                        Lịch Sử Đơn Hàng - @ViewBag.UserEmail
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-striped" id="myTable">
-                        <table class="table table-hover table-striped" id="myTable">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th><i class="fas fa-shipping-fast me-1"></i>Phí Vận Chuyển</th>
-                                    <th><i class="fas fa-ticket-alt me-1"></i>Mã Giảm Giá</th>
-                                    <th><i class="fas fa-user me-1"></i>Tên Người Dùng</th>
-                                    <th><i class="fas fa-info-circle me-1"></i>Trạng Thái</th>
-                                    <th><i class="fas fa-calendar me-1"></i>Ngày Tạo</th>
-                                    <th><i class="fas fa-cogs me-1"></i>Thao Tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
+<link href="~/css/user-pages.css" rel="stylesheet" />
+
+<div class="user-page-container">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header text-center fade-in-up">
+            <h1>
+                <i class="fas fa-history me-3"></i>
+                Lịch Sử Đơn Hàng
+            </h1>
+            <p class="mb-0 fs-5">@ViewBag.UserEmail</p>
+        </div>
+
+        <!-- Orders Content -->
+        <div class="row">
+            <div class="col-12">
+                <div class="modern-card fade-in-up">
+                    <div class="modern-card-body">
+                        <div class="table-responsive">
+                            <table class="history-table table mb-0" id="myTable">
+                                <thead>
                                     <tr>
-                                        <td><span class="badge bg-info fs-6">@item.ShippingCost.ToString("#,##0 VNĐ")</span></td>
-                                        <td>
-                                            @if (!string.IsNullOrEmpty(item.CouponCode))
-                                            {
-                                                <span class="badge bg-warning text-dark">@item.CouponCode</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="text-muted">Không có</span>
-                                            }
-                                        </td>
-                                        <td><strong>@item.UserName</strong></td>
-                                        <td>
-                                            @if (item.Status == 1)
-                                            {
-                                                <span class="badge bg-primary"><i class="fas fa-clock me-1"></i>Đơn hàng mới</span>
-                                            }
-                                            else if (item.Status == 0)
-                                            {
-                                                <span class="badge bg-info"><i class="fas fa-check me-1"></i>Đã Xử Lý</span>
-                                            }
-                                            else if (item.Status == 2)
-                                            {
-                                                <span class="badge bg-warning"><i class="fas fa-box me-1"></i>Đã Đóng Gói</span>
-                                            }
-                                            else if (item.Status == 4)
-                                            {
-                                                <span class="badge bg-secondary"><i class="fas fa-truck me-1"></i>Đã Vận Chuyển</span>
-                                            }
-                                            else if (item.Status == 5)
-                                            {
-                                                <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Đã Hoàn Thành</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge bg-danger"><i class="fas fa-times-circle me-1"></i>Đã Hủy !</span>
-                                            }
-                                        </td>
-                                        <td><span class="text-muted">@item.CreatedDate.ToString("dd-MM-yyyy")</span></td>
-                                        <td>
-                                            @if(item.Status != 3 && item.Status != 2 && item.Status != 4 && item.Status != 5 ) {
-                                            <a onclick="return confirm('Bạn xác nhận muốn hủy?')" class="btn btn-outline-danger btn-sm" asp-action="CancelOrder" asp-controller="Account" asp-route-ordercode="@item.OrderCode">
-                                                <i class="fas fa-times me-1"></i>Hủy đơn hàng
-                                            </a>
-                                            }
-                                            else 
-                                            {
-                                                <span class="text-muted small">Không thể hủy</span>
-                                            }
-                                        </td>
+                                        <th><i class="fas fa-shipping-fast me-2"></i>Phí Vận Chuyển</th>
+                                        <th><i class="fas fa-ticket-alt me-2"></i>Mã Giảm Giá</th>
+                                        <th><i class="fas fa-user me-2"></i>Tên Người Dùng</th>
+                                        <th><i class="fas fa-info-circle me-2"></i>Trạng Thái</th>
+                                        <th><i class="fas fa-calendar me-2"></i>Ngày Tạo</th>
+                                        <th><i class="fas fa-cogs me-2"></i>Thao Tác</th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td><span class="price-badge">@item.ShippingCost.ToString("#,##0 VNĐ")</span></td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(item.CouponCode))
+                                                {
+                                                    <span class="badge bg-gradient-warning text-dark">@item.CouponCode</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">Không có</span>
+                                                }
+                                            </td>
+                                            <td><strong>@item.UserName</strong></td>
+                                            <td>
+                                                @if (item.Status == 1)
+                                                {
+                                                    <span class="status-badge status-new">
+                                                        <i class="fas fa-clock me-1"></i>Đơn hàng mới
+                                                    </span>
+                                                }
+                                                else if (item.Status == 0)
+                                                {
+                                                    <span class="status-badge status-processed">
+                                                        <i class="fas fa-check me-1"></i>Đã Xử Lý
+                                                    </span>
+                                                }
+                                                else if (item.Status == 2)
+                                                {
+                                                    <span class="status-badge status-packed">
+                                                        <i class="fas fa-box me-1"></i>Đã Đóng Gói
+                                                    </span>
+                                                }
+                                                else if (item.Status == 4)
+                                                {
+                                                    <span class="status-badge status-shipped">
+                                                        <i class="fas fa-truck me-1"></i>Đã Vận Chuyển
+                                                    </span>
+                                                }
+                                                else if (item.Status == 5)
+                                                {
+                                                    <span class="status-badge status-completed">
+                                                        <i class="fas fa-check-circle me-1"></i>Đã Hoàn Thành
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="status-badge status-cancelled">
+                                                        <i class="fas fa-times-circle me-1"></i>Đã Hủy !
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td><span class="text-muted">@item.CreatedDate.ToString("dd-MM-yyyy")</span></td>
+                                            <td>
+                                                @if(item.Status != 3 && item.Status != 2 && item.Status != 4 && item.Status != 5 ) {
+                                                <a onclick="return confirm('Bạn xác nhận muốn hủy?')" class="action-btn btn-remove" asp-action="CancelOrder" asp-controller="Account" asp-route-ordercode="@item.OrderCode">
+                                                    <i class="fas fa-times me-1"></i>Hủy đơn hàng
+                                                </a>
+                                                }
+                                                else 
+                                                {
+                                                    <span class="text-muted small">Không thể hủy</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

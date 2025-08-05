@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HLYQwV6NLB78BBIJSz747mjPhUPAik6j6o4rij02VeY=",
+  "Hash": "Bqyo427lKVvfqbtmzve3PncnVaUxNpwl9tPGIDN1B+A=",
   "Source": "shopping_tutorial",
   "BasePath": "_content/shopping_tutorial",
   "Mode": "Default",
@@ -3039,6 +3039,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\responsive.css"
+    },
+    {
+      "Identity": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\css\\user-pages.css",
+      "SourceId": "shopping_tutorial",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\",
+      "BasePath": "_content/shopping_tutorial",
+      "RelativePath": "css/user-pages#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "mp7gqtk43l",
+      "Integrity": "9kZo8VXKICz1+oCNBE8v0b9TsN4gInfJxY/Jb4aZn/4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\user-pages.css"
     },
     {
       "Identity": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\favicon.ico",
@@ -16909,6 +16930,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-RLHxXZsUnQfCzQaemrMADNl/lc1NlbB+Hh4e9bacGMc="
+        }
+      ]
+    },
+    {
+      "Route": "css/user-pages.css",
+      "AssetFile": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\css\\user-pages.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24771"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9kZo8VXKICz1+oCNBE8v0b9TsN4gInfJxY/Jb4aZn/4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 05 Aug 2025 17:16:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-9kZo8VXKICz1+oCNBE8v0b9TsN4gInfJxY/Jb4aZn/4="
+        }
+      ]
+    },
+    {
+      "Route": "css/user-pages.mp7gqtk43l.css",
+      "AssetFile": "D:\\web_net\\store_program\\shopping_tutorial\\wwwroot\\css\\user-pages.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24771"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9kZo8VXKICz1+oCNBE8v0b9TsN4gInfJxY/Jb4aZn/4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 05 Aug 2025 17:16:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "mp7gqtk43l"
+        },
+        {
+          "Name": "label",
+          "Value": "css/user-pages.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9kZo8VXKICz1+oCNBE8v0b9TsN4gInfJxY/Jb4aZn/4="
         }
       ]
     },
