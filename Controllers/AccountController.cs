@@ -32,7 +32,67 @@ namespace Shopping_Tutorial.Controllers
 			return View(new LoginViewModel { ReturnUrl = returnUrl });
 		}
 
-		[HttpPost]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        {
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return Challenge(properties, provider);
+        }
+
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        {
+            returnUrl ??= Url.Content("~/");
+
+            if (remoteError != null)
+            {
+                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                return RedirectToAction("Login");
+            }
+
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            // Sign in user if account exists
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+            if (result.Succeeded)
+            {
+                return LocalRedirect(returnUrl);
+            }
+
+            // If account doesn't exist, create it
+            var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+            var username = info.Principal.FindFirstValue(ClaimTypes.Name) ?? email;
+
+            var user = new AppUserModel
+            {
+                UserName = username,
+                Email = email
+            };
+
+            var createResult = await _userManage.CreateAsync(user);
+            if (createResult.Succeeded)
+            {
+                await _userManage.AddLoginAsync(user, info);
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return LocalRedirect(returnUrl);
+            }
+
+            // Show errors if creation failed
+            foreach (var error in createResult.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return RedirectToAction("Login");
+        }
+
+
+        [HttpPost]
 		public async Task<IActionResult> SendMailForgotPass(AppUserModel user)
 		{
 			var checkMail = await _userManage.Users.FirstOrDefaultAsync(u => u.Email == user.Email);

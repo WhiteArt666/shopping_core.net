@@ -4,119 +4,123 @@ using shopping_tutorial.Areas.Admin.Repository;
 using shopping_tutorial.Models;
 using shopping_tutorial.Repository;
 using shopping_tutorial.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        
         var builder = WebApplication.CreateBuilder(args);
 
+        // ⚠️ Fix lỗi SameSite cookie khi chạy trên Windows
+        AppContext.SetSwitch("Microsoft.AspNetCore.Server.Kestrel.EnableWindows81CookieSameSite", true);
+
         //connection db
-        // builder.Services.AddDbContext<DataContext>(options =>
-        // {
-        //     options.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDb"]);
-        // });
-       builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+        builder.Services.AddDbContext<DataContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+        });
 
-
-        //Add Email Sender
+        // Email sender service
         builder.Services.AddTransient<IEmailSender, EmailSender>();
 
-        // Add services to the container.
+        // Add MVC
         builder.Services.AddControllersWithViews();
 
+        // Session config
         builder.Services.AddDistributedMemoryCache();
         builder.Services.AddSession(options =>
         {
             options.IdleTimeout = TimeSpan.FromMinutes(15);
             options.Cookie.IsEssential = true;
         });
-        //Khai báo Identity 
-        builder.Services.AddIdentity<AppUserModel, IdentityRole>().AddEntityFrameworkStores<DataContext>().AddDefaultTokenProviders();
 
+        // Identity
+        builder.Services.AddIdentity<AppUserModel, IdentityRole>()
+            .AddEntityFrameworkStores<DataContext>()
+            .AddDefaultTokenProviders();
+
+        // Cookie config (fix Correlation failed)
+        builder.Services.ConfigureApplicationCookie(options =>
+        {
+            options.Cookie.SameSite = SameSiteMode.Lax; // Cho phép OAuth Google hoạt động
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // ⚠️ Bắt buộc khi SameSite=None
+        });
+
+        // Google Authentication
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultScheme = IdentityConstants.ApplicationScheme;
+            options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+        })
+        .AddCookie()
+        .AddGoogle(googleOptions =>
+        {
+            googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+            googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+            googleOptions.CallbackPath = "/signin-google";
+        });
+
+        // Razor Pages (nếu cần)
         builder.Services.AddRazorPages();
 
+        // Identity rules
         builder.Services.Configure<IdentityOptions>(options =>
         {
-            // Password settings.
             options.Password.RequireDigit = true;
             options.Password.RequireLowercase = true;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireUppercase = false;
             options.Password.RequiredLength = 4;
 
-
-            // Lockout settings.
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             options.Lockout.MaxFailedAccessAttempts = 5;
             options.Lockout.AllowedForNewUsers = true;
 
-            //User settings 
-            options.User.RequireUniqueEmail = true; // một email chỉ có 1 tài khoàn duy nhất 
+            options.User.RequireUniqueEmail = true;
         });
 
         var app = builder.Build();
-        app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode={0}");
-        app.UseSession();
 
-        app.UseStaticFiles();
-        // Configure the HTTP request pipeline.
-        if (!app.Environment.IsDevelopment())
-        {
-            app.UseExceptionHandler("/Home/Error");
-        }
-        else
-        {
-            app.UseDeveloperExceptionPage(); // ✅ dòng này giúp hiện lỗi chi tiết khi chạy ở Development
-        }
+        app.UseStatusCodePagesWithRedirects("/Home/Error?statuscode={0}");
 
         app.UseStaticFiles();
 
         app.UseRouting();
 
-        app.UseAuthentication();// đăng nhập 
-        app.UseAuthorization(); // xác thực xem account có quyền gì 
+        app.UseSession();            // ✅ Session cần trước Authentication
+        app.UseAuthentication();     // ✅ Authentication
+        app.UseAuthorization();      // ✅ Gọi đúng 1 lần
+
+        // Define Routes
+        app.MapControllerRoute(
+            name: "Areas",
+            pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
 
         app.MapControllerRoute(
-               name: "Areas",
-               pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
-
-        app.UseAuthorization();
-        app.MapControllerRoute(
-               name: "category",
-               pattern: "category/{Slug?}",
-        defaults: new { controller = "Brand", action = "Index" });
-
-        app.UseAuthorization();
-        app.MapControllerRoute(
-               name: "brand",
-               pattern: "brand/{Slug?}",
-        defaults: new { controller = "Category", action = "Index" });
+            name: "category",
+            pattern: "category/{Slug?}",
+            defaults: new { controller = "Brand", action = "Index" });
 
         app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            name: "brand",
+            pattern: "brand/{Slug?}",
+            defaults: new { controller = "Category", action = "Index" });
 
-        //seeding data
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        // Seeding
         using (var scope = app.Services.CreateScope())
         {
             var services = scope.ServiceProvider;
             var context = services.GetRequiredService<DataContext>();
             shopping_tutorial.Repository.SeedData.seedingData(context);
-            
-            // Seed Colors and Sizes
             shopping_tutorial.Data.SeedData.SeedColorsAndSizesSync(context);
         }
 
-        //var context =app.Services.CreateScope().ServiceProvider.GetRequiredService<DataContext>();
-        //      SeedData.seedingData(context);
-
-
         app.Run();
-
     }
 }
