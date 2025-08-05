@@ -1060,13 +1060,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\countdown.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"gd5yqhm8cr"},{"Name":"integrity","Value":"sha256-TBJDl0lIUcj5r3u7Cd6E7SW9AJx/HV/A2tP/z5bOPIQ="},{"Name":"label","Value":"_content/shopping_tutorial/assets/js/countdown.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2315"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022TBJDl0lIUcj5r3u7Cd6E7SW9AJx/HV/A2tP/z5bOPIQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 28 Oct 2024 09:39:30 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2315"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022TBJDl0lIUcj5r3u7Cd6E7SW9AJx/HV/A2tP/z5bOPIQ=\u0022"},{"Name":"Last-Modified","Value":"Tue, 05 Aug 2025 14:34:34 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/shopping_tutorial/assets/js/countdown.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\countdown.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-TBJDl0lIUcj5r3u7Cd6E7SW9AJx/HV/A2tP/z5bOPIQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2315"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022TBJDl0lIUcj5r3u7Cd6E7SW9AJx/HV/A2tP/z5bOPIQ=\u0022"},{"Name":"Last-Modified","Value":"Mon, 28 Oct 2024 09:39:30 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2315"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022TBJDl0lIUcj5r3u7Cd6E7SW9AJx/HV/A2tP/z5bOPIQ=\u0022"},{"Name":"Last-Modified","Value":"Tue, 05 Aug 2025 14:34:34 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/shopping_tutorial/assets/js/main.gsrh5wc9g4.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\js\main.js'))</AssetFile>
