@@ -13,10 +13,15 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         //connection db
-        builder.Services.AddDbContext<DataContext>(options =>
-        {
-            options.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDb"]);
-        });
+        // builder.Services.AddDbContext<DataContext>(options =>
+        // {
+        //     options.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDb"]);
+        // });
+       builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 
         //Add Email Sender
         builder.Services.AddTransient<IEmailSender, EmailSender>();

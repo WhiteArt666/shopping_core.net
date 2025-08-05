@@ -53,7 +53,46 @@ namespace Shopping_Tutorial.Areas.Admin.Controllers
                 string errorMessage = string.Join("\n", errors);
                 return BadRequest(errorMessage);
             }
+
             return View();
         }
+        [Route("Edit/{id}")]
+[HttpGet]
+public async Task<IActionResult> Edit(int id)
+{
+    var coupon = await _dataContext.Coupons.FindAsync(id);
+    if (coupon == null)
+        return NotFound();
+
+    return View(coupon);
+}
+
+[Route("Edit/{id}")]
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Edit(CouponModel model)
+{
+    if (!ModelState.IsValid)
+        return View(model);
+
+    _dataContext.Update(model);
+    await _dataContext.SaveChangesAsync();
+    TempData["success"] = "Cập nhật mã thành công";
+    return RedirectToAction("Index");
+}
+
+[Route("Delete/{id}")]
+[HttpPost]
+public async Task<IActionResult> Delete(int id)
+{
+    var coupon = await _dataContext.Coupons.FindAsync(id);
+    if (coupon != null)
+    {
+        _dataContext.Coupons.Remove(coupon);
+        await _dataContext.SaveChangesAsync();
+    }
+    return RedirectToAction("Index");
+}
+
     }
 }

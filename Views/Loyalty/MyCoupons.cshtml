@@ -1,0 +1,34 @@
+@model List<UserCouponModel>
+@{
+    ViewData["Title"] = "Mã đã đổi";
+}
+
+<h3>Mã khuyến mãi bạn đã đổi</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tên mã</th>
+            <th>Ngày đổi</th>
+            <th>Trạng thái</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Coupon.Name</td>
+            <td>@item.RedeemedAt.ToString("dd/MM/yyyy")</td>
+            <td>
+                @if (item.IsUsed)
+                {
+                    <span class="badge bg-secondary">Đã sử dụng</span>
+                }
+                else
+                {
+                    <span class="badge bg-success">Chưa sử dụng</span>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,42 @@
+@model List<CouponModel>
+@{
+    ViewData["Title"] = "Đổi điểm lấy mã giảm giá";
+    var points = ViewBag.LoyaltyPoints;
+}
+
+<h3>Bạn đang có @points điểm</h3>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Mô tả</th>
+            <th>Điểm yêu cầu</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.Description</td>
+                <td>@c.RequiredPoints</td>
+                <td>
+                    <!-- Sửa phần này -->
+                    @if (points >= c.RequiredPoints)
+                    {
+                        <form asp-action="Redeem" method="post">
+                            <input type="hidden" name="couponId" value="@c.Id" />
+                            <button class="btn btn-sm btn-success">Đổi điểm</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Chưa đủ điểm</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

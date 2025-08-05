@@ -53,6 +53,31 @@
 }
 
 <partial name="_SliderPartial" />
+@if (User.Identity?.IsAuthenticated ?? false && ViewBag.LoyaltyPoints != null)
+{
+    <div class="alert alert-info" style="margin: 20px 0;">
+        <div class="row align-items-center">
+            <!-- Cột trái: Chào người dùng -->
+            <div class="col-md-6 col-sm-12 mb-2 mb-md-0">
+                👤 Xin chào <strong>@User.Identity.Name</strong>, bạn có 
+                <strong style="color:green">@ViewBag.LoyaltyPoints</strong> điểm tích lũy 🎁.
+            </div>
+
+            <!-- Cột phải: 3 nút thẳng hàng -->
+            <div class="col-md-6 col-sm-12 text-md-end text-start">
+                <a class="btn btn-sm btn-primary me-1 mb-1" asp-controller="Loyalty" asp-action="History">
+                    <i class="fas fa-gift"></i> Xem điểm thưởng
+                </a>
+                <a class="btn btn-sm btn-success me-1 mb-1" asp-controller="Loyalty" asp-action="AvailableCoupons">
+                    🎁 Đổi điểm lấy mã
+                </a>
+                <a class="btn btn-sm btn-secondary mb-1" asp-controller="Loyalty" asp-action="MyCoupons">
+                    📄 Mã đã đổi
+                </a>
+            </div>
+        </div>
+    </div>
+}
 
 <!-- Categories Section -->
 <div class="categories-section" style="margin-bottom: 30px;">

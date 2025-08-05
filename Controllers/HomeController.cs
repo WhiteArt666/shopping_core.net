@@ -23,6 +23,12 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+            ViewBag.LoyaltyPoints = user?.LoyaltyPoints ?? 0;
+        }
+
         var products = _dataContext.Products
             .Include("Category")
             .Include("Brand")

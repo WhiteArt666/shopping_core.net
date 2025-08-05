@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 6.0
 build_property.EnableCodeStyleSeverity = 
 
+[D:/web_net/store_program/shopping_tutorial/Areas/Admin/Views/AdminLoyalty/History.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Mb3lhbHR5XEhpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web_net/store_program/shopping_tutorial/Areas/Admin/Views/AdminLoyalty/UserPoints.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Mb3lhbHR5XFVzZXJQb2ludHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/web_net/store_program/shopping_tutorial/Areas/Admin/Views/Brand/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQnJhbmRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,6 +74,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/web_net/store_program/shopping_tutorial/Areas/Admin/Views/Contact/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web_net/store_program/shopping_tutorial/Areas/Admin/Views/Coupon/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cG9uXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/web_net/store_program/shopping_tutorial/Areas/Admin/Views/Coupon/Index.cshtml]
@@ -250,6 +262,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/web_net/store_program/shopping_tutorial/Views/Home/Wishlist.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxXaXNobGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web_net/store_program/shopping_tutorial/Views/Loyalty/AvailableCoupons.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG95YWx0eVxBdmFpbGFibGVDb3Vwb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web_net/store_program/shopping_tutorial/Views/Loyalty/LoyaltyHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG95YWx0eVxMb3lhbHR5SGlzdG9yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/web_net/store_program/shopping_tutorial/Views/Loyalty/MyCoupons.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG95YWx0eVxNeUNvdXBvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/web_net/store_program/shopping_tutorial/Views/Product/Details.cshtml]

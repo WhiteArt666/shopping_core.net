@@ -46,6 +46,18 @@
                 <option value="0">Ẩn</option>
             </select>
         </div>
+        <div class="form-group">
+    <label>Discount Amount</label>
+    <input asp-for="DiscountAmount" class="form-control" />
+    <span asp-validation-for="DiscountAmount" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label>Required Points (optional)</label>
+    <input asp-for="RequiredPoints" class="form-control" />
+    <span asp-validation-for="RequiredPoints" class="text-danger"></span>
+</div>
+
 
         <div class="form-group">
             <button class="btn btn-primary">Create</button>
@@ -63,6 +75,9 @@
                 <th>Quantity</th>
                 <th>Active</th>
                 <th>Status</th>
+                <th>Discount</th>
+                 <th>Action</th>
+
             </tr>
         </thead>
         <tbody>
@@ -75,6 +90,7 @@
                     <td>@coupon.DateExpired.ToString("dd-MM-yyyy")</td>
                     <td>@coupon.Quantity</td>
                     <td>
+
                         @if (@coupon.Status == 1)
                         {
                             <select name="Status" >
@@ -112,6 +128,16 @@
                             
                         }
                     </td>
+                    <!-- ✅ Thêm dòng này để hiện giảm giá -->
+            <td>@coupon.DiscountAmount.ToString("#,##0 VNĐ")</td>
+
+            <!-- ✅ Thêm dòng này để có nút Sửa / Xóa -->
+            <td>
+                <a asp-action="Edit" asp-route-id="@coupon.Id" class="btn btn-sm btn-warning">Sửa</a>
+                <form method="post" asp-action="Delete" asp-route-id="@coupon.Id" onsubmit="return confirm('Xác nhận xóa?')" style="display:inline;">
+                    <button class="btn btn-sm btn-danger">Xóa</button>
+                </form>
+            </td>
                 </tr>
             }
         </tbody>

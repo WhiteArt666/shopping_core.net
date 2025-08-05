@@ -1,0 +1,29 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Quản lý điểm người dùng";
+}
+
+<h2>Danh sách người dùng & điểm tích lũy</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tài khoản</th>
+            <th>Email</th>
+            <th>Điểm</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.UserName</td>
+                <td>@u.Email</td>
+                <td style="color: green;">@u.LoyaltyPoints</td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="History" asp-route-userId="@u.Id">Xem lịch sử</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -17,7 +17,7 @@ namespace shopping_tutorial.Areas.Admin.Controllers
         private readonly UserManager<AppUserModel> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly DataContext _dataContext;
-        public UserController(UserManager<AppUserModel> userManager  ,RoleManager<IdentityRole> roleManager, DataContext context)
+        public UserController(UserManager<AppUserModel> userManager, RoleManager<IdentityRole> roleManager, DataContext context)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -54,7 +54,7 @@ namespace shopping_tutorial.Areas.Admin.Controllers
 
         [HttpGet]
         [Route("Create")]
-        public async Task <IActionResult> Create()
+        public async Task<IActionResult> Create()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             ViewBag.Roles = new SelectList(roles, "Id", "Name");
@@ -74,7 +74,7 @@ namespace shopping_tutorial.Areas.Admin.Controllers
                     var userId = createUser.Id; //lấy user id 
                     var role = _roleManager.FindByIdAsync(user.RoleId); // lấy RoleId 
                     //gán quyền 
-                    var addToRoleResult = await _userManager.AddToRoleAsync(createUser,role.Result.Name);// lấy role dựa vào name và chỉ gán 1 quyền do AddToRoleAsync 
+                    var addToRoleResult = await _userManager.AddToRoleAsync(createUser, role.Result.Name);// lấy role dựa vào name và chỉ gán 1 quyền do AddToRoleAsync 
                     if (!addToRoleResult.Succeeded)
                     {
                         foreach (var error in createUserRusult.Errors) //lấy lỗi dựa trên identityresult 
@@ -138,7 +138,7 @@ namespace shopping_tutorial.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(string id, AppUserModel user)
         {
             var existingUser = await _userManager.FindByIdAsync(id); //lấy ra user dựa vào id 
-            if(existingUser == null)
+            if (existingUser == null)
             {
                 return NotFound();
             }
@@ -172,7 +172,7 @@ namespace shopping_tutorial.Areas.Admin.Controllers
         }
         private void AddIdentityErrors(IdentityResult identityResult)
         {
-            foreach(var error in identityResult.Errors)
+            foreach (var error in identityResult.Errors)
             {
                 ModelState.AddModelError(string.Empty, error.Description);
             }
@@ -182,11 +182,12 @@ namespace shopping_tutorial.Areas.Admin.Controllers
         [Route("Delete")]
         public async Task<IActionResult> Delete(string id)// Vì id user kiểu string 
         {
-            if (string.IsNullOrEmpty(id)){
+            if (string.IsNullOrEmpty(id))
+            {
                 return NotFound();
             }
             var user = await _userManager.FindByIdAsync(id);
-            if(user == null)
+            if (user == null)
             {
                 return NotFound();
             }
@@ -198,6 +199,8 @@ namespace shopping_tutorial.Areas.Admin.Controllers
             TempData["success"] = "Người dùng đã được xóa thành công";
             return RedirectToAction("Index");
         }
+       
+
 
     }
 }

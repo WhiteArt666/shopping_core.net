@@ -43,6 +43,11 @@
                                 <a asp-action="Delete" class="btn btn-danger btn-sm confirmDeletion" asp-controller="User"
                                     asp-route-Id="@usersWithRoles.User.Id">Delete</a>
                             }
+                              <a asp-area="Admin"
+                               asp-controller="User"
+                               asp-action="History"
+                               asp-route-userId="@usersWithRoles.User.Id"
+                                class="btn btn-info btn-sm mt-1"> Lịch sử điểm</a>
                         }
                     </td>
                 </tr>
