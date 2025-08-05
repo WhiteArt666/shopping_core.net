@@ -2232,24 +2232,32 @@
     ]
   },
   "packageFolders": {
-    "/Users/thienphuong/.nuget/packages/": {}
+    "C:\\Users\\nhatd\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/thienphuong/web chính/shopping_core.net/shopping_tutorial.csproj",
+      "projectUniqueName": "D:\\web_net\\store_program\\shopping_tutorial\\shopping_tutorial.csproj",
       "projectName": "shopping_tutorial",
-      "projectPath": "/Users/thienphuong/web chính/shopping_core.net/shopping_tutorial.csproj",
-      "packagesPath": "/Users/thienphuong/.nuget/packages/",
-      "outputPath": "/Users/thienphuong/web chính/shopping_core.net/obj/",
+      "projectPath": "D:\\web_net\\store_program\\shopping_tutorial\\shopping_tutorial.csproj",
+      "packagesPath": "C:\\Users\\nhatd\\.nuget\\packages\\",
+      "outputPath": "D:\\web_net\\store_program\\shopping_tutorial\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/thienphuong/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\nhatd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2267,7 +2275,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net6.0": {
@@ -2313,6 +2322,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.36, 6.0.36]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2321,7 +2348,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.410/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
