@@ -20,14 +20,15 @@
 
     <link href="~/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.css"  rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+
 
     <link href="~/css/prettyPhoto.css" rel="stylesheet">
     <link href="~/css/price-range.css" rel="stylesheet">
     <link href="~/css/animate.css" rel="stylesheet">
     <link href="~/css/main.css" rel="stylesheet">
     <link href="~/css/responsive.css" rel="stylesheet">
-         <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -169,8 +170,6 @@
         </div>
     </div>
     <!-- SIDEBAR SECTION END -->
-
-
     <!-- HEADER SECTION START -->
     <header class="ul-header">
         <!-- header top -->
@@ -251,18 +250,26 @@
                             <nav class="ul-header-nav">
                                 <a asp-action="Index" asp-controller="Home">Home</a>
                                 <a asp-action="Index" asp-controller="Cart"><i class="fa fa-shopping-cart"></i> Cart</a>
+
                                 @if (User.Identity?.IsAuthenticated ?? false)
-								{
-									<a asp-action="History" asp-controller="Account"><i class="fa fa-user"></i> Account</a>
-									<a asp-action="Wishlist" asp-controller="Home"><i class="fa fa-heart"></i> Wishlist</a>
-									<a asp-action="Compare" asp-controller="Home"><i class="fa fa-star"></i> Compare</a>
-									<a asp-action="Index" asp-controller="Chat"><i class="fa fa-comments"></i> Hỗ trợ</a>
-									<a asp-controller="Account" asp-action="Logout"><i class="fa fa-lock"></i>Hi @User.Identity.Name Logout </a>
-								}
-								else
-								{
-									<li><a asp-controller="Account" asp-action="Login"><i class="fa fa-lock"></i>Login</a></li>
-								}
+                                {
+                                    <a asp-action="History" asp-controller="Account"><i class="fa fa-user"></i> Account</a>
+                                    <a asp-action="Wishlist" asp-controller="Home"><i class="fa fa-heart"></i> Wishlist</a>
+                                    <a asp-action="Compare" asp-controller="Home"><i class="fa fa-star"></i> Compare</a>
+                                    <a asp-action="Index" asp-controller="Chat"><i class="fa fa-comments"></i> Hỗ trợ</a>
+
+                                    @* CHỈ ADMIN mới thấy link này *@
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a asp-controller="Admin" asp-action="Dashboard"><i class="fa fa-bar-chart"></i> Dashboard</a>
+                                    }
+
+                                    <a asp-controller="Account" asp-action="Logout"><i class="fa fa-lock"></i> Hi @User.Identity.Name Logout </a>
+                                }
+                                else
+                                {
+                                    <li><a asp-controller="Account" asp-action="Login"><i class="fa fa-lock"></i> Login</a></li>
+                                }
 
                                 <div class="has-sub-menu has-mega-menu">
                                     <a role="button">Pages</a>
@@ -376,10 +383,10 @@
     <partial name="_FooterPartial" />
     <!-- FOOTER SECTION END -->
 
-<div id="fb-root"></div>
+    <div id="fb-root"></div>
 
 
-<!-- libraries JS -->
+    <!-- libraries JS -->
     <script src="~/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="~/assets/vendor/splide/splide.min.js"></script>
     <script src="~/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
@@ -396,7 +403,7 @@
 
 
 
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v23.0"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v23.0"></script>
 
 
     <script src="~/js/jquery.js"></script>
@@ -406,6 +413,6 @@
     <script src="~/js/jquery.prettyPhoto.js"></script>
     <script src="~/js/main.js"></script>
 
-    @await RenderSectionAsync("Scripts", required:false)
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
