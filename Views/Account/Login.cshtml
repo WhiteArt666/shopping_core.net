@@ -50,6 +50,17 @@
                             <button type="submit">Log In</button>
                         </form>
 
+                        <div class="text-center my-3">Hoặc</div>
+
+                        <!-- Nút đăng nhập bằng Google -->
+                        <form asp-action="ExternalLogin" asp-controller="Account" method="post">
+                            <input type="hidden" name="provider" value="Google" />
+                            <input type="hidden" name="returnUrl" value="/" />
+                            <button type="submit" class="btn btn-outline-danger w-100">
+                                <i class="fab fa-google"></i> Đăng nhập bằng Google
+                            </button>
+                        </form>
+
                         <p class="text-center mt-4 mb-0">Don't have an account? 
                             <a asp-action="Create" asp-controller="Account">Sign Up</a>
                         </p>
