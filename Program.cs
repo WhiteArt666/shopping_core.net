@@ -58,18 +58,10 @@ internal class Program
         });
 
         // Google Authentication
-        builder.Services.AddAuthentication(options =>
-        {
-            options.DefaultScheme = IdentityConstants.ApplicationScheme;
-            options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
-        })
-        .AddCookie(options =>
-        {
-            options.Cookie.SameSite = SameSiteMode.Lax;
-            options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-        })
+        builder.Services.AddAuthentication()
         .AddGoogle(googleOptions =>
         {
+            googleOptions.SignInScheme = IdentityConstants.ExternalScheme;
             googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
             googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
             googleOptions.CallbackPath = "/signin-google";
@@ -78,6 +70,11 @@ internal class Program
             googleOptions.SaveTokens = true;
             googleOptions.Scope.Add("email");
             googleOptions.Scope.Add("profile");
+            
+            // Fix cookie correlation
+            googleOptions.CorrelationCookie.SameSite = SameSiteMode.Lax;
+            googleOptions.CorrelationCookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+            googleOptions.CorrelationCookie.HttpOnly = true;
             
             googleOptions.Events.OnCreatingTicket = context =>
             {

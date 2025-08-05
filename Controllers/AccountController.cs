@@ -43,52 +43,92 @@ namespace Shopping_Tutorial.Controllers
 
         public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
-            returnUrl ??= Url.Content("~/");
-
-            if (remoteError != null)
+            try
             {
-                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
-                return RedirectToAction("Login");
+                returnUrl ??= Url.Content("~/");
+
+                if (remoteError != null)
+                {
+                    Console.WriteLine($"Google OAuth remote error: {remoteError}");
+                    return RedirectToAction("Login", new { error = "google_failed" });
+                }
+
+                var info = await _signInManager.GetExternalLoginInfoAsync();
+                if (info == null)
+                {
+                    Console.WriteLine("Google OAuth: No external login info received");
+                    return RedirectToAction("Login", new { error = "google_failed" });
+                }
+
+                Console.WriteLine($"Google OAuth: Received info for provider {info.LoginProvider}");
+
+                // Sign in user if account exists
+                var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+                if (result.Succeeded)
+                {
+                    Console.WriteLine("Google OAuth: User signed in successfully");
+                    return LocalRedirect(returnUrl);
+                }
+
+                Console.WriteLine("Google OAuth: User doesn't exist, creating new account");
+
+                // If account doesn't exist, create it
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                var username = info.Principal.FindFirstValue(ClaimTypes.Name) ?? email;
+
+                Console.WriteLine($"Google OAuth: Email={email}, Username={username}");
+
+                if (string.IsNullOrEmpty(email))
+                {
+                    Console.WriteLine("Google OAuth: No email received from Google");
+                    return RedirectToAction("Login", new { error = "google_failed" });
+                }
+
+                // Check if user with this email already exists
+                var existingUser = await _userManage.FindByEmailAsync(email);
+                if (existingUser != null)
+                {
+                    // Add this Google login to existing user
+                    var addLoginResult = await _userManage.AddLoginAsync(existingUser, info);
+                    if (addLoginResult.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(existingUser, isPersistent: false);
+                        Console.WriteLine("Google OAuth: Added login to existing user and signed in");
+                        return LocalRedirect(returnUrl);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Google OAuth: Failed to add login to existing user: {string.Join(", ", addLoginResult.Errors.Select(e => e.Description))}");
+                        return RedirectToAction("Login", new { error = "google_failed" });
+                    }
+                }
+
+                // Create new user
+                var user = new AppUserModel
+                {
+                    UserName = email, // Use email as username to avoid conflicts
+                    Email = email
+                };
+
+                var createResult = await _userManage.CreateAsync(user);
+                if (createResult.Succeeded)
+                {
+                    await _userManage.AddLoginAsync(user, info);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    Console.WriteLine("Google OAuth: New user created and signed in successfully");
+                    return LocalRedirect(returnUrl);
+                }
+
+                // Show errors if creation failed
+                Console.WriteLine($"Google OAuth: User creation failed: {string.Join(", ", createResult.Errors.Select(e => e.Description))}");
+                return RedirectToAction("Login", new { error = "google_failed" });
             }
-
-            var info = await _signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
+            catch (Exception ex)
             {
-                return RedirectToAction("Login");
+                Console.WriteLine($"Google OAuth Exception: {ex.Message}");
+                Console.WriteLine($"Google OAuth Exception Stack: {ex.StackTrace}");
+                return RedirectToAction("Login", new { error = "google_failed" });
             }
-
-            // Sign in user if account exists
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
-            if (result.Succeeded)
-            {
-                return LocalRedirect(returnUrl);
-            }
-
-            // If account doesn't exist, create it
-            var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-            var username = info.Principal.FindFirstValue(ClaimTypes.Name) ?? email;
-
-            var user = new AppUserModel
-            {
-                UserName = username,
-                Email = email
-            };
-
-            var createResult = await _userManage.CreateAsync(user);
-            if (createResult.Succeeded)
-            {
-                await _userManage.AddLoginAsync(user, info);
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return LocalRedirect(returnUrl);
-            }
-
-            // Show errors if creation failed
-            foreach (var error in createResult.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-
-            return RedirectToAction("Login");
         }
 
 
