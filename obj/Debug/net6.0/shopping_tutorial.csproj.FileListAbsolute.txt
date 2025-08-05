@@ -527,3 +527,4 @@ D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\refint\shopping_tuto
 D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.pdb
 D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\shopping_tutorial.genruntimeconfig.cache
 D:\web_net\store_program\shopping_tutorial\obj\Debug\net6.0\ref\shopping_tutorial.dll
+D:\web_net\store_program\shopping_tutorial\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll

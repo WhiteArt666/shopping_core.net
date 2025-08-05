@@ -22,8 +22,12 @@
     <script>
         const months = [...Array(12).keys()].map(i => i + 1);
 
-        const revenueData = months.map(m => @Model.RevenueByMonth.GetValueOrDefault(m, 0));
-        const ordersData = months.map(m => @Model.OrdersByMonth.GetValueOrDefault(m, 0));
+        // Serialize data from server to client
+        const revenueByMonth = @Html.Raw(Json.Serialize(Model.RevenueByMonth));
+        const ordersByMonth = @Html.Raw(Json.Serialize(Model.OrdersByMonth));
+        
+        const revenueData = months.map(m => revenueByMonth[m] || 0);
+        const ordersData = months.map(m => ordersByMonth[m] || 0);
 
         new Chart(document.getElementById('revenueChart'), {
             type: 'bar',
